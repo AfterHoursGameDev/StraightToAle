@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "0e192213-4dd9-4603-a274-e38aeea51b1e",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "night-sky-background": {
+      "ver": "1.0.3",
+      "uuid": "0bddb5c5-61dd-44de-a5f2-8a0d30abccb5",
+      "rawTextureUuid": "0e192213-4dd9-4603-a274-e38aeea51b1e",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 512,
+      "height": 512,
+      "rawWidth": 512,
+      "rawHeight": 512,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
