@@ -7,10 +7,10 @@ export default class NewClass extends cc.Component {
     horOffset: number = 0;// 375;
     tankHealthModifier: number = 0.2;
     tankSelected: cc.Node = null;
+    destination: cc.Vec2;
 
     enemyMoveSpeed: number = 10;
-
-    destination: cc.Vec2;
+    initialized: boolean = false;
 
     action: cc.ActionInterval;
 
@@ -18,19 +18,10 @@ export default class NewClass extends cc.Component {
 
     onLoad ()
     {
-        cc.director.getCollisionManager().enabledDebugDraw = true;
+        // turn on collision
+        //cc.director.getCollisionManager().enabledDebugDraw = true;
         cc.director.getCollisionManager().enabled = true;
-        cc.director.getCollisionManager().enabledDrawBoundingBox = true;
-/*
-        this.node.on('ferm_tank_destroyed', (e: cc.Event) =>
-        {
-            if (e.target == this.tankSelected)
-            {
-                console.log(e.target.name + " has been destroyed.");
-            }
-        });*/
-
-        //this.enemyMovement();
+        //cc.director.getCollisionManager().enabledDrawBoundingBox = true;
     }
 
     start ()
@@ -40,11 +31,15 @@ export default class NewClass extends cc.Component {
 
     update (dt)
     {
-        /*
-        if (this.node.position.y >= this.destination.y - 5 && this.node.position.y <= this.destination.y + 5)
+        if (this.initialized)
         {
-            this.node.destroy;
-        }*/
+            if (this.tankSelected.isValid == false)
+            {
+                this.initialized = false;
+
+                this.enemyExitScreen();
+            }
+        }
     }
 
     onCollisionEnter (other: cc.Collider, self)
@@ -73,7 +68,7 @@ export default class NewClass extends cc.Component {
                     // if tank is empty, disable collider box
                     // replace sprite with destroyed sprite?
                     other.node.getComponent(cc.BoxCollider).enabled = false;
-                    //this.node.dispatchEvent(new cc.Event.EventCustom('ferm_tank_destroyed', true));
+
                     other.node.destroy();
                 }
 
@@ -86,6 +81,12 @@ export default class NewClass extends cc.Component {
 
     public enemyMovement(selectedTank: cc.Node)
     {
+        // reference to tank selected as a target so that we can determine when it is destroyed
+        this.tankSelected = selectedTank;
+
+        // initialize the script to look for when the tank is destroyed
+        this.initialized = true;
+
         // define movement action parameters
         //var action = cc.moveTo(this.enemyMoveSpeed, this.node.position.x, -(this.node.getParent().height));
         this.action = cc.moveTo(this.enemyMoveSpeed, selectedTank.x, selectedTank.y);
@@ -114,7 +115,7 @@ export default class NewClass extends cc.Component {
 
         // move enemy off-screen
         // TODO: enable screen exit animation
-        this.action = cc.moveTo(this.enemyMoveSpeed/2, xLoc, this.node.position.y);
+        this.action = cc.moveTo(this.enemyMoveSpeed/4, xLoc, this.node.position.y);
 
         // execute can movement
         this.node.runAction(this.action);

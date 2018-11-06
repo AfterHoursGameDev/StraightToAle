@@ -65,12 +65,6 @@ export default class NewClass extends cc.Component
         this.node.on(cc.Node.EventType.TOUCH_END, (e: cc.Touch)=>
         //this.node.on(cc.Node.EventType.MOUSE_DOWN,(e:cc.Event.EventMouse)=>
         {
-            // event will no longer propogate past the first event
-            //e.bubbles = false;
-
-            //console.log(e.getCurrentTarget().name);
-            //console.log("Click Position: " + e.getLocation().x);
-
             // if player clicks on the grass below the avatar, then move the avatar to selected point along horizontal axis only
             if (e.getLocation().y <= this.groundHeight)
             {
@@ -85,7 +79,7 @@ export default class NewClass extends cc.Component
                     this.playerCanThrow = false;
 
                     // initiate throwing of the beer can
-                    this.throwBeerCan(e.getLocation());
+                    this.spawnBeerCan(e.getLocation());
 
                     // prevent player from throwing another beer until cooldownTime
                     this.scheduleOnce(function()
@@ -96,11 +90,6 @@ export default class NewClass extends cc.Component
             }
             
         })
-    }
-
-    start ()
-    {
-        
     }
 
     update (dt)
@@ -138,10 +127,10 @@ export default class NewClass extends cc.Component
     }
 
     // Move player based on mouse's "x" position
-    movePlayer(mousePos: cc.Vec2)
+    movePlayer(tgtLocation: cc.Vec2)
     {
         // store "x" parameter of mouse position
-        this.newPlayerPosX = mousePos.x - this.horOffset;
+        this.newPlayerPosX = tgtLocation.x - this.horOffset;
 
         // Prevent player from walking beyond the screen by resetting them to edge of screen
         if (this.newPlayerPosX < -(this.node.width/2) - this.player.width/2)
@@ -185,29 +174,21 @@ export default class NewClass extends cc.Component
 
     // Instantiate beer can at player location and throw it toward click location
     // Spawning enemy here too for now
-    throwBeerCan(mousePos: cc.Vec2)
+    spawnBeerCan(tgtLocation: cc.Vec2)
     {
         // calculate mouse position offset compared to player location
         // horizontally, canvas units is 0-750 while player units is -375-375
-        if (mousePos.x >= this.horOffset)
+        if (tgtLocation.x >= this.horOffset)
         {
-            this.newPos.x = mousePos.x;
+            this.newPos.x = tgtLocation.x;
         }
         else
         {
-            this.newPos.x = mousePos.x - this.horOffset;
+            this.newPos.x = tgtLocation.x - (this.horOffset*2);
         }
-/*
-        if (mousePos.y <= this.vertOffset)
-        {
-            //this.newPos.y = mousePos.y + this.vertOffset;
-        }
-        else
-        {
-           // this.newPos.y = mousePos.y + this.vertOffset;
-        }*/
 
-        this.newPos.y = mousePos.y + this.vertOffset;
+        // get mouse's y position
+        this.newPos.y = tgtLocation.y + this.vertOffset;
 
         // instantiate beer can prefab
         var canPrefab = cc.instantiate(this.CanPrefab);
@@ -219,50 +200,19 @@ export default class NewClass extends cc.Component
         // TODO: Update position to reflect throwing direction
         canPrefab.setPosition(this.player.position.x, this.player.position.y + this.player.height);
 
-        // define movement action parameters
-        //var action = cc.jumpBy(3, this.newPos.x, -(this.node.height), this.newPos.y, 1);
-        // TODO: Adjust jump power based on height
-        var action = cc.jumpTo(3, this.newPos.x, -(this.node.height), this.newPos.y-450, 1);
-
-        // execute can movement
-        canPrefab.runAction(action);
+        // call script to initialize can movement
+        canPrefab.getComponent("BeerCanScript").beerCanMovement(this.newPos);
 
         this.spawnEnemy();
     }
 
     spawnEnemy()
     {
-        var enemyPos = new cc.Vec2;
-        var multiplier = 1;
-
-        //this.horOffset = this.horOffset;
-
-        // Randomize negative multiplier so that we get x positions left of the center
-        enemyPos.x = Math.random();
-
-        if (enemyPos.x < 0.5)
-        {
-            multiplier *= -1;
-        }
-
-        // Randomize spawn location
-        enemyPos.x = Math.random() * this.horOffset * multiplier;
-        enemyPos.y = this.node.height;
-
-        // instantiate enemy prefab
-        var enemyPrefab = cc.instantiate(this.EnemyPrefab);
-
-        // set the position of the prefab to spawn to the upper right of the player
-        // TODO: Update position to reflect throwing direction
-        enemyPrefab.setPosition(enemyPos);
-
-        // set the prefab's parent to the primary canvas
-        enemyPrefab.setParent(this.node);
-
         // add all fermentation tanks to an array to randomly select them later
         var fermTank = new Array;
-        
-        var i;
+
+        var i = 0;
+
         for (i = 0; i < this.tanks.length; i++)
         {
             if (this.tanks[i].isValid != false)
@@ -271,10 +221,41 @@ export default class NewClass extends cc.Component
             }
         }
 
-        // randomly select fermentation tank to attack
-        var selectedTank = fermTank[Math.floor(Math.random() * fermTank.length)];
+        if (fermTank.length > 0)
+        {
+            var enemyPos = new cc.Vec2;
+            var multiplier = 1;
 
-        // call script on enemy to initiate movement
-        enemyPrefab.getComponent("EnemyScript").enemyMovement(selectedTank);
+            //this.horOffset = this.horOffset;
+
+            // Randomize negative multiplier so that we get x positions left of the center
+            enemyPos.x = Math.random();
+
+            if (enemyPos.x < 0.5)
+            {
+                multiplier *= -1;
+            }
+
+            // Randomize spawn location
+            enemyPos.x = Math.random() * this.horOffset * multiplier;
+            enemyPos.y = this.node.height;
+
+            // instantiate enemy prefab
+            var enemyPrefab = cc.instantiate(this.EnemyPrefab);
+
+            // set the position of the prefab to spawn to the upper right of the player
+            // TODO: Update position to reflect throwing direction
+            enemyPrefab.setPosition(enemyPos);
+
+            // set the prefab's parent to the primary canvas
+            enemyPrefab.setParent(this.node);
+
+            // randomly select fermentation tank to attack
+            var selectedTank = fermTank[Math.floor(Math.random() * fermTank.length)];
+
+            // call script on enemy to initiate movement
+            enemyPrefab.getComponent("EnemyScript").enemyMovement(selectedTank);
+        }
+
     }
 }

@@ -34,8 +34,8 @@
     "orientation": "portrait"
   },
   "startScene": "e3f9bc8f-5646-4cc4-83ea-245a190cb8b8",
-  "title": "CocosCrashCourse",
-  "webOrientation": "auto",
+  "title": "STABeerDefense_Portrait",
+  "webOrientation": "portrait",
   "wechatgame": {
     "REMOTE_SERVER_ROOT": "",
     "appid": "wx6ac3f5090a6b99c5",
