@@ -1125,7 +1125,7 @@
       "__id__": 2
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_level": 2,
     "_components": [
       {
@@ -1222,7 +1222,7 @@
       "__id__": 30
     },
     "_enabled": true,
-    "beerCanSpeed": 7,
+    "maxDuration": 6,
     "_id": "27EHNXTbJPHqt+jUiOfStf"
   },
   {

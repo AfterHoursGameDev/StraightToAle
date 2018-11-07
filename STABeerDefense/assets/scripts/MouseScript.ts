@@ -49,11 +49,6 @@ export default class NewClass extends cc.Component
 
     onLoad () 
     {
-        this.node.on('enemySatisfied', (e: cc.Event) =>
-        {
-            console.log(e.target.name);
-        })
-
         // add all fermentation tanks to an array to randomly select them later
         this.tanks = new Array (this.tank_1, this.tank_2, this.tank_3, this.tank_4);
 
@@ -65,6 +60,7 @@ export default class NewClass extends cc.Component
         this.node.on(cc.Node.EventType.TOUCH_END, (e: cc.Touch)=>
         //this.node.on(cc.Node.EventType.MOUSE_DOWN,(e:cc.Event.EventMouse)=>
         {
+            console.log(e.getLocation().x + "," + e.getLocation().y);
             // if player clicks on the grass below the avatar, then move the avatar to selected point along horizontal axis only
             if (e.getLocation().y <= this.groundHeight)
             {
@@ -176,20 +172,6 @@ export default class NewClass extends cc.Component
     // Spawning enemy here too for now
     spawnBeerCan(tgtLocation: cc.Vec2)
     {
-        // calculate mouse position offset compared to player location
-        // horizontally, canvas units is 0-750 while player units is -375-375
-        if (tgtLocation.x >= this.horOffset)
-        {
-            this.newPos.x = tgtLocation.x;
-        }
-        else
-        {
-            this.newPos.x = tgtLocation.x - (this.horOffset*2);
-        }
-
-        // get mouse's y position
-        this.newPos.y = tgtLocation.y + this.vertOffset;
-
         // instantiate beer can prefab
         var canPrefab = cc.instantiate(this.CanPrefab);
 
@@ -201,7 +183,7 @@ export default class NewClass extends cc.Component
         canPrefab.setPosition(this.player.position.x, this.player.position.y + this.player.height);
 
         // call script to initialize can movement
-        canPrefab.getComponent("BeerCanScript").beerCanMovement(this.newPos);
+        canPrefab.getComponent("BeerCanScript").beerCanMovement(tgtLocation, tgtLocation.y);
 
         this.spawnEnemy();
     }

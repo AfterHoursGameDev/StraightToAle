@@ -6,7 +6,9 @@ export default class NewClass extends cc.Component {
 
 
 @property
-beerCanSpeed: number = 7;
+maxDuration: number = 3;
+
+rotSpeed: number = 7;
 
     // onLoad () {}
 
@@ -16,14 +18,26 @@ beerCanSpeed: number = 7;
 
     update (dt)
     {
-        this.node.setRotation(this.node.rotation += this.beerCanSpeed);
+        this.node.setRotation(this.node.rotation += this.rotSpeed);
     }
 
-    public beerCanMovement(tgtLocation: cc.Vec2)
+    public beerCanMovement(tgtLocation: cc.Vec2, jumpHeight: number)
     {
-        var action = cc.jumpTo(3, tgtLocation.x, -(this.node.getParent().height), tgtLocation.y-450, 1);
+        var parentHeight = this.node.getParent().height;
 
-        // execute can movement
+        // converting world space of mouse position to node space of beer can position
+        var newTgtLoc = this.node.getParent().convertToNodeSpaceAR(tgtLocation);
+ 
+        // normalizing velocity based on distance to travel
+        var vel = this.maxDuration * ((jumpHeight + 200)/parentHeight);
+
+        // shift target x position so that height of jump passes through target x position
+        var dist = newTgtLoc.x - this.node.position.x;
+
+        // define movement action parameters
+        var action = cc.jumpTo(vel, newTgtLoc.x+dist, -(this.node.getParent().height), (jumpHeight + 200), 1);
+
+        // execute movement
         this.node.runAction(action);
     }
 }
