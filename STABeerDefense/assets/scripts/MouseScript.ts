@@ -13,6 +13,19 @@ export default class NewClass extends cc.Component
     CanPrefab: cc.Prefab = null;
 
     @property(cc.Prefab)
+    PitcherPrefab: cc.Prefab = null;
+
+    numSatisfiedEnemies: number = 0;
+    numSatisfiedEnemiesToPitcher: number = 0;
+    numMaxSatisfiedEnemiesToPitcher: number = 5;
+    numCurrentPitchers: number = 0;
+    numMaxPitchers: number = 3;
+    activePitcher: boolean = false;
+
+    @property(cc.Toggle)
+    PitcherToggle: cc.Toggle = null;
+
+    @property(cc.Prefab)
     EnemyPrefab: cc.Prefab = null;
 
     @property
@@ -30,7 +43,7 @@ export default class NewClass extends cc.Component
 
     playerMoving: boolean = false;
     playerCanThrow: boolean = true;
-
+    
     // declare array for fermentation tanks
     tanks: Array<cc.Node>;
 
@@ -46,9 +59,12 @@ export default class NewClass extends cc.Component
     @property(cc.Node)
     tank_4: cc.Node = null;
 
-
     onLoad () 
     {
+        cc.audioEngine.playMusic(this.node.getComponent(cc.AudioSource).clip, true);
+
+        //this.node.getComponent(cc.AudioSource).volume = 0.1;
+
         // add all fermentation tanks to an array to randomly select them later
         this.tanks = new Array (this.tank_1, this.tank_2, this.tank_3, this.tank_4);
 
@@ -60,7 +76,6 @@ export default class NewClass extends cc.Component
         this.node.on(cc.Node.EventType.TOUCH_END, (e: cc.Touch)=>
         //this.node.on(cc.Node.EventType.MOUSE_DOWN,(e:cc.Event.EventMouse)=>
         {
-            console.log(e.getLocation().x + "," + e.getLocation().y);
             // if player clicks on the grass below the avatar, then move the avatar to selected point along horizontal axis only
             if (e.getLocation().y <= this.groundHeight)
             {
@@ -74,8 +89,15 @@ export default class NewClass extends cc.Component
                     // Prevent player from throwing another beer can
                     this.playerCanThrow = false;
 
-                    // initiate throwing of the beer can
-                    this.spawnBeerCan(e.getLocation());
+                    // initiate throwing of drink
+                    if (this.activePitcher == false)
+                    {
+                        this.spawnBeerCan(e.getLocation());
+                    }
+                    else
+                    {
+                        this.spawnPitcher(e.getLocation());
+                    }
 
                     // prevent player from throwing another beer until cooldownTime
                     this.scheduleOnce(function()
@@ -188,6 +210,35 @@ export default class NewClass extends cc.Component
         this.spawnEnemy();
     }
 
+    // Instantiate beer can at player location and throw it toward click location
+    // Spawning enemy here too for now
+    spawnPitcher(tgtLocation: cc.Vec2)
+    {
+        // instantiate beer can prefab
+        var canPrefab = cc.instantiate(this.PitcherPrefab);
+
+        // set the prefab's parent to the primary canvas
+        canPrefab.setParent(this.node);
+
+        // set the position of the prefab to spawn to the upper right of the player
+        // TODO: Update position to reflect throwing direction
+        canPrefab.setPosition(this.player.position.x, this.player.position.y + this.player.height);
+
+        // call script to initialize can movement
+        canPrefab.getComponent("PitcherScript").pitcherMovement(tgtLocation, tgtLocation.y);
+
+        // decrement number of pitchers available
+        this.numCurrentPitchers -= 1;
+
+        // update the pitcher toggle text
+        this.PitcherToggle.getComponentInChildren(cc.Label).string = this.numCurrentPitchers.toString();
+
+        // update pitcher count and whether button is toggle or not
+        this.UpdatePitcherStateValue();
+
+        this.spawnEnemy();
+    }
+
     spawnEnemy()
     {
         // add all fermentation tanks to an array to randomly select them later
@@ -239,5 +290,97 @@ export default class NewClass extends cc.Component
             enemyPrefab.getComponent("EnemyScript").enemyMovement(selectedTank);
         }
 
+    }
+
+    public UpdateVolume()
+    {
+        console.log(cc.audioEngine.getMusicVolume());
+        if (cc.audioEngine.getMusicVolume() == 1)
+        {
+            cc.audioEngine.setMusicVolume(0);
+        }
+        else
+        {
+            cc.audioEngine.setMusicVolume(1);
+        }
+
+        if (cc.audioEngine.getEffectsVolume() == 1)
+        {
+            cc.audioEngine.setEffectsVolume(0);
+        }
+        else
+        {
+            cc.audioEngine.setEffectsVolume(1);
+        }
+    }
+
+    public UpdatePitcherState(pitcherState: cc.Toggle)
+    {
+        if (pitcherState.isChecked)
+        {
+            this.activePitcher = false;
+        }
+        else
+        {
+            if(this.numCurrentPitchers > 0)
+            {
+                this.activePitcher = true;
+            }
+        }
+    }
+
+    // Update the number of pitchers player has
+    UpdatePitcherStateValue()
+    {
+        // check to see if all pitchers have been used
+        if (this.numCurrentPitchers <= 0)
+        {
+            // disable the pitcher toggle
+            this.PitcherToggle.getComponent(cc.Toggle).interactable = false;
+
+            // disable player ability to throw pitcher
+            this.activePitcher = false;
+        }
+        else
+        {
+            // enable pitcher toggle
+            this.PitcherToggle.getComponent(cc.Toggle).interactable = true;
+        }
+    }
+
+    public UpdateScore()
+    {
+        // increment total number of satisfied patrons
+        this.numSatisfiedEnemies += 1;
+
+        // increment total number of satisfied patrons toward a pitcher
+        this.numSatisfiedEnemiesToPitcher += 1;
+
+        // check to see if player reached number of satisfied patrons required to gain a pitcher
+        if(this.numSatisfiedEnemiesToPitcher == this.numMaxSatisfiedEnemiesToPitcher)
+        {
+            // check for max number of pitchers player can have
+            if(this.numCurrentPitchers <= this.numMaxPitchers)
+            {
+                // increment number of pitchers
+                this.numCurrentPitchers += 1;
+            }
+
+            // check if player has more than 0 pitchers
+            if (this.numCurrentPitchers > 0)
+            {
+                // enable the pitcher toggle
+                this.PitcherToggle.getComponent(cc.Toggle).interactable = true;
+
+                // set the pitcher toggle to checked letting player know they can click
+                this.PitcherToggle.getComponent(cc.Toggle).check();
+            }
+
+            // reset number of satisfied patrons required to gain a pitcher
+            this.numSatisfiedEnemiesToPitcher = 0;
+
+            // update the pitcher toggle text
+            this.PitcherToggle.getComponentInChildren(cc.Label).string = this.numCurrentPitchers.toString();
+        }
     }
 }

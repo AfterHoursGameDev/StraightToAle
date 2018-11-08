@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "beerCan",
+    "_name": "pitcher",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -24,16 +24,10 @@
       },
       {
         "__id__": 3
-      },
-      {
-        "__id__": 4
-      },
-      {
-        "__id__": 5
       }
     ],
     "_prefab": {
-      "__id__": 6
+      "__id__": 4
     },
     "_opacity": 255,
     "_color": {
@@ -45,8 +39,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 120,
-      "height": 60
+      "width": 140,
+      "height": 80
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -91,7 +85,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "dd5fe0a4-0d8f-4578-bbeb-9aea5808b2d3"
+      "__uuid__": "7f0f6594-ae1d-4ece-ac4e-ef652d81598a"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -109,7 +103,7 @@
     "_id": ""
   },
   {
-    "__type__": "5515e5hQLhIZ7Eo/LiRH+av",
+    "__type__": "4a3deHX/I1GgbCGG2l10QJy",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -120,53 +114,14 @@
     "_id": ""
   },
   {
-    "__type__": "cc.BoxCollider",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "tag": 0,
-    "_offset": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_size": {
-      "__type__": "cc.Size",
-      "width": 120,
-      "height": 60
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.AudioSource",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "_clip": {
-      "__uuid__": "41ad0537-08e5-4273-ba5a-ae091878fc63"
-    },
-    "_volume": 1,
-    "_mute": false,
-    "_loop": false,
-    "playOnLoad": false,
-    "preload": false,
-    "_id": ""
-  },
-  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "49efaef0-dbd5-4a45-8bac-ff699906b447"
+      "__uuid__": "527cac7b-90b3-44e7-ac6e-81f8b9221426"
     },
-    "fileId": "6fK+oxd7FLbqKN0kr23Xpt",
+    "fileId": "c17TFm3f9GZKcrbIFs88Rs",
     "sync": false
   }
 ]

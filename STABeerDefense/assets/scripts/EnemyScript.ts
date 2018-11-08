@@ -54,7 +54,7 @@ export default class NewClass extends cc.Component {
                 // destroy this enemy
                 // TODO: disable collider and have enemy exit screen to right or left
                 this.enemyExitScreen();
-                //this.node.destroy();
+                this.node.getParent().getComponent("MouseScript").UpdateScore();
                 break;
             }
             case "fermentation_tank":
@@ -74,6 +74,16 @@ export default class NewClass extends cc.Component {
 
                 // destroy this enemy
                 this.node.destroy();
+                break;
+            }
+            case "pitcher":
+            {
+                // destroy the pitcher
+                other.node.destroy();
+
+                // TODO: disable collider and have enemy exit screen to right or left
+                this.enemyExitScreen();
+                this.node.getParent().getComponent("MouseScript").UpdateScore();
                 break;
             }
         }

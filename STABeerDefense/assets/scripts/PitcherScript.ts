@@ -7,11 +7,22 @@ export default class NewClass extends cc.Component {
     initialized: boolean = false;
     destination: cc.Vec2;
 
+    @property
+    maxTravelDuration: number = 1;
+
+    @property
+    explosionDelay: number = 0.25;
+
+    @property
+    explosionRadius: number = 400;
+
     // LIFE-CYCLE CALLBACKS:
 
      onLoad () 
      {
         cc.director.getCollisionManager().enabled = true;
+        //cc.director.getCollisionManager().enabledDebugDraw = true;
+        //cc.director.getCollisionManager().enabledDrawBoundingBox;
      }
 
     start () {
@@ -22,7 +33,7 @@ export default class NewClass extends cc.Component {
     {
         if (this.initialized)
         {
-            if (this.node.position == this.destination)
+            if (Math.round(this.node.position.x) == Math.round(this.destination.x) && Math.round(this.node.position.y) == Math.round(this.destination.y))
             {
                 this.initialized = false;
 
@@ -33,27 +44,48 @@ export default class NewClass extends cc.Component {
 
     pitcherExplosion()
     {
-        var cirMultiplier = 1;
-        var cirMaxRadius = 100;
+        var cirMultiplier = 10;
+        //var cirMaxRadius = 200;
         var i = 0;
         var cirCollider = this.node.addComponent(cc.CircleCollider);
 
-        for (i = 0; i <= cirMaxRadius; i += 10)
+        for (i = 0; i <= this.explosionRadius; i += cirMultiplier)
         {
             cirCollider.radius += cirMultiplier;
         }
-        
+
+        this.scheduleOnce(this.DestroyNode, this.explosionDelay);
     }
 
-    public pitcherMovement(tgtLocation: cc.Vec2)
+    DestroyNode()
     {
-        this.destination = tgtLocation;
+        this.node.destroy();
+    }
 
-        this.initialized = true;
+    public pitcherMovement(tgtLocation: cc.Vec2, jumpHeight: number)
+    {
+        var parentHeight = this.node.getParent().height;
 
-        var action = cc.jumpTo(3, tgtLocation.x, -(this.node.getParent().height), tgtLocation.y-450, 1);
+        // offset value because we're coming up short
+        jumpHeight += 200;
 
-        // execute can movement
+        // converting world space of mouse position to node space of beer can position
+        var newTgtLoc = this.node.getParent().convertToNodeSpaceAR(tgtLocation);
+ 
+        // normalizing velocity based on distance to travel
+        var vel = this.maxTravelDuration * (jumpHeight/parentHeight);
+
+        // shift target x position so that height of jump passes through target x position
+        newTgtLoc.x -= this.node.position.x;
+
+        // define movement action parameters
+        var action = cc.jumpTo(vel, newTgtLoc.x, newTgtLoc.y, 0.5, 1);
+        var action2 = cc.callFunc(this.pitcherExplosion);
+
+        // execute movement
         this.node.runAction(action);
+
+        this.destination = newTgtLoc;
+        this.initialized = true;
     }
 }

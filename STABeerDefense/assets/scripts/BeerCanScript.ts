@@ -6,11 +6,15 @@ export default class NewClass extends cc.Component {
 
 
 @property
-maxDuration: number = 3;
+maxDuration: number = 2;
 
-rotSpeed: number = 7;
+rotSpeed: number = 10;
 
-    // onLoad () {}
+    onLoad ()
+    {
+        cc.audioEngine.playEffect(this.getComponent(cc.AudioSource).clip, false);
+        //this.getComponent(cc.AudioSource).volume = this.node.getParent().getComponent("MouseScript").AudioLevel;
+    }
 
     start () {
 
