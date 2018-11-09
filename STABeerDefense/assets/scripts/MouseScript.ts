@@ -61,7 +61,8 @@ export default class NewClass extends cc.Component
 
     onLoad () 
     {
-        cc.audioEngine.playMusic(this.node.getComponent(cc.AudioSource).clip, true);
+        // play background music
+        //cc.audioEngine.playMusic(this.node.getComponent(cc.AudioSource).clip, true);
 
         //this.node.getComponent(cc.AudioSource).volume = 0.1;
 
@@ -360,7 +361,7 @@ export default class NewClass extends cc.Component
         if(this.numSatisfiedEnemiesToPitcher == this.numMaxSatisfiedEnemiesToPitcher)
         {
             // check for max number of pitchers player can have
-            if(this.numCurrentPitchers <= this.numMaxPitchers)
+            if(this.numCurrentPitchers < this.numMaxPitchers)
             {
                 // increment number of pitchers
                 this.numCurrentPitchers += 1;

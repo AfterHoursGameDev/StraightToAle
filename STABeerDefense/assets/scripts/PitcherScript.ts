@@ -8,7 +8,7 @@ export default class NewClass extends cc.Component {
     destination: cc.Vec2;
 
     @property
-    maxTravelDuration: number = 1;
+    maxTravelDuration: number = 2.5;
 
     @property
     explosionDelay: number = 0.25;
@@ -73,13 +73,13 @@ export default class NewClass extends cc.Component {
         var newTgtLoc = this.node.getParent().convertToNodeSpaceAR(tgtLocation);
  
         // normalizing velocity based on distance to travel
-        var vel = this.maxTravelDuration * (jumpHeight/parentHeight);
+        var timeToTarget = this.maxTravelDuration * ((jumpHeight-200)/parentHeight);
 
         // shift target x position so that height of jump passes through target x position
         newTgtLoc.x -= this.node.position.x;
 
         // define movement action parameters
-        var action = cc.jumpTo(vel, newTgtLoc.x, newTgtLoc.y, 0.5, 1);
+        var action = cc.jumpTo(timeToTarget, newTgtLoc.x, newTgtLoc.y, 0.5, 1);
         var action2 = cc.callFunc(this.pitcherExplosion);
 
         // execute movement
