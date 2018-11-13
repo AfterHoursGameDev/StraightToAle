@@ -7,7 +7,7 @@ export default class NewClass extends cc.Component {
     initialized: boolean = false;
     destination: cc.Vec2;
 
-    @property
+    //@property
     maxTravelDuration: number = 2.5;
 
     @property

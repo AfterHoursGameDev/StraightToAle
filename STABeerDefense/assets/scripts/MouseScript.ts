@@ -41,6 +41,9 @@ export default class NewClass extends cc.Component
     horOffset: number = 0;// 375;
     vertOffset: number = 0;// 667;
 
+    // offset to spawn enemies coming in toward the side
+    enemySpawnOffsetX = 200;
+
     playerMoving: boolean = false;
     playerCanThrow: boolean = true;
     
@@ -59,12 +62,18 @@ export default class NewClass extends cc.Component
     @property(cc.Node)
     tank_4: cc.Node = null;
 
+    @property(cc.Label)
+    scoreLabel: cc.Label;
+
     onLoad () 
     {
         // play background music
         //cc.audioEngine.playMusic(this.node.getComponent(cc.AudioSource).clip, true);
 
         //this.node.getComponent(cc.AudioSource).volume = 0.1;
+
+        // set score to 0
+        this.scoreLabel.string = "SCORE: 0000";
 
         // add all fermentation tanks to an array to randomly select them later
         this.tanks = new Array (this.tank_1, this.tank_2, this.tank_3, this.tank_4);
@@ -271,7 +280,7 @@ export default class NewClass extends cc.Component
             }
 
             // Randomize spawn location
-            enemyPos.x = Math.random() * this.horOffset * multiplier;
+            enemyPos.x = Math.random() * (this.horOffset + this.enemySpawnOffsetX) * multiplier;
             enemyPos.y = this.node.height;
 
             // instantiate enemy prefab
@@ -352,7 +361,10 @@ export default class NewClass extends cc.Component
     public UpdateScore()
     {
         // increment total number of satisfied patrons
-        this.numSatisfiedEnemies += 1;
+        this.numSatisfiedEnemies += 5;
+
+        // update the UI score label
+        this.UpdateScoreLabel();
 
         // increment total number of satisfied patrons toward a pitcher
         this.numSatisfiedEnemiesToPitcher += 1;
@@ -382,6 +394,26 @@ export default class NewClass extends cc.Component
 
             // update the pitcher toggle text
             this.PitcherToggle.getComponentInChildren(cc.Label).string = this.numCurrentPitchers.toString();
+        }
+    }
+
+    UpdateScoreLabel()
+    {
+        if (this.numSatisfiedEnemies >= 0 && this.numSatisfiedEnemies <= 9)
+        {
+            this.scoreLabel.string = "SCORE: 000" + this.numSatisfiedEnemies.toString();
+        }
+        else if (this.numSatisfiedEnemies >= 10 && this.numSatisfiedEnemies <= 99)
+        {
+            this.scoreLabel.string = "SCORE: 00" + this.numSatisfiedEnemies.toString();
+        }
+        else if (this.numSatisfiedEnemies >= 100 && this.numSatisfiedEnemies <= 999)
+        {
+            this.scoreLabel.string = "SCORE: 0" + this.numSatisfiedEnemies.toString();
+        }
+        else if (this.numSatisfiedEnemies >= 1000 && this.numSatisfiedEnemies <= 9999)
+        {
+            this.scoreLabel.string = "SCORE: " + this.numSatisfiedEnemies.toString();
         }
     }
 }

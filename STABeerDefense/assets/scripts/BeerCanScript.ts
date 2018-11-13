@@ -5,8 +5,8 @@ const {ccclass, property} = cc._decorator;
 export default class NewClass extends cc.Component {
 
 
-@property
-maxTravelDuration: number = 2;
+//@property
+maxTravelDuration: number = 3;
 
 rotSpeed: number = 10;
 
@@ -42,7 +42,7 @@ rotSpeed: number = 10;
         var dist = newTgtLoc.x - this.node.position.x;
 
         // define movement action parameters
-        var action = cc.jumpTo(timeToTarget, newTgtLoc.x+dist, -(this.node.getParent().height), jumpHeight, 1);
+        var action = cc.jumpTo(timeToTarget, newTgtLoc.x+dist, -(this.node.getParent().height), jumpHeight, 1);//.easing(cc.easeInOut(1));
 
         // execute movement
         this.node.runAction(action);

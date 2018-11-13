@@ -17,7 +17,7 @@
     "_parent": null,
     "_children": [],
     "_active": true,
-    "_level": 2,
+    "_level": 3,
     "_components": [
       {
         "__id__": 2
@@ -85,7 +85,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "7f0f6594-ae1d-4ece-ac4e-ef652d81598a"
+      "__uuid__": "e17ef7b5-dc54-457a-9dbf-521078711748"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -110,7 +110,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "maxDuration": 3,
+    "maxTravelDuration": 2.5,
+    "explosionDelay": 0.25,
+    "explosionRadius": 400,
     "_id": ""
   },
   {
