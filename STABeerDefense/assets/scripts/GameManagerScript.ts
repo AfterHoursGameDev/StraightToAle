@@ -36,7 +36,7 @@ export default class GameManager extends cc.Component
     scoreLabel: cc.Label = null;
 	
 	currentWave: number = 1;
-    numSatisfiedEnemies: number = 0;
+    score: number = 0;
     numSatisfiedEnemiesToPitcher: number = 0;
     numMaxSatisfiedEnemiesToPitcher: number = 5;
 	
@@ -123,7 +123,6 @@ export default class GameManager extends cc.Component
 	
     SpawnEnemy()
     {
-		cc.log('spawn enemy');
         // add all fermentation tanks to an array to randomly select them later
         var fermTank = new Array;
 
@@ -201,19 +200,20 @@ export default class GameManager extends cc.Component
         }
     }
 
-    public UpdateScore()
+    public UpdateScore(points: number)
     {
-		cc.log('update score');
         // increment total number of satisfied patrons
-        this.numSatisfiedEnemies += 1;
+        this.score += points;
 
         // increment total number of satisfied patrons toward a pitcher
         this.numSatisfiedEnemiesToPitcher += 1;
+		
+		// update the UI score label
+        this.UpdateScoreLabel();
 
         // check to see if player reached number of satisfied patrons required to gain a pitcher
         if(this.numSatisfiedEnemiesToPitcher == this.numMaxSatisfiedEnemiesToPitcher)
         {
-			cc.log('give pitcher');
 			// This function will worry about preventing it from exceeding the max num pitchers.
 			this.node.getComponent('PlayerInputScript').EarnPitcher();
 
@@ -224,21 +224,22 @@ export default class GameManager extends cc.Component
 
     UpdateScoreLabel()
     {
-        if (this.numSatisfiedEnemies >= 0 && this.numSatisfiedEnemies <= 9)
+		
+        if (this.score >= 0 && this.score <= 9)
         {
-            this.scoreLabel.string = "SCORE: 000" + this.numSatisfiedEnemies.toString();
+            this.scoreLabel.string = "SCORE: 000" + this.score.toString();
         }
-        else if (this.numSatisfiedEnemies >= 10 && this.numSatisfiedEnemies <= 99)
+        else if (this.score >= 10 && this.score <= 99)
         {
-            this.scoreLabel.string = "SCORE: 00" + this.numSatisfiedEnemies.toString();
+            this.scoreLabel.string = "SCORE: 00" + this.score.toString();
         }
-        else if (this.numSatisfiedEnemies >= 100 && this.numSatisfiedEnemies <= 999)
+        else if (this.score >= 100 && this.score <= 999)
         {
-            this.scoreLabel.string = "SCORE: 0" + this.numSatisfiedEnemies.toString();
+            this.scoreLabel.string = "SCORE: 0" + this.score.toString();
         }
-        else if (this.numSatisfiedEnemies >= 1000 && this.numSatisfiedEnemies <= 9999)
+        else if (this.score >= 1000 && this.score <= 9999)
         {
-            this.scoreLabel.string = "SCORE: " + this.numSatisfiedEnemies.toString();
+            this.scoreLabel.string = "SCORE: " + this.score.toString();
         }
     }
 }

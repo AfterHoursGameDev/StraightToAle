@@ -22,12 +22,17 @@ export default class PlayerInput extends cc.Component
 
 	// Pitchers
     numCurrentPitchers: number = 0;
+	@property
     numMaxPitchers: number = 3;
     activePitcher: boolean = false;
+	@property
 	beerCooldownTime: number = 0.5;
+	@property
+	pitcherCooldownTime: number = 3;
 	
 	// PlayerInput
-    playerCanThrow: boolean = true;
+    playerCanThrowBeer: boolean = true;
+	playerCanThrowPitcher: boolean = true;
 	groundHeight: number = 100;
     newPlayerPosX: number = 0;
     newPos: cc.Vec2 = new cc.Vec2(0,0);
@@ -38,34 +43,38 @@ export default class PlayerInput extends cc.Component
 	 
 	onLoad()
 	{
-		cc.log('PlayerInput loaded');
 		// touch event to grab location when player touches screen
         this.node.on(cc.Node.EventType.TOUCH_END, (e: cc.Touch)=>
         {
-           // Only allow throwing cans up.
+           // Only allow throwing upwards.
            if (e.getLocation().y > this.groundHeight)
            {
-               if (this.playerCanThrow)
-               {
-                   // Prevent player from throwing another beer can
-                   this.playerCanThrow = false;
-        
-                   // initiate throwing of drink
-                   if (this.activePitcher == false)
-                   {
-                       this.spawnBeerCan(e.getLocation());
-                   }
-                   else
-                   {
-                       this.spawnPitcher(e.getLocation());
-                   }
-        
-                   // prevent player from throwing another beer until cooldownTime
-                   this.scheduleOnce(function()
-                   {
-                       this.playerCanThrow = true;
-                   }, this.cooldownTime);
-               }
+			   // check which thing we're throwing.
+			   if (this.activePitcher && this.playerCanThrowPitcher)
+			   {
+					// throwing a pitcher
+					this.playerCanThrowPitcher = false;
+					
+					this.spawnPitcher(e.getLocation());
+					this.scheduleOnce(function()
+					{
+						this.playerCanThrowPitcher = true;
+					}, this.pitcherCooldownTime);
+			   }
+			   else if(this.playerCanThrowBeer)
+			   {
+					// throwing a beer can
+				   
+					// Prevent player from throwing another beer can
+					this.playerCanThrowBeer = false;
+					
+					this.spawnBeerCan(e.getLocation());
+					   
+					this.scheduleOnce(function()
+					{
+						this.playerCanThrowBeer = true;
+					}, this.beerCooldownTime);
+			   }
            }      
         })
 	}
@@ -74,7 +83,6 @@ export default class PlayerInput extends cc.Component
     // Spawning enemy here too for now
     spawnBeerCan(tgtLocation: cc.Vec2)
     {
-		cc.log('spawn beer can');
         // instantiate beer can prefab
         var can = cc.instantiate(this.canPrefab);
 
@@ -95,7 +103,6 @@ export default class PlayerInput extends cc.Component
     // Spawning enemy here too for now
     spawnPitcher(tgtLocation: cc.Vec2)
     {
-		cc.log('spawn pitcher');
         // instantiate beer can prefab
         var pitcher = cc.instantiate(this.pitcherPrefab);
 
@@ -123,11 +130,9 @@ export default class PlayerInput extends cc.Component
 	
 	public EarnPitcher()
 	{
-		cc.log('player earn pitcher');
 		// check for max number of pitchers player can have
 		if(this.numCurrentPitchers < this.numMaxPitchers)
 		{
-			cc.log('added pitcher');
 			// increment number of pitchers
 			this.numCurrentPitchers += 1;
 		}
@@ -135,7 +140,6 @@ export default class PlayerInput extends cc.Component
 		// check if player has more than 0 pitchers
 		if (this.numCurrentPitchers > 0)
 		{
-			cc.log('update pitcher toggleB');
 			// enable the pitcher toggle
 			this.pitcherToggle.getComponent(cc.Toggle).interactable = true;
 
@@ -164,11 +168,9 @@ export default class PlayerInput extends cc.Component
     // Update the number of pitchers player has
     UpdatePitcherStateValue()
     {
-		cc.log('spawn pitcher');
         // check to see if all pitchers have been used
         if (this.numCurrentPitchers <= 0)
         {
-			cc.log('0 pitchers');
             // disable the pitcher toggle
             this.pitcherToggle.getComponent(cc.Toggle).interactable = false;
 
@@ -177,7 +179,6 @@ export default class PlayerInput extends cc.Component
         }
         else
         {
-			cc.log('enable pitcher toggle');
             // enable pitcher toggle
             this.pitcherToggle.getComponent(cc.Toggle).interactable = true;
         }

@@ -16,6 +16,9 @@ export default class Enemy extends cc.Component
     initialized: boolean = false;
 
     action: cc.ActionInterval;
+	
+	@property
+	pointValue: number = 5;
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -57,8 +60,7 @@ export default class Enemy extends cc.Component
                 // destroy this enemy
                 // TODO: disable collider and have enemy exit screen to right or left
                 this.enemyExitScreen();
-				cc.log('beer can score');
-                this.node.getParent().getComponent("GameManagerScript").UpdateScore();
+                this.node.getParent().getComponent("GameManagerScript").UpdateScore(this.pointValue);
                 break;
             }
             case "fermentation_tank":
@@ -87,7 +89,7 @@ export default class Enemy extends cc.Component
 
                 // TODO: disable collider and have enemy exit screen to right or left
                 this.enemyExitScreen();
-                this.node.getParent().getComponent("MouseScript").UpdateScore();
+                this.node.getParent().getComponent("MouseScript").UpdateScore(this.pointValue);
                 break;
             }
         }
