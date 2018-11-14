@@ -33,7 +33,7 @@ export default class GameManager extends cc.Component
 	 
 	// for scoring and pitchers
 	@property(cc.Label)
-    scoreLabel: cc.Label;
+    scoreLabel: cc.Label = null;
 	
 	currentWave: number = 1;
     numSatisfiedEnemies: number = 0;
