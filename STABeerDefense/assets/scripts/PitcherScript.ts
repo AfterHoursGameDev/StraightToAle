@@ -2,7 +2,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class Pitcher extends cc.Component {
 
     initialized: boolean = false;
     destination: cc.Vec2;

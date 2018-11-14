@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "beerCan",
+    "_name": "sineEnemy",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -45,8 +45,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 120,
-      "height": 60
+      "width": 36,
+      "height": 36
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -61,18 +61,18 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.36,
-      "y": 0.36,
+      "x": 1,
+      "y": 1,
       "z": 1
     },
-    "_rotationX": 270,
-    "_rotationY": 270,
+    "_rotationX": 0,
+    "_rotationY": 0,
     "_quat": {
       "__type__": "cc.Quat",
       "x": 0,
       "y": 0,
-      "z": -0.7071067811865476,
-      "w": -0.7071067811865475
+      "z": 0,
+      "w": 1
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -91,7 +91,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "5e4e0321-a1ee-4297-bf7f-5f11ea635d95"
+      "__uuid__": "7a20df68-e7b4-4587-a6c0-3e1cc2b25f1c"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -109,14 +109,13 @@
     "_id": ""
   },
   {
-    "__type__": "5515e5hQLhIZ7Eo/LiRH+av",
+    "__type__": "e3106UNozlErpQMCYfJ8W3H",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "maxTravelDuration": 2,
     "_id": ""
   },
   {
@@ -135,38 +134,22 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 120,
-      "height": 60
+      "width": 36,
+      "height": 36
     },
     "_id": ""
   },
   {
-    "__type__": "cc.AudioSource",
+    "__type__": "cc.Animation",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "_clip": {
-      "__uuid__": "41ad0537-08e5-4273-ba5a-ae091878fc63"
-    },
-    "_volume": 1,
-    "_mute": false,
-    "_loop": false,
+    "_defaultClip": null,
+    "_clips": [],
     "playOnLoad": false,
-    "preload": false,
-    "_id": ""
-  },
-  {
-    "__type__": "5515e5hQLhIZ7Eo/LiRH+av",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "maxTravelDuration": 2,
     "_id": ""
   },
   {
@@ -175,9 +158,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "49efaef0-dbd5-4a45-8bac-ff699906b447"
+      "__uuid__": "81e517a3-6832-4eaa-8dac-c9758ed1420f"
     },
-    "fileId": "6fK+oxd7FLbqKN0kr23Xpt",
+    "fileId": "46+pg4G8JJI6l2NxcC/ak3",
     "sync": false
   }
 ]

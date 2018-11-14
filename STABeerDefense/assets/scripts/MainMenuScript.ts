@@ -2,7 +2,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class MainMenuScript extends cc.Component {
 
     @property(cc.ToggleContainer)
     toggleContainer: cc.ToggleContainer = null;
