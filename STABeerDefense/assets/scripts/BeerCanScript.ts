@@ -16,13 +16,12 @@ rotSpeed: number = 10;
         //this.getComponent(cc.AudioSource).volume = this.node.getParent().getComponent("MouseScript").AudioLevel;
     }
 
-    start () {
-
+    start () {        
     }
 
     update (dt)
     {
-        this.node.setRotation(this.node.rotation += this.rotSpeed);
+        this.node.children[0].rotation = (this.node.children[0].rotation += this.rotSpeed);        
     }
 
     public beerCanMovement(tgtLocation: cc.Vec2, jumpHeight: number)
