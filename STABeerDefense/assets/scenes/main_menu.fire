@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.3978688121314311,
-      "y": 0.3978688121314311,
+      "x": 0.43853073463268366,
+      "y": 0.43853073463268366,
       "z": 1
     },
     "_quat": {
@@ -731,7 +731,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "toggle1",
+    "_name": "endless_toggle",
     "_objFlags": 0,
     "_parent": {
       "__id__": 15
@@ -1125,7 +1125,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "toggle2",
+    "_name": "mode2_toggle",
     "_objFlags": 0,
     "_parent": {
       "__id__": 15
@@ -1519,7 +1519,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "toggle3",
+    "_name": "leaderboards_toggle",
     "_objFlags": 0,
     "_parent": {
       "__id__": 15

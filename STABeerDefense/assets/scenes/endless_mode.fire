@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.31483086581709147,
-      "y": 0.31483086581709147,
+      "x": 0.43853073463268366,
+      "y": 0.43853073463268366,
       "z": 1
     },
     "_quat": {
@@ -2029,6 +2029,9 @@
     "pitcherToggle": {
       "__id__": 45
     },
+    "numMaxPitchers": 3,
+    "beerCooldownTime": 0.5,
+    "pitcherCooldownTime": 3,
     "_id": "b0NzpR2UlDfqfoOaAoOpT0"
   }
 ]

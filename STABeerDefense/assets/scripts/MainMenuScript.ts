@@ -38,7 +38,7 @@ export default class MainMenuScript extends cc.Component {
         {
             case "Endless Mode":
             {
-                cc.director.loadScene("main");
+                cc.director.loadScene("endless_mode");
                 break;
             }
         }
