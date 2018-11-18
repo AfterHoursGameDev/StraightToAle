@@ -8,7 +8,7 @@ export default class Enemy extends cc.Component
 {
 
     horOffset: number = 0;// 375;
-    tankHealthModifier: number = 0.2;
+    tankHealthModifier: number = 1;
     tankSelected: cc.Node = null;
     destination: cc.Vec2;
 
