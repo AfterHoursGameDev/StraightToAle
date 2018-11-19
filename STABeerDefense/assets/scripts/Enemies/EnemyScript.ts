@@ -43,7 +43,7 @@ export default class Enemy extends cc.Component
             {
                 this.initialized = false;
 
-                this.enemyExitScreen();
+                this.EnemyChangeTarget();
             }
         }
     }
@@ -59,7 +59,7 @@ export default class Enemy extends cc.Component
 
                 // destroy this enemy
                 // TODO: disable collider and have enemy exit screen to right or left
-                this.enemyExitScreen();
+                this.EnemyExitScreen();
                 this.node.getParent().getComponent("GameManagerScript").UpdateScore(this.pointValue);
                 break;
             }
@@ -88,14 +88,14 @@ export default class Enemy extends cc.Component
                 other.node.destroy();
 
                 // TODO: disable collider and have enemy exit screen to right or left
-                this.enemyExitScreen();
+                this.EnemyExitScreen();
                 this.node.getParent().getComponent("MouseScript").UpdateScore(this.pointValue);
                 break;
             }
         }
     }
 
-    public enemyMovement(selectedTank: cc.Node)
+    public EnemyMovement(selectedTank: cc.Node)
     {
         // reference to tank selected as a target so that we can determine when it is destroyed
         this.tankSelected = selectedTank;
@@ -111,7 +111,25 @@ export default class Enemy extends cc.Component
         this.node.runAction(this.action);
     }
 
-    public enemyExitScreen()
+    EnemyChangeTarget()
+    {
+        var newTarget = new cc.Node;
+
+        newTarget = this.node.getParent().getComponent("GameManagerScript").UpdateEnemyTarget();
+
+        if (newTarget != null)
+        {
+            this.node.stopAction(this.action);
+
+            this.EnemyMovement(newTarget);
+        }
+        else
+        {
+            this.EnemyExitScreen();
+        }
+    }
+
+    public EnemyExitScreen()
     {
         this.node.getComponent(cc.BoxCollider).enabled = false;
 

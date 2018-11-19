@@ -170,11 +170,39 @@ export default class GameManager extends cc.Component
             var selectedTank = fermTank[Math.floor(Math.random() * fermTank.length)];
 
             // call script on enemy to initiate movement
-            newEnemy.getComponent("EnemyScript").enemyMovement(selectedTank);
+            newEnemy.getComponent("EnemyScript").EnemyMovement(selectedTank);
 			
 			this.numEnemiesSpawned += 1;
         }
 
+    }
+
+    public UpdateEnemyTarget()
+    {
+        // add all fermentation tanks to an array to randomly select them later
+        var fermTank = new Array;
+
+        var i = 0;
+
+        for (i = 0; i < this.tanks.length; i++)
+        {
+            if (this.tanks[i].isValid != false)
+            {
+                fermTank.push(this.tanks[i])
+            }
+        }
+
+        if (fermTank.length > 0)
+        {
+            var enemyPos = new cc.Vec2;
+
+            // randomly select fermentation tank to attack
+            var selectedTank = fermTank[Math.floor(Math.random() * fermTank.length)];
+
+            return selectedTank;
+        }
+
+        return null;
     }
 
     public UpdateVolume()
