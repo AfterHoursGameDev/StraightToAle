@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "005f3967-45a7-4a90-b89a-08b7bdc0e1b2",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "MoonPlanet": {
+      "ver": "1.0.3",
+      "uuid": "976bd490-d7e8-4cd0-a5a2-be5f96624a0f",
+      "rawTextureUuid": "005f3967-45a7-4a90-b89a-08b7bdc0e1b2",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -11,
+      "trimX": 0,
+      "trimY": 22,
+      "width": 740,
+      "height": 178,
+      "rawWidth": 740,
+      "rawHeight": 200,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
