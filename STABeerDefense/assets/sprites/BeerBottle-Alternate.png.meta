@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "899dd423-8fa7-4fed-ad80-09c82f477516",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "BeerBottle-Alternate": {
+      "ver": "1.0.3",
+      "uuid": "cc046c78-ec0c-45e1-a30a-2389f6969779",
+      "rawTextureUuid": "899dd423-8fa7-4fed-ad80-09c82f477516",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -0.5,
+      "offsetY": -6.5,
+      "trimX": 5,
+      "trimY": 20,
+      "width": 74,
+      "height": 183,
+      "rawWidth": 85,
+      "rawHeight": 210,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

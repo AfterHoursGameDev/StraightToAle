@@ -1,15 +1,15 @@
 {
   "ver": "2.2.0",
-  "uuid": "005f3967-45a7-4a90-b89a-08b7bdc0e1b2",
+  "uuid": "6e3880e2-0037-422a-80d3-198bccff2262",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
   "subMetas": {
-    "MoonPlanet": {
+    "MarsPlanet": {
       "ver": "1.0.3",
-      "uuid": "976bd490-d7e8-4cd0-a5a2-be5f96624a0f",
-      "rawTextureUuid": "005f3967-45a7-4a90-b89a-08b7bdc0e1b2",
+      "uuid": "7a045b26-970e-4ba9-9b2c-9618f58b5f83",
+      "rawTextureUuid": "6e3880e2-0037-422a-80d3-198bccff2262",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
