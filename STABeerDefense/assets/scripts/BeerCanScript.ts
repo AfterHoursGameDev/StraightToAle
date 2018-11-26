@@ -6,7 +6,7 @@ export default class BeerCan extends cc.Component {
 
 
 //@property
-maxTravelDuration: number = 1.25;
+maxTravelDuration: number = 1.5;
 
 initialized: boolean = false;
 destination: cc.Vec2;

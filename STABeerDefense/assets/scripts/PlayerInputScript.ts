@@ -91,7 +91,7 @@ export default class PlayerInput extends cc.Component
 
         // set the position of the prefab to spawn to the upper right of the player
         // TODO: Update position to reflect throwing direction
-        can.setPosition(this.player.position.x, this.player.position.y + this.player.height);
+        can.setPosition(this.player.position.x, this.player.position.y + 50);
 
         // call script to initialize can movement
         can.getComponent("BeerCanScript").beerCanMovement(tgtLocation, tgtLocation.y);
@@ -111,7 +111,7 @@ export default class PlayerInput extends cc.Component
 
         // set the position of the prefab to spawn to the upper right of the player
         // TODO: Update position to reflect throwing direction
-        pitcher.setPosition(this.player.position.x, this.player.position.y + this.player.height);
+        pitcher.setPosition(this.player.position.x, this.player.position.y);// + this.player.height);
 
         // call script to initialize can movement
         pitcher.getComponent("PitcherScript").pitcherMovement(tgtLocation, tgtLocation.y);

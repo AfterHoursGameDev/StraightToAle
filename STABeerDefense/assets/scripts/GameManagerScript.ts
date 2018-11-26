@@ -78,9 +78,9 @@ export default class GameManager extends cc.Component
     onLoad () 
     {
         // play background music
-        //cc.audioEngine.playMusic(this.node.getComponent(cc.AudioSource).clip, true);
+        cc.audioEngine.playMusic(this.node.getComponent(cc.AudioSource).clip, true);
 
-        //this.node.getComponent(cc.AudioSource).volume = 0.1;
+        this.node.getComponent(cc.AudioSource).volume = 0.1;
 		
 		cc.log('game manager onLoad');
 

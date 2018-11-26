@@ -29,11 +29,11 @@ export default class MuteButton extends cc.Component {
         // display normal vs muted icon based on audio engine volume
         if (cc.audioEngine.getMusicVolume() == 0)
         {
-            this.node.getComponent(cc.Sprite).spriteFrame = this.node.getComponent(cc.Button).disabledSprite;
+            this.node.getComponent(cc.Toggle).isChecked = false;
         }
         else
         {
-            this.node.getComponent(cc.Sprite).spriteFrame = this.node.getComponent(cc.Button).normalSprite;
+           this.node.getComponent(cc.Toggle).isChecked = true;
         }
     }
 }
