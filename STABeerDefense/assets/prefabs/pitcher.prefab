@@ -24,7 +24,7 @@
       }
     ],
     "_active": true,
-    "_level": 2,
+    "_level": 1,
     "_components": [
       {
         "__id__": 8
@@ -362,7 +362,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "e17ef7b5-dc54-457a-9dbf-521078711748"
+      "__uuid__": "751c911f-2538-4612-a437-72b332fe887f"
     },
     "_type": 0,
     "_sizeMode": 0,

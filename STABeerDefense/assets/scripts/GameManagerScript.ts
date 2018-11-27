@@ -13,7 +13,13 @@ export default class GameManager extends cc.Component
     player: cc.Node = null;
 	
 	@property(cc.Prefab)
-    enemyPrefab: cc.Prefab = null;
+    lineEnemyPrefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    zigzabEnemyPrefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    spiralEnemyPrefab: cc.Prefab = null;
 	
 	@property(cc.Node)
     tank_1: cc.Node = null;
@@ -35,7 +41,6 @@ export default class GameManager extends cc.Component
 	@property(cc.Label)
     scoreLabel: cc.Label = null;
 	
-	currentWave: number = 1;
     score: number = 0;
     numSatisfiedEnemiesToPitcher: number = 0;
     numMaxSatisfiedEnemiesToPitcher: number = 5;
@@ -52,8 +57,20 @@ export default class GameManager extends cc.Component
 	
 	timeSinceLastSpawn: number = 0;
 	@property
-	minTimeBetweenSpawns: number = 3;
-	
+    minTimeBetweenSpawns: number = 3;
+    
+    // Wave Parameters
+    currentWave: number = 1;
+    enemyTypesPrefabs: Array<cc.Prefab>;
+    enemyTypesThisWave: Array<cc.Prefab>;
+    tempLineEnemyPercentChance: number = 1;
+    tempZigZagEnemyPercentChance: number = 0;
+    tempSpiralEnemyPercentChance: number = 0;
+
+    enemySpeed: number = 5;
+    
+
+    	
 	// not ready for this yet.
 	// // Chance that an enemy will spawn this tick (starting)
 	// @property
@@ -90,6 +107,9 @@ export default class GameManager extends cc.Component
         // add all fermentation tanks to an array to randomly select them later
         this.tanks = new Array (this.tank_1, this.tank_2, this.tank_3, this.tank_4);
 
+        // add all enemy types to an array to randomly select them later
+        this.enemyTypesPrefabs = new Array (this.lineEnemyPrefab, this.zigzabEnemyPrefab, this.spiralEnemyPrefab);
+
         // initializing the horizontal and vertical centers to match screen
         this.horizontalCenter = this.node.width / 2;// 375;
         this.verticalCenter = this.node.height / 2;// 667;   
@@ -99,22 +119,38 @@ export default class GameManager extends cc.Component
 		this.alternateEnemyChance = this.alternateEnemyChancePerLevel * this.currentWave;
 		
 		// start this at 3 seconds, don't make the player wait the full time for the first enemy.
-		this.timeSinceLastSpawn = 3; 
+        this.timeSinceLastSpawn = 3;
+
+        this.UpdateEnemyTypePercentChance();
     }
+
+    timeSinceWaveStarted: number = 0;
+    timeWaveDuration: number = 20;
+    timeWaveDurationIncrement: number = 2;
 
     update (dt)
     {
-		if (this.timeSinceLastSpawn >= this.minTimeBetweenSpawns)
-		{
-			this.SpawnEnemy();
+        // Check to see if wave time limit has passed
+        if (this.timeSinceWaveStarted >= this.timeWaveDuration)
+        {
+            // reset wave timer
+            this.timeSinceWaveStarted = 0;
 
-			// reset spawn timer
-			this.timeSinceLastSpawn = 0;
-		}
-		else 
-		{
-			this.timeSinceLastSpawn += dt;
-		}
+            // Update the next wave's parameters
+            this.UpdateWaveParameters();
+        }
+        else if (this.timeSinceLastSpawn >= this.minTimeBetweenSpawns)
+        {
+            this.SpawnEnemy();
+
+            // reset spawn timer
+            this.timeSinceLastSpawn = 0;
+        }
+        else
+        {
+            this.timeSinceLastSpawn += dt;
+            this.timeSinceWaveStarted += dt;
+        }
 	}
 
 	/**
@@ -126,9 +162,7 @@ export default class GameManager extends cc.Component
         // add all fermentation tanks to an array to randomly select them later
         var fermTank = new Array;
 
-        var i = 0;
-
-        for (i = 0; i < this.tanks.length; i++)
+        for (var i = 0; i < this.tanks.length; i++)
         {
             if (this.tanks[i].isValid != false)
             {
@@ -157,8 +191,8 @@ export default class GameManager extends cc.Component
 			
 			
             // instantiate enemy prefab
-            var newEnemy = cc.instantiate(this.enemyPrefab);
-
+            var newEnemy = cc.instantiate(this.enemyTypesThisWave[Math.floor(Math.random() * this.enemyTypesThisWave.length)]);
+console.log(newEnemy.name);
             // set the position of the prefab to spawn to the upper right of the player
             // TODO: Update position to reflect throwing direction
             newEnemy.setPosition(enemyPos);
@@ -174,7 +208,47 @@ export default class GameManager extends cc.Component
 			
 			this.numEnemiesSpawned += 1;
         }
+    }
 
+    UpdateWaveParameters()
+    {
+        this.currentWave += 1;
+        this.enemySpeed += this.enemySpeed * 0.2;
+        this.minTimeBetweenSpawns -= this.minTimeBetweenSpawns * 0.2;
+
+        //this.tempLineEnemyPercentChance -= 0.2; //this.tempLineEnemyPercentChance;// * 0.1;
+        if (this.tempZigZagEnemyPercentChance <= 1 && this.currentWave > 1)
+        {
+            this.tempZigZagEnemyPercentChance += 0.2; //this.tempZigZagEnemyPercentChance;// * 0.1;
+        }
+        
+        if (this.tempSpiralEnemyPercentChance <= 1 && this.currentWave > 2)
+        {
+            this.tempSpiralEnemyPercentChance += 0.4; //this.tempSpiralEnemyPercentChance;// * 0.1;
+        }
+
+        this.UpdateEnemyTypePercentChance();
+
+        this.timeWaveDuration += this.timeWaveDurationIncrement;
+    }
+
+    UpdateEnemyTypePercentChance()
+    {
+        this.enemyTypesThisWave = new Array;
+
+        for (var i = 0; i < this.tempLineEnemyPercentChance; i+=0.1)
+        {
+            console.log("i: " + i);
+            this.enemyTypesThisWave.push(this.enemyTypesPrefabs[0]);
+        }
+        for (var i = 0; i < this.tempZigZagEnemyPercentChance; i+=0.1)
+        {
+            this.enemyTypesThisWave.push(this.enemyTypesPrefabs[1]);
+        }
+        for (var i = 0; i < this.tempSpiralEnemyPercentChance; i+=0.1)
+        {
+            this.enemyTypesThisWave.push(this.enemyTypesPrefabs[2]);
+        }
     }
 
     public UpdateEnemyTarget()

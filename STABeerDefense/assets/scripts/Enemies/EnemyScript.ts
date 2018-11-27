@@ -43,7 +43,11 @@ export default class Enemy extends cc.Component
             {
                 this.initialized = false;
 
-                this.EnemyChangeTarget();
+                // for retargeting
+                //this.EnemyChangeTarget();
+
+                // for exiting screen
+                this.EnemyExitScreen();
             }
         }
     }
