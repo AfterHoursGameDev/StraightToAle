@@ -6,6 +6,9 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class GameManager extends cc.Component
 {
+    @property(cc.Label)
+    waveNumberLabel: cc.Label = null;
+
 	/**
 	 *	object references 
 	 */
@@ -60,12 +63,16 @@ export default class GameManager extends cc.Component
     minTimeBetweenSpawns: number = 3;
     
     // Wave Parameters
-    currentWave: number = 1;
+    currentWaveNumber: number = 1;
     enemyTypesPrefabs: Array<cc.Prefab>;
     enemyTypesThisWave: Array<cc.Prefab>;
     tempLineEnemyPercentChance: number = 1;
     tempZigZagEnemyPercentChance: number = 0;
     tempSpiralEnemyPercentChance: number = 0;
+
+    timeSinceWaveStarted: number = 0;
+    timeWaveDuration: number = 5;
+    timeWaveDurationIncrement: number = 2;
 
     enemySpeed: number = 5;
     
@@ -116,17 +123,13 @@ export default class GameManager extends cc.Component
 		
 		
 		// Initialize the spawning stuff
-		this.alternateEnemyChance = this.alternateEnemyChancePerLevel * this.currentWave;
+		this.alternateEnemyChance = this.alternateEnemyChancePerLevel * this.currentWaveNumber;
 		
 		// start this at 3 seconds, don't make the player wait the full time for the first enemy.
         this.timeSinceLastSpawn = 3;
 
         this.UpdateEnemyTypePercentChance();
     }
-
-    timeSinceWaveStarted: number = 0;
-    timeWaveDuration: number = 20;
-    timeWaveDurationIncrement: number = 2;
 
     update (dt)
     {
@@ -192,7 +195,7 @@ export default class GameManager extends cc.Component
 			
             // instantiate enemy prefab
             var newEnemy = cc.instantiate(this.enemyTypesThisWave[Math.floor(Math.random() * this.enemyTypesThisWave.length)]);
-console.log(newEnemy.name);
+//console.log(newEnemy.name);
             // set the position of the prefab to spawn to the upper right of the player
             // TODO: Update position to reflect throwing direction
             newEnemy.setPosition(enemyPos);
@@ -212,17 +215,17 @@ console.log(newEnemy.name);
 
     UpdateWaveParameters()
     {
-        this.currentWave += 1;
+        this.currentWaveNumber += 1;
         this.enemySpeed += this.enemySpeed * 0.2;
         this.minTimeBetweenSpawns -= this.minTimeBetweenSpawns * 0.2;
 
         //this.tempLineEnemyPercentChance -= 0.2; //this.tempLineEnemyPercentChance;// * 0.1;
-        if (this.tempZigZagEnemyPercentChance <= 1 && this.currentWave > 1)
+        if (this.tempZigZagEnemyPercentChance <= 1 && this.currentWaveNumber > 1)
         {
             this.tempZigZagEnemyPercentChance += 0.2; //this.tempZigZagEnemyPercentChance;// * 0.1;
         }
         
-        if (this.tempSpiralEnemyPercentChance <= 1 && this.currentWave > 2)
+        if (this.tempSpiralEnemyPercentChance <= 1 && this.currentWaveNumber > 2)
         {
             this.tempSpiralEnemyPercentChance += 0.4; //this.tempSpiralEnemyPercentChance;// * 0.1;
         }
@@ -230,6 +233,16 @@ console.log(newEnemy.name);
         this.UpdateEnemyTypePercentChance();
 
         this.timeWaveDuration += this.timeWaveDurationIncrement;
+
+        this.UpdateWaveLabel();
+    }
+
+    UpdateWaveLabel()
+    {
+        this.waveNumberLabel.enabled = true;
+
+        this.waveNumberLabel.getComponent("WaveLabelScript").UpdateWaveLabel(this.currentWaveNumber);
+        
     }
 
     UpdateEnemyTypePercentChance()
@@ -238,7 +251,6 @@ console.log(newEnemy.name);
 
         for (var i = 0; i < this.tempLineEnemyPercentChance; i+=0.1)
         {
-            console.log("i: " + i);
             this.enemyTypesThisWave.push(this.enemyTypesPrefabs[0]);
         }
         for (var i = 0; i < this.tempZigZagEnemyPercentChance; i+=0.1)
