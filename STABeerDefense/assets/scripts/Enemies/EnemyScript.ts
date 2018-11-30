@@ -14,8 +14,6 @@ export default class Enemy extends cc.Component
 
     enemyMoveSpeed: number = 10;
     initialized: boolean = false;
-
-    action: cc.ActionInterval;
 	
 	@property
 	pointValue: number = 5;
@@ -27,26 +25,33 @@ export default class Enemy extends cc.Component
     onLoad ()
     {
         // turn on collision
-        //cc.director.getCollisionManager().enabledDebugDraw = true;
         cc.director.getCollisionManager().enabled = true;
-        //cc.director.getCollisionManager().enabledDrawBoundingBox = true;
+		
+		// If these had a shared parent class we could just get this by the parent class and let
+		// polymorphism handle things, but alas.
+		this.movementComponent = this.node.getComponent("LineMovementScript");
+		if (!this.movementComponent)
+		{
+			this.movementComponent = this.node.getComponent("ZigZagMovementScript");
+			if (!this.movementComponent)
+			{
+				this.movementComponent = this.node.getComponent("SpiralMovementScript");
+			}
+		}	
+		
+		if (!this.movementComponent)
+		{
+			cc.log('Error! No movement component was found!');
+		}
     }
 
     start ()
     {
-        //this.node.dispatchEvent(new cc.Event.EventCustom('enemySatisfied', true));
+
     }
 
     update (dt)
     {
-        if (this.initialized)
-        {
-            if (this.tankSelected.isValid == false)
-            {
-                this.initialized = false;
-
-            }
-        }
     }
 
     onCollisionEnter (other: cc.Collider, self)
@@ -58,9 +63,9 @@ export default class Enemy extends cc.Component
                 // destroy the beer can
                 other.node.destroy();
 
-                // destroy this enemy
-                // TODO: disable collider and have enemy exit screen to right or left
-                this.EnemyExitScreen();
+                // disable collider and have enemy exit screen to right or left
+				cc.director.getCollisionManager().enabled = false;
+                this.exitScreen();
                 this.node.getParent().getComponent("GameManagerScript").UpdateScore(this.pointValue);
                 break;
             }
@@ -88,8 +93,9 @@ export default class Enemy extends cc.Component
                 // destroy the pitcher
                 other.node.destroy();
 
-                // TODO: disable collider and have enemy exit screen to right or left
-                this.movementComponent.EnemyExitScreen();
+                // disable collider and have enemy exit screen to right or left
+				cc.director.getCollisionManager().enabled = false;
+                this.movementComponent.exitScreen();
                 this.node.getParent().getComponent("MouseScript").UpdateScore(this.pointValue);
                 break;
             }
@@ -99,16 +105,11 @@ export default class Enemy extends cc.Component
     public setTargetTank(selectedTank: cc.Node)
     {
         // reference to tank selected as a target so that we can determine when it is destroyed
-        this.tankSelected = selectedTank;
-
-        // initialize the script to look for when the tank is destroyed
-        this.initialized = true;
-
-        // define movement action parameters
-        //var action = cc.moveTo(this.enemyMoveSpeed, this.node.position.x, -(this.node.getParent().height));
-        this.action = cc.moveTo(this.enemyMoveSpeed, selectedTank.x, selectedTank.y);
-
-        // execute can movement
-        this.node.runAction(this.action);
+        this.tankSelected = selectedTank;	
+		
+		if (this.movementComponent)
+		{
+			this.movementComponent.setDestination(selectedTank.position);
+		}
     }
 }

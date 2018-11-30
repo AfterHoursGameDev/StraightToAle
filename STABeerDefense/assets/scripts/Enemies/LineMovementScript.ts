@@ -15,33 +15,36 @@ export default class NewClass extends cc.Component
 	
 	initialized: boolean = false;
 
-    // onLoad () 
-	// {	
-	// }
+    onLoad () 
+	{
+		this.startLocation = this.node.position;		
+	}
 
     start () 
 	{
-		this.startLocation = this.node.position;
+		
     }
 
     update (dt) 
 	{
 		if (this.initialized)
 		{
+			cc.log(this.node.position.toString());
 			this.node.position = this.node.position.add(this.direction.mul(this.enemyMoveSpeed * dt));
 		}
 	}
 	
-	public setTargetTank(targetLocation: cc.Vec2)
+	public setDestination(targetLocation: cc.Vec2)
     {	
 		this.direction = targetLocation.sub(this.node.position);
-		cc.log(this.direction.toString());
 		this.direction.normalizeSelf();
+		
+		cc.log('start ' + this.node.position.toString() + 'direction ' + this.direction.toString() + 'destination ' + targetLocation.toString());
 		
 		this.initialized = true;
     }
 	
-	public EnemyExitScreen()
+	public exitScreen()
     {
         this.node.getComponent(cc.BoxCollider).enabled = false;
 

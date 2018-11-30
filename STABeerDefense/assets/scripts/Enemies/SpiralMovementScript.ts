@@ -11,7 +11,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component 
+export default class SpiralMovementComponent extends cc.Component 
 {
 
 
@@ -19,26 +19,16 @@ export default class NewClass extends cc.Component
 
     // onLoad () {}
 
-    start () {
-
+    start () 
+	{
     }
 
-    // update (dt) {}
+    update (dt)
+	{
+	}
 	
-	
-	public setTargetTank(selectedTank: cc.Node)
-    {
-        // reference to tank selected as a target so that we can determine when it is destroyed
-        this.tankSelected = selectedTank;
+	public setDestination(targetLocation: cc.Vec2)
+    {	
 
-        // initialize the script to look for when the tank is destroyed
-        this.initialized = true;
-
-        // define movement action parameters
-        //var action = cc.moveTo(this.enemyMoveSpeed, this.node.position.x, -(this.node.getParent().height));
-        this.action = cc.moveTo(this.enemyMoveSpeed, selectedTank.x, selectedTank.y);
-
-        // execute can movement
-        this.node.runAction(this.action);
     }
 }

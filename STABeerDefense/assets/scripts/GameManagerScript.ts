@@ -87,12 +87,12 @@ export default class GameManager extends cc.Component
 	// @property
 	// spawnMultiplierPerWave = 0.02;
 	
-	// // chance that the spawned enemy will be an alternate enemy type
-	// @property
-	// alternateEnemyChancePerLevel: number = 0;
+	// chance that the spawned enemy will be an alternate enemy type
+	@property
+	alternateEnemyChancePerLevel: number = 0;
 	
-	// //chance per level * level = this
-	// alternateEnemyChance: number = 0;
+	//chance per level * level = this
+	alternateEnemyChance: number = 0;
     
 	
 	/**
@@ -102,7 +102,7 @@ export default class GameManager extends cc.Component
     onLoad () 
     {
         // play background music
-        cc.audioEngine.playMusic(this.node.getComponent(cc.AudioSource).clip, true);
+        //cc.audioEngine.playMusic(this.node.getComponent(cc.AudioSource).clip, true);
 
         this.node.getComponent(cc.AudioSource).volume = 0.1;
 		
@@ -195,7 +195,7 @@ export default class GameManager extends cc.Component
 			
             // instantiate enemy prefab
             var newEnemy = cc.instantiate(this.enemyTypesThisWave[Math.floor(Math.random() * this.enemyTypesThisWave.length)]);
-//console.log(newEnemy.name);
+	cc.log(newEnemy.name);
             // set the position of the prefab to spawn to the upper right of the player
             // TODO: Update position to reflect throwing direction
             newEnemy.setPosition(enemyPos);
@@ -206,8 +206,8 @@ export default class GameManager extends cc.Component
             // randomly select fermentation tank to attack
             var selectedTank = fermTank[Math.floor(Math.random() * fermTank.length)];
 
-            // call script on enemy to initiate movement
-            newEnemy.getComponent("EnemyScript").EnemyMovement(selectedTank);
+            // Give enemy information to initialize itself.
+            newEnemy.getComponent("EnemyScript").setTargetTank(selectedTank);
 			
 			this.numEnemiesSpawned += 1;
         }
