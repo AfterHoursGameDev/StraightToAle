@@ -19,6 +19,8 @@ export default class Enemy extends cc.Component
 	
 	@property
 	pointValue: number = 5;
+	
+	movementComponent: cc.Component;
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -43,11 +45,6 @@ export default class Enemy extends cc.Component
             {
                 this.initialized = false;
 
-                // for retargeting
-                //this.EnemyChangeTarget();
-
-                // for exiting screen
-                this.EnemyExitScreen();
             }
         }
     }
@@ -92,14 +89,14 @@ export default class Enemy extends cc.Component
                 other.node.destroy();
 
                 // TODO: disable collider and have enemy exit screen to right or left
-                this.EnemyExitScreen();
+                this.movementComponent.EnemyExitScreen();
                 this.node.getParent().getComponent("MouseScript").UpdateScore(this.pointValue);
                 break;
             }
         }
     }
 
-    public EnemyMovement(selectedTank: cc.Node)
+    public setTargetTank(selectedTank: cc.Node)
     {
         // reference to tank selected as a target so that we can determine when it is destroyed
         this.tankSelected = selectedTank;
@@ -113,52 +110,5 @@ export default class Enemy extends cc.Component
 
         // execute can movement
         this.node.runAction(this.action);
-    }
-
-    EnemyChangeTarget()
-    {
-        var newTarget = new cc.Node;
-
-        newTarget = this.node.getParent().getComponent("GameManagerScript").UpdateEnemyTarget();
-
-        if (newTarget != null)
-        {
-            this.node.stopAction(this.action);
-
-            this.EnemyMovement(newTarget);
-        }
-        else
-        {
-            this.EnemyExitScreen();
-        }
-    }
-
-    public EnemyExitScreen()
-    {
-        this.node.getComponent(cc.BoxCollider).enabled = false;
-
-        var xLoc = 0;
-
-        if(this.node.position.x >= 0)
-        {
-            xLoc = this.node.getParent().width + this.node.width + 20;
-        }
-        else
-        {
-            xLoc = -(this.node.getParent().width) - this.node.width - 20;
-        }
-
-        // stop the current movement action
-        this.node.stopAction(this.action);
-
-        // move enemy off-screen
-        // TODO: enable screen exit animation
-        this.action = cc.moveTo(this.enemyMoveSpeed/4, xLoc, this.node.position.y);
-
-        // execute can movement
-        this.node.runAction(this.action);
-
-        // TODO: Need to wait for movement complete before destroying
-        // this.node.destroy();
     }
 }
