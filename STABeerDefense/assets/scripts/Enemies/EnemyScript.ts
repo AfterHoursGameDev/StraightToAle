@@ -52,6 +52,12 @@ export default class Enemy extends cc.Component
 
     update (dt)
     {
+		// if we want to deny the player points for losing this thing's target by making
+		// it leave, here's that.
+		if (this.tankSelected == null)
+		{
+			this.movementComponent.exitScreen();
+		}
     }
 
     onCollisionEnter (other: cc.Collider, self)
@@ -65,7 +71,7 @@ export default class Enemy extends cc.Component
 
                 // disable collider and have enemy exit screen to right or left
 				cc.director.getCollisionManager().enabled = false;
-                this.exitScreen();
+                this.movementComponent.exitScreen();
                 this.node.getParent().getComponent("GameManagerScript").UpdateScore(this.pointValue);
                 break;
             }
@@ -99,6 +105,12 @@ export default class Enemy extends cc.Component
                 this.node.getParent().getComponent("MouseScript").UpdateScore(this.pointValue);
                 break;
             }
+			case "KillVolume"
+			{
+				// destroy this enemy, we've exited the screen.
+                this.node.destroy();
+				break;
+			}
         }
     }
 

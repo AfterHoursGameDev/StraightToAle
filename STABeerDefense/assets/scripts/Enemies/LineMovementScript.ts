@@ -2,7 +2,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component 
+export default class LineMovementScript extends cc.Component 
 {
 
     destination: cc.Vec2;
@@ -10,45 +10,64 @@ export default class NewClass extends cc.Component
 	
 	direction: cc.Vec2;
 
+	// pixels per second, probably.
 	@property
-    enemyMoveSpeed: number = 10;
+    enemyMoveSpeed: number = 100;
 	
-	initialized: boolean = false;
+	// Want to make sure the enemy moves the same relative speed on different resolutions
+	movementResolutionScale: number = 0;
+	designScale: number = 1334;
+	designAspectRatio: number = 0.562;
+	
+	hasTarget: boolean = false;
 
     onLoad () 
 	{
-		this.startLocation = this.node.position;		
+		this.startLocation = this.node.position;	
+		
+		// 100 pixels per second assuming height of 1334 covers a certain percentage of the screen
+		// scale the movement speed so that it covers the same percentage of screen on screens of other heights.
+		this.movementResolutionScale = this.node.getParent().height/this.designScale;
+		this.enemyMoveSpeed *= this.movementResolutionScale;
 	}
 
     start () 
 	{
-		
+		 
     }
 
     update (dt) 
 	{
-		if (this.initialized)
+		if (this.hasTarget)
 		{
-			cc.log(this.node.position.toString());
 			this.node.position = this.node.position.add(this.direction.mul(this.enemyMoveSpeed * dt));
+			
+			var directionToDestination = this.destination.sub(this.node.position);
+			
+			if (directionToDestination.dot(this.direction) < 0)
+			{
+				// then we've reached our destination, stop
+				this.node.position = this.destination;
+				this.hasTarget = false;
+			}
 		}
 	}
 	
 	public setDestination(targetLocation: cc.Vec2)
     {	
+		this.destination = targetLocation;
 		this.direction = targetLocation.sub(this.node.position);
 		this.direction.normalizeSelf();
 		
-		cc.log('start ' + this.node.position.toString() + 'direction ' + this.direction.toString() + 'destination ' + targetLocation.toString());
+		cc.log("start " + this.node.position.toString() + "direction " + this.direction.toString() + "destination " + targetLocation.toString());
 		
-		this.initialized = true;
+		this.hasTarget = true;
     }
 	
 	public exitScreen()
     {
-        this.node.getComponent(cc.BoxCollider).enabled = false;
-
         var xLoc = 0;
+		cc.log('exiting screen');
 
         if(this.node.position.x >= 0)
         {
@@ -58,18 +77,9 @@ export default class NewClass extends cc.Component
         {
             xLoc = -(this.node.getParent().width) - this.node.width - 20;
         }
-
-        // // stop the current movement action
-        // this.node.stopAction(this.action);
-
-        // // move enemy off-screen
-        // // TODO: enable screen exit animation
-        // this.action = cc.moveTo(this.enemyMoveSpeed/4, xLoc, this.node.position.y);
-
-        // // execute can movement
-        // this.node.runAction(this.action);
-
-        // // TODO: Need to wait for movement complete before destroying
-        // // this.node.destroy();
+		
+		var targetLoc = new cc.Vec2(xLoc, this.node.y);
+		cc.log(targetLoc.toString());
+		this.setDestination(targetLoc);
     }
 }
