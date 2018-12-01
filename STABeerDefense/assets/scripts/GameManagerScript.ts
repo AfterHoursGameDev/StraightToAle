@@ -54,6 +54,7 @@ export default class GameManager extends cc.Component
 	// for spawning
 	horizontalCenter: number = 0;// 375;
     verticalCenter: number = 0;// 667;
+	spawnHeight: number = 0;
 	
 	// declare array for fermentation tanks
     tanks: Array<cc.Node>;
@@ -62,7 +63,9 @@ export default class GameManager extends cc.Component
 	@property
     minTimeBetweenSpawns: number = 3;
     
-    // Wave Parameters
+    /**
+	 *	Wave Stuff
+	 */
     currentWaveNumber: number = 1;
     enemyTypesPrefabs: Array<cc.Prefab>;
     enemyTypesThisWave: Array<cc.Prefab>;
@@ -120,6 +123,7 @@ export default class GameManager extends cc.Component
         // initializing the horizontal and vertical centers to match screen
         this.horizontalCenter = this.node.width / 2;// 375;
         this.verticalCenter = this.node.height / 2;// 667;   
+		this.spawnHeight = this.node.height * 0.6;
 		
 		
 		// Initialize the spawning stuff
@@ -190,7 +194,7 @@ export default class GameManager extends cc.Component
 
             // Randomize spawn location
             enemyPos.x = Math.random() * this.horizontalCenter * multiplier;
-            enemyPos.y = this.node.height;
+            enemyPos.y = this.spawnHeight;
 			
 			
             // instantiate enemy prefab

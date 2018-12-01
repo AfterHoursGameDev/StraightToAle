@@ -27,8 +27,6 @@ export default class Enemy extends cc.Component
         // turn on collision
         cc.director.getCollisionManager().enabled = true;
 		
-		// If these had a shared parent class we could just get this by the parent class and let
-		// polymorphism handle things, but alas.
 		this.movementComponent = this.node.getComponent("LineMovementScript");
 		if (!this.movementComponent)
 		{

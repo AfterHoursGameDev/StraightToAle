@@ -1,7 +1,9 @@
+import BaseMovementComponent from "./BaseMovementScript";
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class ZigZagMovementComponent extends cc.Component 
+export default class ZigZagMovementComponent extends BaseMovementComponent
 {
 
     // LIFE-CYCLE CALLBACKS:

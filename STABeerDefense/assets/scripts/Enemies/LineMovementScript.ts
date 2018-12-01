@@ -1,8 +1,10 @@
 
+import BaseMovementComponent from "./BaseMovementScript";
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class LineMovementScript extends cc.Component 
+export default class LineMovementScript extends BaseMovementComponent
 {
 
     destination: cc.Vec2;
@@ -16,7 +18,7 @@ export default class LineMovementScript extends cc.Component
 	
 	// Want to make sure the enemy moves the same relative speed on different resolutions
 	movementResolutionScale: number = 0;
-	designScale: number = 1334;
+	designHeight: number = 1334;
 	designAspectRatio: number = 0.562;
 	
 	hasTarget: boolean = false;
@@ -25,9 +27,10 @@ export default class LineMovementScript extends cc.Component
 	{
 		this.startLocation = this.node.position;	
 		
-		// 100 pixels per second assuming height of 1334 covers a certain percentage of the screen
-		// scale the movement speed so that it covers the same percentage of screen on screens of other heights.
-		this.movementResolutionScale = this.node.getParent().height/this.designScale;
+		// 100 pixels per second assuming height of 1334 and width of 750 covers a certain percentage of the screen.
+		// Scale the movement speed so that it covers the same percentage of screen on screens of other heights.
+		var aspectRatio = this.node.getParent().width/this.node.getParent().height;
+		this.movementResolutionScale = this.node.getParent().height/this.designHeight;
 		this.enemyMoveSpeed *= this.movementResolutionScale;
 	}
 
