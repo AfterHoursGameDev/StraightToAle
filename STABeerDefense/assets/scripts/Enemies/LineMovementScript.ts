@@ -6,39 +6,31 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class LineMovementScript extends BaseMovementComponent
 {
-
-    destination: cc.Vec2;
-	startLocation: cc.Vec2;
+	
+	/** inherited vars */
+    //destination: cc.Vec2;
+	//startLocation: cc.Vec2;
+    // enemyMoveSpeed: number = 100;
+	//movementResolutionScale: number = 0;
+	//designHeight: number = 1334;
+	//hasTarget: boolean = false;
+	
 	
 	direction: cc.Vec2;
-
-	// pixels per second, probably.
-	@property
-    enemyMoveSpeed: number = 100;
 	
-	// Want to make sure the enemy moves the same relative speed on different resolutions
-	movementResolutionScale: number = 0;
-	designHeight: number = 1334;
-	designAspectRatio: number = 0.562;
-	
-	hasTarget: boolean = false;
-
     onLoad () 
 	{
 		this.startLocation = this.node.position;	
 		
-		// 100 pixels per second assuming height of 1334 and width of 750 covers a certain percentage of the screen.
+		// store this so we don't have to get it 3 times.
+		var canvas = this.node.getParent();
+		
+		// speed assuming height of 1334 covers a certain percentage of the screen.
 		// Scale the movement speed so that it covers the same percentage of screen on screens of other heights.
-		var aspectRatio = this.node.getParent().width/this.node.getParent().height;
-		this.movementResolutionScale = this.node.getParent().height/this.designHeight;
+		this.movementResolutionScale = canvas.height / this.designHeight;
 		this.enemyMoveSpeed *= this.movementResolutionScale;
 	}
-
-    start () 
-	{
-		 
-    }
-
+	
     update (dt) 
 	{
 		if (this.hasTarget)
@@ -62,15 +54,12 @@ export default class LineMovementScript extends BaseMovementComponent
 		this.direction = targetLocation.sub(this.node.position);
 		this.direction.normalizeSelf();
 		
-		cc.log("start " + this.node.position.toString() + "direction " + this.direction.toString() + "destination " + targetLocation.toString());
-		
 		this.hasTarget = true;
     }
 	
 	public exitScreen()
     {
         var xLoc = 0;
-		cc.log('exiting screen');
 
         if(this.node.position.x >= 0)
         {
