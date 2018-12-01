@@ -50,12 +50,6 @@ export default class Enemy extends cc.Component
 
     update (dt)
     {
-		// if we want to deny the player points for losing this thing's target by making
-		// it leave, here's that.
-		if (this.tankSelected == null)
-		{
-			this.movementComponent.exitScreen();
-		}
     }
 
     onCollisionEnter (other: cc.Collider, self)
@@ -87,7 +81,9 @@ export default class Enemy extends cc.Component
 
                     other.node.destroy();
                 }
-
+				// spawn particle effect here
+				
+				cc.log("should be destroying");
                 // destroy this enemy
                 this.node.destroy();
                 break;
@@ -116,6 +112,13 @@ export default class Enemy extends cc.Component
     {
         // reference to tank selected as a target so that we can determine when it is destroyed
         this.tankSelected = selectedTank;	
+		this.tankSelected.on('destroyed', function(event)
+			{
+				// if we want to deny the player points for losing this thing's target by making
+				// it leave, here's that.
+				this.movementComponent.exitScreen();
+			}, this
+		);
 		
 		if (this.movementComponent)
 		{
