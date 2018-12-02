@@ -198,7 +198,7 @@ export default class GameManager extends cc.Component
 			
             // instantiate enemy prefab
             var newEnemy = cc.instantiate(this.enemyTypesThisWave[Math.floor(Math.random() * this.enemyTypesThisWave.length)]);
-	cc.log(newEnemy.name);
+//cc.log(newEnemy.name);
             // set the position of the prefab to spawn to the upper right of the player
             // TODO: Update position to reflect throwing direction
             newEnemy.setPosition(enemyPos);

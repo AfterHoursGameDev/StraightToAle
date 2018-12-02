@@ -137,7 +137,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "pointValue": 5,
+    "pointValue": 12,
     "_id": ""
   },
   {
@@ -148,7 +148,8 @@
       "__id__": 1
     },
     "_enabled": true,
-    "enemyMoveSpeed": 100,
+    "enemyMoveSpeed": 80,
+    "amplitude": 120,
     "_id": ""
   },
   {
