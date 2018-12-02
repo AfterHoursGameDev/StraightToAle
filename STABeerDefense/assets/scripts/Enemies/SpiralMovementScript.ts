@@ -48,7 +48,6 @@ export default class SpiralMovementComponent extends BaseMovementComponent
 			newPosition.x = this.linePosition.x + this.amplitude * Math.cos(this.deltaTime / this.period * 2 * Math.PI);
 			newPosition.y = this.linePosition.y + this.amplitude * Math.sin(this.deltaTime / this.period * 2 * Math.PI);
 			
-			cc.log(newPosition.y);
 			this.node.position = newPosition;
 			
 			// Check and see if we've gone past our target.

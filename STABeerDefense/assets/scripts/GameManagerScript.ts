@@ -108,8 +108,6 @@ export default class GameManager extends cc.Component
         //cc.audioEngine.playMusic(this.node.getComponent(cc.AudioSource).clip, true);
 
         this.node.getComponent(cc.AudioSource).volume = 0.1;
-		
-		cc.log('game manager onLoad');
 
 		// set score to 0
         this.scoreLabel.string = "SCORE: 0000";
@@ -133,6 +131,7 @@ export default class GameManager extends cc.Component
         this.timeSinceLastSpawn = 3;
 
         this.UpdateEnemyTypePercentChance();
+		this.UpdateWaveLabel();
     }
 
     update (dt)
