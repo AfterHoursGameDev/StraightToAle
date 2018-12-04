@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "58378e91-e936-45ed-9b36-e97680eb0dbb",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "HellFireEnemy": {
+      "ver": "1.0.3",
+      "uuid": "17b20522-f354-4d4d-9383-02ae1fea4e25",
+      "rawTextureUuid": "58378e91-e936-45ed-9b36-e97680eb0dbb",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": -4.5,
+      "trimX": 45,
+      "trimY": 14,
+      "width": 167,
+      "height": 237,
+      "rawWidth": 256,
+      "rawHeight": 256,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
