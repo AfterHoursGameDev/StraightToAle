@@ -5,6 +5,9 @@ const {ccclass, property} = cc._decorator;
 export default class BeerCan extends cc.Component {
 
 
+@property(cc.AudioSource)
+_audioSource: cc.AudioSource = null;
+
 //@property
 maxTravelDuration: number = 1.5;
 
@@ -18,7 +21,8 @@ rotSpeed: number = 15;
 
     onLoad ()
     {
-        cc.audioEngine.playEffect(this.getComponent(cc.AudioSource).clip, false);
+        //cc.audioEngine.playEffect(this.getComponent(cc.AudioSource).clip, false);
+        //cc.audioEngine.playEffect(this._audioSource.clip, false);
         //this.getComponent(cc.AudioSource).volume = this.node.getParent().getComponent("MouseScript").AudioLevel;
     }
 

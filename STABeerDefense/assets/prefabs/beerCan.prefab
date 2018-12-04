@@ -186,7 +186,7 @@
     "asset": {
       "__uuid__": "49efaef0-dbd5-4a45-8bac-ff699906b447"
     },
-    "fileId": "23e/cn40hHtpxTf5dL5fcB",
+    "fileId": "660xHoZdZKGohtp5soGWn2",
     "sync": false
   },
   {
@@ -267,7 +267,7 @@
       "__uuid__": "c323eadb-b2b0-4d35-a7e2-e678ccbd7b74"
     },
     "_spriteFrame": null,
-    "_stopped": false,
+    "_stopped": true,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 200,
@@ -354,7 +354,7 @@
     "asset": {
       "__uuid__": "49efaef0-dbd5-4a45-8bac-ff699906b447"
     },
-    "fileId": "a0/tAcSzVH/IRL2JMGH4tQ",
+    "fileId": "bfV6O5lwtFbYBm37vqtwU3",
     "sync": false
   },
   {
@@ -391,6 +391,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "_audioSource": null,
     "explosionDelay": 0.25,
     "_id": ""
   },
@@ -441,7 +442,8 @@
       "__id__": 1
     },
     "_enabled": true,
+    "_audioSource": null,
     "explosionDelay": 0.25,
-    "_id": "bb7mIvywJAZ5tra7xx2LQA"
+    "_id": "4bs2pJuHRLxakyXpxbXxUR"
   }
 ]

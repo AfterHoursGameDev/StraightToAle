@@ -18,6 +18,11 @@ export default class MainMenuScript extends cc.Component {
 
     // update (dt) {}
 
+    public EndlessModeClick()
+    {
+        cc.director.loadScene("endless_mode");
+    }
+
     public StartButtonClick()
     {
         var toggles = this.toggleContainer.toggleItems;
