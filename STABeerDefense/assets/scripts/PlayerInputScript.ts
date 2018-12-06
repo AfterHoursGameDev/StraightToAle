@@ -46,36 +46,40 @@ export default class PlayerInput extends cc.Component
 		// touch event to grab location when player touches screen
         this.node.on(cc.Node.EventType.TOUCH_END, (e: cc.Touch)=>
         {
-           // Only allow throwing upwards.
-           if (e.getLocation().y > this.groundHeight)
-           {
-			   // check which thing we're throwing.
-			   if (this.activePitcher && this.playerCanThrowPitcher)
-			   {
-					// throwing a pitcher
-					this.playerCanThrowPitcher = false;
-					
-					this.spawnPitcher(e.getLocation());
-					this.scheduleOnce(function()
-					{
-						this.playerCanThrowPitcher = true;
-					}, this.pitcherCooldownTime);
-			   }
-			   else if(this.playerCanThrowBeer)
-			   {
-					// throwing a beer can
-				   
-					// Prevent player from throwing another beer can
-					this.playerCanThrowBeer = false;
-					
-					this.spawnBeerCan(e.getLocation());
-					   
-					this.scheduleOnce(function()
-					{
-						this.playerCanThrowBeer = true;
-					}, this.beerCooldownTime);
-			   }
-           }      
+            // check to see if game is paused
+            if (cc.director.isPaused() == false)
+            {
+                // Only allow throwing upwards.
+                if (e.getLocation().y > this.groundHeight)
+                {
+                    // check which thing we're throwing.
+                    if (this.activePitcher && this.playerCanThrowPitcher)
+                    {
+                            // throwing a pitcher
+                            this.playerCanThrowPitcher = false;
+                            
+                            this.spawnPitcher(e.getLocation());
+                            this.scheduleOnce(function()
+                            {
+                                this.playerCanThrowPitcher = true;
+                            }, this.pitcherCooldownTime);
+                    }
+                    else if(this.playerCanThrowBeer)
+                    {
+                            // throwing a beer can
+                        
+                            // Prevent player from throwing another beer can
+                            this.playerCanThrowBeer = false;
+                            
+                            this.spawnBeerCan(e.getLocation());
+                            
+                            this.scheduleOnce(function()
+                            {
+                                this.playerCanThrowBeer = true;
+                            }, this.beerCooldownTime);
+                    }
+                }
+            }   
         })
 	}
 	

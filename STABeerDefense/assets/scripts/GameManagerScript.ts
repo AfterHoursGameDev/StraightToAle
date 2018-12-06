@@ -49,12 +49,15 @@ export default class GameManager extends cc.Component
     numMaxSatisfiedEnemiesToPitcher: number = 5;
 	
 	
-	numEnemiesSpawned: number = 0;
+    numEnemiesSpawned: number = 0;
+    numEnemiesCurrent: number = 0;
 	
 	// for spawning
 	horizontalCenter: number = 0;// 375;
     verticalCenter: number = 0;// 667;
-	spawnHeight: number = 0;
+    spawnHeight: number = 0;
+    enemySpeed: number = 5;
+    inbetweenWaves: boolean = true;
 	
 	// declare array for fermentation tanks
     tanks: Array<cc.Node>;
@@ -73,12 +76,11 @@ export default class GameManager extends cc.Component
     tempZigZagEnemyPercentChance: number = 0;
     tempSpiralEnemyPercentChance: number = 0;
 
-    timeSinceWaveStarted: number = 0;
+    timeCurrentWave: number = 0;
     timeWaveDuration: number = 5;
     timeWaveDurationIncrement: number = 2;
 
-    enemySpeed: number = 5;
-    
+    gameStarted: boolean = false;
 
     	
 	// not ready for this yet.
@@ -131,38 +133,81 @@ export default class GameManager extends cc.Component
         this.timeSinceLastSpawn = 3;
 
         this.UpdateEnemyTypePercentChance();
-		this.UpdateWaveLabel();
+
+        this.scheduleOnce(function()
+        {
+            // delay start of game by 2 seconds
+            this.GameStartDelay();
+        }, 2);
     }
 
     update (dt)
     {
-        // Check to see if wave time limit has passed
-        if (this.timeSinceWaveStarted >= this.timeWaveDuration)
+        if (this.inbetweenWaves == false)
         {
-            // reset wave timer
-            this.timeSinceWaveStarted = 0;
+            // Check to see if wave time limit has passed
+            if (this.timeCurrentWave >= this.timeWaveDuration)
+            {
+                // reset wave timer
+                this.timeCurrentWave = 0;
 
-            // Update the next wave's parameters
-            this.UpdateWaveParameters();
-        }
-        else if (this.timeSinceLastSpawn >= this.minTimeBetweenSpawns)
-        {
-            this.SpawnEnemy();
+                // pause spawning of enemies
+                this.inbetweenWaves = true;
+            }
+            else if (this.timeSinceLastSpawn >= this.minTimeBetweenSpawns)
+            {
+                this.SpawnEnemy();
 
-            // reset spawn timer
-            this.timeSinceLastSpawn = 0;
+                // reset spawn timer
+                this.timeSinceLastSpawn = 0;
+            }
+            else
+            {
+                this.timeSinceLastSpawn += dt;
+                this.timeCurrentWave += dt;
+            }
         }
         else
         {
-            this.timeSinceLastSpawn += dt;
-            this.timeSinceWaveStarted += dt;
+            // check to see if all enemies are gone
+            if (this.numEnemiesCurrent == 0 && this.gameStarted == true)
+            {
+                // Update the next wave's parameters
+                this.UpdateWaveParameters();
+            }
         }
 	}
 
 	/**
 	 *	Class functions
 	 */
-	
+    public RestartLevelButton()
+    {
+        //cc.director.loadScene("endless_mode");
+    }
+
+    public HomeButton()
+    {
+        //cc.director.loadScene("main_menu");
+    }
+
+    GameStartDelay()
+    {
+        // update the wave label
+        this.UpdateWaveLabel();
+
+        // delay spawning of enemies
+        this.scheduleOnce(function()
+        {
+
+        // start spawning of enemies
+        this.inbetweenWaves = false;
+
+        // indicate that the game has started
+        this.gameStarted = true;
+        }, 5);
+    }
+
     SpawnEnemy()
     {
         // add all fermentation tanks to an array to randomly select them later
@@ -198,7 +243,7 @@ export default class GameManager extends cc.Component
 			
             // instantiate enemy prefab
             var newEnemy = cc.instantiate(this.enemyTypesThisWave[Math.floor(Math.random() * this.enemyTypesThisWave.length)]);
-//cc.log(newEnemy.name);
+
             // set the position of the prefab to spawn to the upper right of the player
             // TODO: Update position to reflect throwing direction
             newEnemy.setPosition(enemyPos);
@@ -206,18 +251,25 @@ export default class GameManager extends cc.Component
             // set the prefab's parent to the primary canvas
             newEnemy.setParent(this.node);
 
+            
+
             // randomly select fermentation tank to attack
             var selectedTank = fermTank[Math.floor(Math.random() * fermTank.length)];
 
             // Give enemy information to initialize itself.
             newEnemy.getComponent("EnemyScript").setTargetTank(selectedTank);
 			
-			this.numEnemiesSpawned += 1;
+            this.numEnemiesSpawned += 1;
+            this.numEnemiesCurrent += 1;
+
         }
     }
 
     UpdateWaveParameters()
     {
+        // update the on-screen wave label
+        this.UpdateWaveLabel();
+
         this.currentWaveNumber += 1;
         this.enemySpeed += this.enemySpeed * 0.2;
         this.minTimeBetweenSpawns -= this.minTimeBetweenSpawns * 0.2;
@@ -237,15 +289,13 @@ export default class GameManager extends cc.Component
 
         this.timeWaveDuration += this.timeWaveDurationIncrement;
 
-        this.UpdateWaveLabel();
+        // resume spawning of enemies
+        this.inbetweenWaves = false;
     }
 
     UpdateWaveLabel()
     {
-        this.waveNumberLabel.enabled = true;
-
         this.waveNumberLabel.getComponent("WaveLabelScript").UpdateWaveLabel(this.currentWaveNumber);
-        
     }
 
     UpdateEnemyTypePercentChance()
@@ -294,27 +344,9 @@ export default class GameManager extends cc.Component
         return null;
     }
 
-    public UpdateVolume()
+    public UpdateNumberOfCurrentEnemies()
     {
-		cc.log('update volume');
-        console.log(cc.audioEngine.getMusicVolume());
-        if (cc.audioEngine.getMusicVolume() == 1)
-        {
-            cc.audioEngine.setMusicVolume(0);
-        }
-        else
-        {
-            cc.audioEngine.setMusicVolume(1);
-        }
-
-        if (cc.audioEngine.getEffectsVolume() == 1)
-        {
-            cc.audioEngine.setEffectsVolume(0);
-        }
-        else
-        {
-            cc.audioEngine.setEffectsVolume(1);
-        }
+        this.numEnemiesCurrent-= 1;
     }
 
     public UpdateScore(points: number)
@@ -357,6 +389,29 @@ export default class GameManager extends cc.Component
         else if (this.score >= 1000 && this.score <= 9999)
         {
             this.scoreLabel.string = "SCORE: " + this.score.toString();
+        }
+    }
+
+    public UpdateVolume()
+    {
+		cc.log('update volume');
+        console.log(cc.audioEngine.getMusicVolume());
+        if (cc.audioEngine.getMusicVolume() == 1)
+        {
+            cc.audioEngine.setMusicVolume(0);
+        }
+        else
+        {
+            cc.audioEngine.setMusicVolume(1);
+        }
+
+        if (cc.audioEngine.getEffectsVolume() == 1)
+        {
+            cc.audioEngine.setEffectsVolume(0);
+        }
+        else
+        {
+            cc.audioEngine.setEffectsVolume(1);
         }
     }
 }

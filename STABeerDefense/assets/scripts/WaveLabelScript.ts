@@ -3,16 +3,22 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class NewClass extends cc.Component {
 
-    // onLoad () {}
+    onLoad ()
+    {
+        this.node.active = false;
+    }
 
-    start () {
-
+    start ()
+    {
+        
     }
 
     // update (dt) {}
 
     public UpdateWaveLabel(waveNumber: number)
     {
+        this.node.active = true;
+
         this.node.getComponent(cc.Label).string = "WAVE " + waveNumber.toString();
 
         var labelFadeIn = cc.fadeIn(2);
@@ -24,8 +30,14 @@ export default class NewClass extends cc.Component {
         //this.waveNumberLabel.node.runAction(labelFadeDelay);
 
         this.scheduleOnce(function() {
-            // Here `this` is referring to the component
-            this.node.enabled = false;
-        }, 2);
+            // set inactive after a few seconds
+            this.node.active = false;
+            
+        }, 5);
+    }
+
+    DisableNode()
+    {
+        this.node.active = false;
     }
 }

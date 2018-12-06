@@ -63,8 +63,9 @@ export default class Enemy extends cc.Component
 
                 // disable collider and have enemy exit screen to right or left
 				cc.director.getCollisionManager().enabled = false;
-                this.movementComponent.exitScreen();
+                //this.movementComponent.exitScreen();
                 this.node.getParent().getComponent("GameManagerScript").UpdateScore(this.pointValue);
+                this.DestroyThisNode();
                 break;
             }
             case "fermentation_tank":
@@ -85,7 +86,7 @@ export default class Enemy extends cc.Component
 				
 				cc.log("should be destroying");
                 // destroy this enemy
-                this.node.destroy();
+                this.DestroyThisNode();
                 break;
             }
             case "pitcher":
@@ -102,7 +103,7 @@ export default class Enemy extends cc.Component
 			case "KillVolume"
 			{
 				// destroy this enemy, we've exited the screen.
-                this.node.destroy();
+                this.DestroyThisNode();
 				break;
 			}
         }
@@ -124,5 +125,12 @@ export default class Enemy extends cc.Component
 		{
 			this.movementComponent.setDestination(selectedTank.position);
 		}
+    }
+
+    DestroyThisNode()
+    {
+        this.node.getParent().getComponent("GameManagerScript").UpdateNumberOfCurrentEnemies();
+
+        this.node.destroy();
     }
 }
