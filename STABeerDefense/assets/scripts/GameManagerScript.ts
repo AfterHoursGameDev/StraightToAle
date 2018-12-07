@@ -106,10 +106,8 @@ export default class GameManager extends cc.Component
 	
     onLoad () 
     {
-        // play background music
-        //cc.audioEngine.playMusic(this.node.getComponent(cc.AudioSource).clip, true);
-
-        this.node.getComponent(cc.AudioSource).volume = 0.1;
+        // start the background music
+        //this.BackgroundMusic();
 
 		// set score to 0
         this.scoreLabel.string = "SCORE: 0000";
@@ -181,14 +179,13 @@ export default class GameManager extends cc.Component
 	/**
 	 *	Class functions
 	 */
-    public RestartLevelButton()
+    BackgroundMusic()
     {
-        //cc.director.loadScene("endless_mode");
-    }
+        // play background music
+        cc.audioEngine.playMusic(this.node.getComponent(cc.AudioSource).clip, true);
 
-    public HomeButton()
-    {
-        //cc.director.loadScene("main_menu");
+        // adjust background music volume
+        //this.node.getComponent(cc.AudioSource).volume = 1;
     }
 
     GameStartDelay()
@@ -389,29 +386,6 @@ export default class GameManager extends cc.Component
         else if (this.score >= 1000 && this.score <= 9999)
         {
             this.scoreLabel.string = "SCORE: " + this.score.toString();
-        }
-    }
-
-    public UpdateVolume()
-    {
-		cc.log('update volume');
-        console.log(cc.audioEngine.getMusicVolume());
-        if (cc.audioEngine.getMusicVolume() == 1)
-        {
-            cc.audioEngine.setMusicVolume(0);
-        }
-        else
-        {
-            cc.audioEngine.setMusicVolume(1);
-        }
-
-        if (cc.audioEngine.getEffectsVolume() == 1)
-        {
-            cc.audioEngine.setEffectsVolume(0);
-        }
-        else
-        {
-            cc.audioEngine.setEffectsVolume(1);
         }
     }
 }

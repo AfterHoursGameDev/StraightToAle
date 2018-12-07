@@ -7,6 +7,14 @@ const {ccclass, property} = cc._decorator;
 export default class Enemy extends cc.Component 
 {
 
+    @property(cc.AudioSource)
+    satisfiedEnemyAudioSource1: cc.AudioSource = null;
+
+    @property(cc.AudioSource)
+    satisfiedEnemyAudioSource2: cc.AudioSource = null;
+
+    satisfiedEnemyAudioSources: Array<cc.AudioSource>;
+
     horOffset: number = 0;// 375;
     tankHealthModifier: number = 1;
     tankSelected: cc.Node = null;
@@ -40,7 +48,10 @@ export default class Enemy extends cc.Component
 		if (!this.movementComponent)
 		{
 			cc.log('Error! No movement component was found!');
-		}
+        }
+
+        // array for satisfied enemy sound effects
+        this.satisfiedEnemyAudioSources = new Array(this.satisfiedEnemyAudioSource1, this.satisfiedEnemyAudioSource2);
     }
 
     start ()
@@ -62,10 +73,22 @@ export default class Enemy extends cc.Component
                 other.node.destroy();
 
                 // disable collider and have enemy exit screen to right or left
-				cc.director.getCollisionManager().enabled = false;
+                cc.director.getCollisionManager().enabled = false;
+                
+                // play audio
+                //cc.audioEngine.playEffect(this.node.getComponent(cc.AudioSource).clip, false);
+                //cc.audioEngine.playEffect(this.audioSource.clip, false);
+                this.PlaySoundEffect(this.satisfiedEnemyAudioSources);
+
                 //this.movementComponent.exitScreen();
                 this.node.getParent().getComponent("GameManagerScript").UpdateScore(this.pointValue);
-                this.DestroyThisNode();
+
+                // delay destroy so audio can play
+                this.scheduleOnce(function()
+                {
+                    this.DestroyThisNode();
+                },0.5);
+                
                 break;
             }
             case "fermentation_tank":
@@ -125,6 +148,11 @@ export default class Enemy extends cc.Component
 		{
 			this.movementComponent.setDestination(selectedTank.position);
 		}
+    }
+
+    PlaySoundEffect(soundEffectsArray: Array<cc.AudioSource>)
+    {
+        cc.audioEngine.playEffect(soundEffectsArray[Math.floor(Math.random() * soundEffectsArray.length)].clip, false);
     }
 
     DestroyThisNode()

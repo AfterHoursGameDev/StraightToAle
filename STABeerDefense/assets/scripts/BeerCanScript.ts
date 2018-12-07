@@ -19,15 +19,9 @@ explosionDelay: number = 0.25;
 
 rotSpeed: number = 15;
 
-    onLoad ()
-    {
-        //cc.audioEngine.playEffect(this.getComponent(cc.AudioSource).clip, false);
-        //cc.audioEngine.playEffect(this._audioSource.clip, false);
-        //this.getComponent(cc.AudioSource).volume = this.node.getParent().getComponent("MouseScript").AudioLevel;
-    }
+    //onLoad () {}
 
-    start () {        
-    }
+    //start ()   {}
 
     update (dt)
     {
@@ -55,6 +49,8 @@ rotSpeed: number = 15;
     public beerCanMovement(tgtLocation: cc.Vec2, jumpHeight: number)
     {
         var parentHeight = this.node.getParent().height;
+
+        cc.audioEngine.playEffect(this.getComponent(cc.AudioSource).clip, false);
 
         // offset value because we're coming up short
         // required for jump functionality

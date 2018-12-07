@@ -4,12 +4,9 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class MainMenuScript extends cc.Component {
 
-    @property(cc.ToggleContainer)
-    toggleContainer: cc.ToggleContainer = null;
-
     onLoad ()
     {
-
+        
     }
 
     start () {
@@ -20,21 +17,8 @@ export default class MainMenuScript extends cc.Component {
 
     public EndlessModeClick()
     {
+        //cc.game.addPersistRootNode(this.node);
         cc.director.loadScene("endless_mode");
-    }
-
-    public StartButtonClick()
-    {
-        var toggles = this.toggleContainer.toggleItems;
-
-        for(var i = 0; i < toggles.length; i++)
-        {
-            if (toggles[i].isChecked)
-            {
-                this.LoadScene(toggles[i]);
-                console.log(toggles[i].getComponentInChildren(cc.Label).string);
-            }
-        }
     }
 
     LoadScene(modeSelected: cc.Toggle)
