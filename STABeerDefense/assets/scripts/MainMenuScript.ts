@@ -6,7 +6,11 @@ export default class MainMenuScript extends cc.Component {
 
     onLoad ()
     {
-        
+        // resume game if it's paused
+        if (cc.director.isPaused())
+        {
+            cc.director.resume();
+        }
     }
 
     start () {
@@ -17,19 +21,12 @@ export default class MainMenuScript extends cc.Component {
 
     public EndlessModeClick()
     {
-        //cc.game.addPersistRootNode(this.node);
+        // load the Endless Mode Scene
         cc.director.loadScene("endless_mode");
     }
 
-    LoadScene(modeSelected: cc.Toggle)
+    public LeaderboardClick()
     {
-        switch (modeSelected.getComponentInChildren(cc.Label).string)
-        {
-            case "Endless Mode":
-            {
-                cc.director.loadScene("endless_mode");
-                break;
-            }
-        }
+        
     }
 }

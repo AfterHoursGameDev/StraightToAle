@@ -61,12 +61,13 @@ export default class NewClass extends cc.Component {
     {
         this.PlayClickAudio();
 
-        //cc.director.loadScene("endless_mode");
+        cc.director.loadScene("endless_mode");
     }
 
     public HomeButton()
     {
         this.PlayClickAudio();
+
         cc.director.loadScene("main_menu");
     }
 

@@ -13,6 +13,8 @@ maxTravelDuration: number = 1.5;
 
 initialized: boolean = false;
 destination: cc.Vec2;
+direction: cc.Vec2 = new cc.Vec2();
+moveSpeed: number = 1000;
 
 @property
 explosionDelay: number = 0.25;
@@ -25,10 +27,13 @@ rotSpeed: number = 15;
 
     update (dt)
     {
-        this.node.children[0].rotation = (this.node.children[0].rotation += this.rotSpeed);
-
         if (this.initialized)
         {
+            // rotate the can
+            this.node.children[0].rotation = (this.node.children[0].rotation += this.rotSpeed);
+
+            this.node.position = this.node.position.add(this.direction.mul(this.moveSpeed * dt));
+
             if (Math.round(this.node.position.x) == Math.round(this.destination.x) && Math.round(this.node.position.y) == Math.round(this.destination.y))
             {
                 this.initialized = false;
@@ -52,33 +57,17 @@ rotSpeed: number = 15;
 
         cc.audioEngine.playEffect(this.getComponent(cc.AudioSource).clip, false);
 
-        // offset value because we're coming up short
-        // required for jump functionality
-        jumpHeight += 200;
-
         // converting world space of mouse position to node space of beer can position
-        var newTgtLoc = this.node.getParent().convertToNodeSpaceAR(tgtLocation);
+        var convertedTargetLoc = this.node.getParent().convertToNodeSpaceAR(tgtLocation);
  
         // calculate full trajectory through click point
-        newTgtLoc = this.CalculateTrajectory(newTgtLoc)
+        var calculatedTargetLoc = this.CalculateTrajectory(convertedTargetLoc);
 
-        // normalizing velocity based on distance to travel
-        // required for jump functionality
-        //var timeToTarget = this.maxTravelDuration * ((jumpHeight-200)/parentHeight);
-
-        // shift target x position so that height of jump passes through target x position
-        // required for jump functionality
-        var dist = newTgtLoc.x - this.node.position.x;
-
-        // define movement action parameters
-        // var action = cc.jumpTo(timeToTarget, newTgtLoc.x+dist, -(this.node.getParent().height), jumpHeight, 1);//.easing(cc.easeInOut(1));
-        var action = cc.moveTo(this.maxTravelDuration, newTgtLoc);//.easing(cc.easeInOut(1));
-
-        // execute movement
-        this.node.runAction(action);
+        this.destination = calculatedTargetLoc;
+		this.direction = calculatedTargetLoc.sub(this.node.position);
+        this.direction.normalizeSelf();
 
         // initialize variables that help determine when can has reached its destination
-        this.destination = newTgtLoc;
         this.initialized = true;
     }
 
@@ -97,7 +86,7 @@ rotSpeed: number = 15;
         // x = y-b/m
         newTgtLoc.x = (this.node.getParent().height - b)/m;
         newTgtLoc.y = this.node.getParent().height;
-
+       console.log(newTgtLoc.x + "," + newTgtLoc.y);
         return newTgtLoc;
     }
 }

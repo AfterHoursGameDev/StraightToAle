@@ -106,8 +106,13 @@ export default class GameManager extends cc.Component
 	
     onLoad () 
     {
+        if (cc.director.isPaused())
+        {
+            cc.director.resume();
+        }
+
         // start the background music
-        //this.BackgroundMusic();
+        this.BackgroundMusic();
 
 		// set score to 0
         this.scoreLabel.string = "SCORE: 0000";
