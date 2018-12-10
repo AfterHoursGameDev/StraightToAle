@@ -33,7 +33,7 @@ export default class BaseMovementComponent extends cc.Component {
 
     public setDestination(targetLocation: cc.Vec2)
     {			
-		cc.log(this.getName() + " didn't implement setDestination");
+		cc.log(this.name + " didn't implement setDestination");
     }
 	
 	public exitScreen()

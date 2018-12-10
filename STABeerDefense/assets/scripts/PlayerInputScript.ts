@@ -28,7 +28,9 @@ export default class PlayerInput extends cc.Component
 	@property
 	beerCooldownTime: number = 0.5;
 	@property
-	pitcherCooldownTime: number = 3;
+    pitcherCooldownTime: number = 3;
+    @property (cc.AudioSource)
+    launcherAudio: cc.AudioSource = null;
 	
 	// PlayerInput
     playerCanThrowBeer: boolean = true;
@@ -100,7 +102,7 @@ export default class PlayerInput extends cc.Component
         // call script to initialize can movement
         can.getComponent("BeerCanScript").beerCanMovement(tgtLocation, tgtLocation.y);
 
-        //this.spawnEnemy();
+        cc.audioEngine.playEffect(this.launcherAudio.clip, false);
     }	
 	
 	// Instantiate beer can at player location and throw it toward click location

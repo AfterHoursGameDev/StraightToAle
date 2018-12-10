@@ -34,6 +34,8 @@ export default class Enemy extends cc.Component
     {
         // turn on collision
         cc.director.getCollisionManager().enabled = true;
+        //cc.director.getCollisionManager().enabledDebugDraw = true;
+        //cc.director.getCollisionManager().enabledDrawBoundingBox = true;
 		
 		this.movementComponent = this.node.getComponent("LineMovementScript");
 		if (!this.movementComponent)
@@ -63,6 +65,13 @@ export default class Enemy extends cc.Component
     {
     }
 
+    PlaySoundEffect(soundEffectsArray: Array<cc.AudioSource>)
+    {
+        var audioSource = soundEffectsArray[Math.floor(Math.random() * soundEffectsArray.length)];
+
+        cc.audioEngine.playEffect(audioSource.clip, false);
+    }
+
     onCollisionEnter (other: cc.Collider, self)
     {
         switch (other.node.name)
@@ -73,14 +82,13 @@ export default class Enemy extends cc.Component
                 other.node.destroy();
 
                 // disable collider and have enemy exit screen to right or left
-                cc.director.getCollisionManager().enabled = false;
+                this.node.getComponent(cc.Collider).enabled = false;
                 
                 // play audio
                 //cc.audioEngine.playEffect(this.node.getComponent(cc.AudioSource).clip, false);
                 //cc.audioEngine.playEffect(this.audioSource.clip, false);
                 this.PlaySoundEffect(this.satisfiedEnemyAudioSources);
 
-                //this.movementComponent.exitScreen();
                 this.node.getParent().getComponent("GameManagerScript").UpdateScore(this.pointValue);
 
                 // delay destroy so audio can play
@@ -118,12 +126,18 @@ export default class Enemy extends cc.Component
                 other.node.destroy();
 
                 // disable collider and have enemy exit screen to right or left
-				cc.director.getCollisionManager().enabled = false;
-                this.movementComponent.exitScreen();
+				this.node.getComponent(cc.Collider).enabled = false;
+
                 this.node.getParent().getComponent("MouseScript").UpdateScore(this.pointValue);
+
+                // delay destroy so audio can play
+                this.scheduleOnce(function()
+                {
+                    this.DestroyThisNode();
+                },0.5);
                 break;
             }
-			case "KillVolume"
+			case "KillVolume":
 			{
 				// destroy this enemy, we've exited the screen.
                 this.DestroyThisNode();
@@ -139,8 +153,10 @@ export default class Enemy extends cc.Component
 		this.tankSelected.on('destroyed', function(event)
 			{
 				// if we want to deny the player points for losing this thing's target by making
-				// it leave, here's that.
-				this.movementComponent.exitScreen();
+                // it leave, here's that.
+                // TODO: Temporarily removed exitScreen because I'm not sure if they are being destroyed afterward for sake of moving to next wave
+                //this.movementComponent.exitScreen();
+                this.DestroyThisNode();
 			}, this
 		);
 		
@@ -150,15 +166,8 @@ export default class Enemy extends cc.Component
 		}
     }
 
-    PlaySoundEffect(soundEffectsArray: Array<cc.AudioSource>)
-    {
-        cc.audioEngine.playEffect(soundEffectsArray[Math.floor(Math.random() * soundEffectsArray.length)].clip, false);
-    }
-
     DestroyThisNode()
     {
-        this.node.getParent().getComponent("GameManagerScript").UpdateNumberOfCurrentEnemies();
-
         this.node.destroy();
     }
 }

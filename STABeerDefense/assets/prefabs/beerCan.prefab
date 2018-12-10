@@ -34,13 +34,10 @@
       },
       {
         "__id__": 10
-      },
-      {
-        "__id__": 11
       }
     ],
     "_prefab": {
-      "__id__": 12
+      "__id__": 11
     },
     "_opacity": 255,
     "_color": {
@@ -186,7 +183,7 @@
     "asset": {
       "__uuid__": "49efaef0-dbd5-4a45-8bac-ff699906b447"
     },
-    "fileId": "15MlX/rs5Kgppx3hKByiYL",
+    "fileId": "952bRuwVhAKo5IOEdF6oZX",
     "sync": false
   },
   {
@@ -354,7 +351,7 @@
     "asset": {
       "__uuid__": "49efaef0-dbd5-4a45-8bac-ff699906b447"
     },
-    "fileId": "e6m/TPFvtFV4/dg/MN7omq",
+    "fileId": "49z9yuMCVHCI1KG9bbLGCs",
     "sync": false
   },
   {
@@ -417,24 +414,6 @@
     "_id": ""
   },
   {
-    "__type__": "cc.AudioSource",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "_clip": {
-      "__uuid__": "38ebcf89-694d-460a-aac6-dfda0f9f9a47"
-    },
-    "_volume": 1,
-    "_mute": false,
-    "_loop": false,
-    "playOnLoad": false,
-    "preload": false,
-    "_id": ""
-  },
-  {
     "__type__": "5515e5hQLhIZ7Eo/LiRH+av",
     "_name": "",
     "_objFlags": 0,
@@ -444,6 +423,6 @@
     "_enabled": true,
     "_audioSource": null,
     "explosionDelay": 0.25,
-    "_id": "f5s2BqkK1LmIWDGndz/lnf"
+    "_id": "a1NglNTrxKt6PQbjyeqwh4"
   }
 ]

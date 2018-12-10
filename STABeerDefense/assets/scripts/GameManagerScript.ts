@@ -9,6 +9,9 @@ export default class GameManager extends cc.Component
     @property(cc.Label)
     waveNumberLabel: cc.Label = null;
 
+    @property(cc.Node)
+    gameOverNode: cc.Node = null;
+
 	/**
 	 *	object references 
 	 */
@@ -50,7 +53,9 @@ export default class GameManager extends cc.Component
 	
 	
     numEnemiesSpawned: number = 0;
-    numEnemiesCurrent: number = 0;
+
+    // declare array to track number of current enemies
+    numCurrentEnemies: Array<cc.Node> = new Array;
 	
 	// for spawning
 	horizontalCenter: number = 0;// 375;
@@ -77,11 +82,11 @@ export default class GameManager extends cc.Component
     tempSpiralEnemyPercentChance: number = 0;
 
     timeCurrentWave: number = 0;
-    timeWaveDuration: number = 5;
-    timeWaveDurationIncrement: number = 2;
+    timeWaveDuration: number = 20;
+    timeWaveDurationIncrement: number = 5;
 
     gameStarted: boolean = false;
-
+    gameover: boolean = false;
     	
 	// not ready for this yet.
 	// // Chance that an enemy will spawn this tick (starting)
@@ -146,37 +151,50 @@ export default class GameManager extends cc.Component
 
     update (dt)
     {
-        if (this.inbetweenWaves == false)
+        if (this.GetNumberOfRemainingTanks().length > 0)
         {
-            // Check to see if wave time limit has passed
-            if (this.timeCurrentWave >= this.timeWaveDuration)
+            if (this.inbetweenWaves == false)
             {
-                // reset wave timer
-                this.timeCurrentWave = 0;
+                // Check to see if wave time limit has passed
+                if (this.timeCurrentWave >= this.timeWaveDuration)
+                {
+                    // reset wave timer
+                    this.timeCurrentWave = 0;
 
-                // pause spawning of enemies
-                this.inbetweenWaves = true;
-            }
-            else if (this.timeSinceLastSpawn >= this.minTimeBetweenSpawns)
-            {
-                this.SpawnEnemy();
+                    // pause spawning of enemies
+                    this.inbetweenWaves = true;
+                }
+                else if (this.timeSinceLastSpawn >= this.minTimeBetweenSpawns)
+                {
+                    this.SpawnEnemy();
 
-                // reset spawn timer
-                this.timeSinceLastSpawn = 0;
+                    // reset spawn timer
+                    this.timeSinceLastSpawn = 0;
+                }
+                else
+                {
+                    this.timeSinceLastSpawn += dt;
+                    this.timeCurrentWave += dt;
+                }
             }
             else
             {
-                this.timeSinceLastSpawn += dt;
-                this.timeCurrentWave += dt;
+                // check to see if all enemies are gone
+                if (this.GetNumberOfRemainingEnemies() == 0 && this.gameStarted == true)
+                {
+                    // Update the next wave's parameters
+                    this.UpdateWaveParameters();
+                }
             }
         }
         else
         {
-            // check to see if all enemies are gone
-            if (this.numEnemiesCurrent == 0 && this.gameStarted == true)
+            if (this.gameover == false)
             {
-                // Update the next wave's parameters
-                this.UpdateWaveParameters();
+                // NO TANKS = GAME OVER
+                this.gameover = true;
+
+                this.GameOver();
             }
         }
 	}
@@ -213,17 +231,9 @@ export default class GameManager extends cc.Component
     SpawnEnemy()
     {
         // add all fermentation tanks to an array to randomly select them later
-        var fermTank = new Array;
+        var numRemainingTanks = this.GetNumberOfRemainingTanks();
 
-        for (var i = 0; i < this.tanks.length; i++)
-        {
-            if (this.tanks[i].isValid != false)
-            {
-                fermTank.push(this.tanks[i])
-            }
-        }
-
-        if (fermTank.length > 0)
+        if (numRemainingTanks.length > 0)
         {
             var enemyPos = new cc.Vec2;
             var multiplier = 1;
@@ -256,23 +266,38 @@ export default class GameManager extends cc.Component
             
 
             // randomly select fermentation tank to attack
-            var selectedTank = fermTank[Math.floor(Math.random() * fermTank.length)];
+            var selectedTank = numRemainingTanks[Math.floor(Math.random() * numRemainingTanks.length)];
 
             // Give enemy information to initialize itself.
             newEnemy.getComponent("EnemyScript").setTargetTank(selectedTank);
 			
             this.numEnemiesSpawned += 1;
-            this.numEnemiesCurrent += 1;
-
+            this.numCurrentEnemies.push(newEnemy);
         }
+    }
+
+    GetNumberOfRemainingTanks()
+    {
+        var fermTanks = new Array;
+
+        for (var i = 0; i < this.tanks.length; i++)
+        {
+            if (this.tanks[i].isValid != false)
+            {
+                fermTanks.push(this.tanks[i])
+            }
+        }
+
+        return fermTanks;
     }
 
     UpdateWaveParameters()
     {
+        this.currentWaveNumber += 1;
+
         // update the on-screen wave label
         this.UpdateWaveLabel();
 
-        this.currentWaveNumber += 1;
         this.enemySpeed += this.enemySpeed * 0.2;
         this.minTimeBetweenSpawns -= this.minTimeBetweenSpawns * 0.2;
 
@@ -321,24 +346,14 @@ export default class GameManager extends cc.Component
     public UpdateEnemyTarget()
     {
         // add all fermentation tanks to an array to randomly select them later
-        var fermTank = new Array;
+        var numRemainingTanks = this.GetNumberOfRemainingTanks();
 
-        var i = 0;
-
-        for (i = 0; i < this.tanks.length; i++)
-        {
-            if (this.tanks[i].isValid != false)
-            {
-                fermTank.push(this.tanks[i])
-            }
-        }
-
-        if (fermTank.length > 0)
+        if (numRemainingTanks.length > 0)
         {
             var enemyPos = new cc.Vec2;
 
             // randomly select fermentation tank to attack
-            var selectedTank = fermTank[Math.floor(Math.random() * fermTank.length)];
+            var selectedTank = numRemainingTanks[Math.floor(Math.random() * numRemainingTanks.length)];
 
             return selectedTank;
         }
@@ -346,9 +361,23 @@ export default class GameManager extends cc.Component
         return null;
     }
 
-    public UpdateNumberOfCurrentEnemies()
+    public GetNumberOfRemainingEnemies()
     {
-        this.numEnemiesCurrent-= 1;
+        var numEnemies = new Array;
+
+        for (var i = 0; i < this.numCurrentEnemies.length; i++)
+        {
+            if (this.numCurrentEnemies[i].isValid != false)
+            {
+                numEnemies.push(this.numCurrentEnemies[i])
+            }
+        }
+
+        this.numCurrentEnemies = numEnemies;
+
+        console.log("Num Enemies Spawned: " + this.numEnemiesSpawned + "_Num Enemies Current: " + this.numCurrentEnemies.length);
+
+        return this.numCurrentEnemies.length;
     }
 
     public UpdateScore(points: number)
@@ -392,5 +421,14 @@ export default class GameManager extends cc.Component
         {
             this.scoreLabel.string = "SCORE: " + this.score.toString();
         }
+    }
+
+    GameOver()
+    {
+        cc.audioEngine.stopMusic();
+
+        this.gameOverNode.active = true;
+
+        this.gameOverNode.getComponent("GameOverScript").ShowGameOverScreen();
     }
 }

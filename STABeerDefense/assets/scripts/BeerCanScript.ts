@@ -55,8 +55,6 @@ rotSpeed: number = 15;
     {
         var parentHeight = this.node.getParent().height;
 
-        cc.audioEngine.playEffect(this.getComponent(cc.AudioSource).clip, false);
-
         // converting world space of mouse position to node space of beer can position
         var convertedTargetLoc = this.node.getParent().convertToNodeSpaceAR(tgtLocation);
  
