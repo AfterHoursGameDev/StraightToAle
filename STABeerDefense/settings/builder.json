@@ -34,7 +34,7 @@
     "orientation": "portrait"
   },
   "startScene": "000a19be-7e82-4dae-98eb-2a66a0373968",
-  "title": "STABeerDefense_Portrait",
+  "title": "STABeerDefense",
   "webOrientation": "portrait",
   "wechatgame": {
     "REMOTE_SERVER_ROOT": "",
