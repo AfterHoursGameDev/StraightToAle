@@ -85,6 +85,7 @@ export default class GameManager extends cc.Component
     timeWaveDuration: number = 20;
     timeWaveDurationIncrement: number = 5;
 
+    updatingWaveParameters: boolean = false;
     gameStarted: boolean = false;
     gameover: boolean = false;
     	
@@ -163,6 +164,9 @@ export default class GameManager extends cc.Component
 
                     // pause spawning of enemies
                     this.inbetweenWaves = true;
+
+                    // indicate updating of wave parameters
+                    this.updatingWaveParameters = true;
                 }
                 else if (this.timeSinceLastSpawn >= this.minTimeBetweenSpawns)
                 {
@@ -182,8 +186,13 @@ export default class GameManager extends cc.Component
                 // check to see if all enemies are gone
                 if (this.GetNumberOfRemainingEnemies() == 0 && this.gameStarted == true)
                 {
-                    // Update the next wave's parameters
-                    this.UpdateWaveParameters();
+                    if (this.updatingWaveParameters == true)
+                    {
+                        this.updatingWaveParameters = false;
+
+                        // Update the next wave's parameters
+                        this.UpdateWaveParameters();
+                    }
                 }
             }
         }
@@ -316,8 +325,12 @@ export default class GameManager extends cc.Component
 
         this.timeWaveDuration += this.timeWaveDurationIncrement;
 
-        // resume spawning of enemies
-        this.inbetweenWaves = false;
+        this.scheduleOnce(function()
+        {
+            // resume spawning of enemies
+            this.inbetweenWaves = false;
+        },5);
+
     }
 
     UpdateWaveLabel()
@@ -374,8 +387,6 @@ export default class GameManager extends cc.Component
         }
 
         this.numCurrentEnemies = numEnemies;
-
-        console.log("Num Enemies Spawned: " + this.numEnemiesSpawned + "_Num Enemies Current: " + this.numCurrentEnemies.length);
 
         return this.numCurrentEnemies.length;
     }
