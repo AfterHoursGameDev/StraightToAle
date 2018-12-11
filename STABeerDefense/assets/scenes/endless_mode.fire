@@ -20,7 +20,7 @@
         "__id__": 144
       },
       {
-        "__id__": 178
+        "__id__": 177
       }
     ],
     "_active": true,
@@ -47,8 +47,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.5140569133280332,
-      "y": 0.5140569133280332,
+      "x": 0.43177239505247356,
+      "y": 0.43177239505247356,
       "z": 1
     },
     "_quat": {
@@ -133,19 +133,19 @@
     "_level": 1,
     "_components": [
       {
+        "__id__": 175
+      },
+      {
         "__id__": 176
       },
       {
-        "__id__": 177
+        "__id__": 183
       },
       {
         "__id__": 184
       },
       {
         "__id__": 185
-      },
-      {
-        "__id__": 186
       }
     ],
     "_prefab": null,
@@ -5275,7 +5275,7 @@
         "__id__": 142
       },
       {
-        "__id__": 175
+        "__id__": 174
       }
     ],
     "_prefab": null,
@@ -5560,9 +5560,6 @@
     "checkEvents": [
       {
         "__id__": 143
-      },
-      {
-        "__id__": 174
       }
     ],
     "_N$isChecked": true,
@@ -5615,15 +5612,15 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 250,
+      "g": 250,
+      "b": 250,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 200,
-      "height": 200
+      "width": 750,
+      "height": 1334
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -5666,25 +5663,25 @@
     },
     "_children": [],
     "_active": true,
-    "_level": 3,
+    "_level": 2,
     "_components": [
       {
         "__id__": 146
       }
     ],
     "_prefab": null,
-    "_opacity": 255,
+    "_opacity": 128,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 0,
+      "g": 0,
+      "b": 0,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 300,
-      "height": 300
+      "width": 750,
+      "height": 1334
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -5716,7 +5713,7 @@
     "_skewY": 0,
     "_zIndex": 0,
     "groupIndex": 0,
-    "_id": "b5lHQE1eVKrZNAPkeGWGNs"
+    "_id": "51a5CzpwdEw78CBMxOG9Sb"
   },
   {
     "__type__": "cc.Sprite",
@@ -5728,7 +5725,9 @@
     "_enabled": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+    },
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -5742,7 +5741,7 @@
     "_isTrimmedMode": true,
     "_state": 0,
     "_atlas": null,
-    "_id": "a5WqEXc8NCra7DLMHi7CCW"
+    "_id": "94qFnePcpCiIUojenTuxNC"
   },
   {
     "__type__": "cc.Node",
@@ -6850,6 +6849,9 @@
       "__id__": 144
     },
     "_enabled": true,
+    "muteToggle": {
+      "__id__": 164
+    },
     "_id": "3cfv88mJJMWI8rgAkFS4jN"
   },
   {
@@ -6869,13 +6871,6 @@
     "playOnLoad": false,
     "preload": false,
     "_id": "bdRGmqBbBDdK5YboQpTPWr"
-  },
-  {
-    "__type__": "cc.ClickEvent",
-    "target": null,
-    "component": "",
-    "handler": "",
-    "customEventData": ""
   },
   {
     "__type__": "c91a3QpzHNGPKJuLZKc9u2u",
@@ -6916,7 +6911,7 @@
       "__id__": 10
     },
     "gameOverNode": {
-      "__id__": 178
+      "__id__": 177
     },
     "player": {
       "__id__": 56
@@ -6958,17 +6953,17 @@
     },
     "_children": [
       {
-        "__id__": 179
+        "__id__": 178
       },
       {
-        "__id__": 181
+        "__id__": 180
       }
     ],
     "_active": true,
     "_level": 1,
     "_components": [
       {
-        "__id__": 183
+        "__id__": 182
       }
     ],
     "_prefab": null,
@@ -7022,14 +7017,14 @@
     "_name": "GameOverLabel",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 178
+      "__id__": 177
     },
     "_children": [],
     "_active": true,
     "_level": 2,
     "_components": [
       {
-        "__id__": 180
+        "__id__": 179
       }
     ],
     "_prefab": null,
@@ -7083,7 +7078,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 179
+      "__id__": 178
     },
     "_enabled": true,
     "_srcBlendFactor": 1,
@@ -7110,14 +7105,14 @@
     "_name": "GameOverAudio",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 178
+      "__id__": 177
     },
     "_children": [],
     "_active": true,
     "_level": 2,
     "_components": [
       {
-        "__id__": 182
+        "__id__": 181
       }
     ],
     "_prefab": null,
@@ -7171,7 +7166,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 181
+      "__id__": 180
     },
     "_enabled": true,
     "_clip": {
@@ -7189,11 +7184,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 178
+      "__id__": 177
     },
     "_enabled": true,
     "gameOverAudioEffect": {
-      "__id__": 182
+      "__id__": 181
     },
     "_id": "c9Vb754SJEQIs15nKksbVq"
   },

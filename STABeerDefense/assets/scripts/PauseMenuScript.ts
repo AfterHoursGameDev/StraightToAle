@@ -4,8 +4,22 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class NewClass extends cc.Component {
 
+@property(cc.Toggle)
+muteToggle: cc.Toggle = null;
+
     onLoad ()
     {
+        if (cc.audioEngine.getMusicVolume() == 1)
+        {
+            //this.muteToggle.checkMark.enabled = true;
+            this.muteToggle.isChecked = true;
+        }
+        else
+        {
+            this.muteToggle.isChecked = false;
+            //this.muteToggle.checkMark.enabled = false;
+        }
+
         this.node.active = false;
     }
 
