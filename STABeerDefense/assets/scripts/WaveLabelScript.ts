@@ -21,6 +21,8 @@ export default class NewClass extends cc.Component {
 
         this.node.getComponent(cc.Label).string = "WAVE " + waveNumber.toString();
 
+        cc.audioEngine.playEffect(this.node.getComponent(cc.AudioSource).clip, false);
+
         var labelFadeIn = cc.fadeIn(2);
         var labelFadeOut = cc.fadeOut(2);
         var labelFadeDelay = cc.delayTime(5);
@@ -33,7 +35,7 @@ export default class NewClass extends cc.Component {
             // set inactive after a few seconds
             this.node.active = false;
             
-        }, 5);
+        }, 3);
     }
 
     DisableNode()

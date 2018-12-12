@@ -71,6 +71,18 @@ muteToggle: cc.Toggle = null;
         this.PlayClickAudio();
     }
 
+    public PauseBGMButton()
+    {
+        if (cc.audioEngine.isMusicPlaying() == true)
+        {
+            cc.audioEngine.pauseMusic();
+        }
+        else
+        {
+            cc.audioEngine.resumeMusic();
+        }
+    }
+
     public RestartLevelButton()
     {
         this.PlayClickAudio();

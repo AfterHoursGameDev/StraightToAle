@@ -329,7 +329,7 @@ export default class GameManager extends cc.Component
         {
             // resume spawning of enemies
             this.inbetweenWaves = false;
-        },5);
+        },3);
 
     }
 
@@ -437,6 +437,8 @@ export default class GameManager extends cc.Component
     GameOver()
     {
         cc.audioEngine.stopMusic();
+
+        this.getComponent("PlayerInputScript").GameOver();
 
         this.gameOverNode.active = true;
 

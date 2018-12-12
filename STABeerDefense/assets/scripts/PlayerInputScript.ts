@@ -38,7 +38,10 @@ export default class PlayerInput extends cc.Component
 	groundHeight: number = 100;
     newPlayerPosX: number = 0;
     newPos: cc.Vec2 = new cc.Vec2(0,0);
-	
+
+    // Game State
+    gameOver: boolean = false;
+    
 	/**
 	 *	Lifecycle callbacks 
 	 */
@@ -49,7 +52,7 @@ export default class PlayerInput extends cc.Component
         this.node.on(cc.Node.EventType.TOUCH_END, (e: cc.Touch)=>
         {
             // check to see if game is paused
-            if (cc.director.isPaused() == false)
+            if (cc.director.isPaused() == false && this.gameOver == false)
             {
                 // Only allow throwing upwards.
                 if (e.getLocation().y > this.groundHeight)
@@ -190,4 +193,8 @@ export default class PlayerInput extends cc.Component
         }
     }
 
+    public GameOver()
+    {
+        this.gameOver = true;
+    }
 }

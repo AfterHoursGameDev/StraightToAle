@@ -13,6 +13,9 @@ export default class Enemy extends cc.Component
     @property(cc.AudioSource)
     satisfiedEnemyAudioSource2: cc.AudioSource = null;
 
+    @property(cc.AudioSource)
+    satisfiedEnemyAudioSource3: cc.AudioSource = null;
+
     satisfiedEnemyAudioSources: Array<cc.AudioSource>;
 
     horOffset: number = 0;// 375;
@@ -53,7 +56,7 @@ export default class Enemy extends cc.Component
         }
 
         // array for satisfied enemy sound effects
-        this.satisfiedEnemyAudioSources = new Array(this.satisfiedEnemyAudioSource1, this.satisfiedEnemyAudioSource2);
+        this.satisfiedEnemyAudioSources = new Array(this.satisfiedEnemyAudioSource1, this.satisfiedEnemyAudioSource2, this.satisfiedEnemyAudioSource3);
     }
 
     start ()
@@ -95,7 +98,7 @@ export default class Enemy extends cc.Component
                 this.scheduleOnce(function()
                 {
                     this.DestroyThisNode();
-                },0.5);
+                },0.25);
                 
                 break;
             }
@@ -111,7 +114,8 @@ export default class Enemy extends cc.Component
                     // replace sprite with destroyed sprite?
                     other.node.getComponent(cc.BoxCollider).enabled = false;
 
-                    other.node.destroy();
+                    other.node.getComponent("TankScript").DestroyTank();
+                    //other.node.destroy();
                 }
 				// spawn particle effect here
 				

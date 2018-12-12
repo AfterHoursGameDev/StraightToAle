@@ -4,6 +4,9 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class MainMenuScript extends cc.Component {
 
+    @property(cc.Node)
+    instructionNode: cc.Node = null;
+
     onLoad ()
     {
         // resume game if it's paused
@@ -28,5 +31,10 @@ export default class MainMenuScript extends cc.Component {
     public LeaderboardClick()
     {
         
+    }
+
+    public InstructionsClick()
+    {
+        this.instructionNode.active = true;
     }
 }
