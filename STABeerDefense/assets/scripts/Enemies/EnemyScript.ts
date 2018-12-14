@@ -95,10 +95,10 @@ export default class Enemy extends cc.Component
                 this.node.getParent().getComponent("GameManagerScript").UpdateScore(this.pointValue);
 
                 // delay destroy so audio can play
-                this.scheduleOnce(function()
-                {
+                //this.scheduleOnce(function()
+                //{
                     this.DestroyThisNode();
-                },0.25);
+                //},0.25);
                 
                 break;
             }

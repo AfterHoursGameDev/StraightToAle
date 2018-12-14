@@ -84,7 +84,7 @@ rotSpeed: number = 15;
         // x = y-b/m
         newTgtLoc.x = (this.node.getParent().height - b)/m;
         newTgtLoc.y = this.node.getParent().height;
-       console.log(newTgtLoc.x + "," + newTgtLoc.y);
+       // console.log(newTgtLoc.x + "," + newTgtLoc.y);
         return newTgtLoc;
     }
 }

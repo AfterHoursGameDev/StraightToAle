@@ -66,6 +66,7 @@ export default class GameManager extends cc.Component
 	
 	// declare array for fermentation tanks
     tanks: Array<cc.Node>;
+    numRemainingTanks: number = 4;
 	
 	timeSinceLastSpawn: number = 0;
 	@property
@@ -123,8 +124,7 @@ export default class GameManager extends cc.Component
 		// set score to 0
         this.scoreLabel.string = "SCORE: 0000";
 		
-        // add all fermentation tanks to an array to randomly select them later
-        this.tanks = new Array (this.tank_1, this.tank_2, this.tank_3, this.tank_4);
+        this.InitializeTanks();
 
         // add all enemy types to an array to randomly select them later
         this.enemyTypesPrefabs = new Array (this.lineEnemyPrefab, this.zigzabEnemyPrefab, this.spiralEnemyPrefab);
@@ -152,7 +152,7 @@ export default class GameManager extends cc.Component
 
     update (dt)
     {
-        if (this.GetNumberOfRemainingTanks().length > 0)
+        if (this.numRemainingTanks > 0)
         {
             if (this.inbetweenWaves == false)
             {
@@ -237,12 +237,42 @@ export default class GameManager extends cc.Component
         }, 5);
     }
 
+    InitializeTanks()
+    {
+        // add all fermentation tanks to an array to randomly select them later
+        this.tanks = new Array (this.tank_1, this.tank_2, this.tank_3, this.tank_4);
+
+        for (var i = 0; i < this.tanks.length; i++)
+        {
+            this.tanks[i].on('destroyed', function(event)
+                {
+                    // for some reason, we're counting one more than we should have
+                    this.numOfRemainingTanks = this.GetRemainingTanks().length - 1;
+
+                    if (this.numOfRemainingTanks == 1)
+                    {
+                        // display catch phrase
+                        this.player.getComponent("CatchPhraseScript").DisplayCustomCatchPhrase("Down to one tank already?");
+                    }
+                    else
+                    {
+                        // display catch phrase
+                        this.player.getComponent("CatchPhraseScript").DisplayDecanterCatchPhrase();
+                    }
+                }, this
+            );
+        }
+
+        // initialize number of tanks
+        this.numRemainingTanks = this.tanks.length;
+    }
+
     SpawnEnemy()
     {
         // add all fermentation tanks to an array to randomly select them later
-        var numRemainingTanks = this.GetNumberOfRemainingTanks();
+        var remainingTanks = this.GetRemainingTanks();
 
-        if (numRemainingTanks.length > 0)
+        if (remainingTanks.length-1 > 0)
         {
             var enemyPos = new cc.Vec2;
             var multiplier = 1;
@@ -275,7 +305,7 @@ export default class GameManager extends cc.Component
             
 
             // randomly select fermentation tank to attack
-            var selectedTank = numRemainingTanks[Math.floor(Math.random() * numRemainingTanks.length)];
+            var selectedTank = remainingTanks[Math.floor(Math.random() * remainingTanks.length)];
 
             // Give enemy information to initialize itself.
             newEnemy.getComponent("EnemyScript").setTargetTank(selectedTank);
@@ -285,7 +315,7 @@ export default class GameManager extends cc.Component
         }
     }
 
-    GetNumberOfRemainingTanks()
+    GetRemainingTanks()
     {
         var fermTanks = new Array;
 
@@ -335,6 +365,17 @@ export default class GameManager extends cc.Component
 
     UpdateWaveLabel()
     {
+        if (this.currentWaveNumber == 1)
+        {
+            // display catch phrase
+            this.player.getComponent("CatchPhraseScript").DisplayFirstWaveCatchPhrase();
+        }
+        else
+        {
+            // display catch phrase
+            this.player.getComponent("CatchPhraseScript").DisplayNewWaveCatchPhrase();
+        }
+
         this.waveNumberLabel.getComponent("WaveLabelScript").UpdateWaveLabel(this.currentWaveNumber);
     }
 
@@ -359,7 +400,7 @@ export default class GameManager extends cc.Component
     public UpdateEnemyTarget()
     {
         // add all fermentation tanks to an array to randomly select them later
-        var numRemainingTanks = this.GetNumberOfRemainingTanks();
+        var numRemainingTanks = this.GetRemainingTanks();
 
         if (numRemainingTanks.length > 0)
         {
@@ -402,6 +443,9 @@ export default class GameManager extends cc.Component
 		// update the UI score label
         this.UpdateScoreLabel();
 
+        // display catch phrase
+        this.player.getComponent("CatchPhraseScript").DisplaySatisfiedCatchPhrase();
+
         // check to see if player reached number of satisfied patrons required to gain a pitcher
         if(this.numSatisfiedEnemiesToPitcher == this.numMaxSatisfiedEnemiesToPitcher)
         {
@@ -415,7 +459,6 @@ export default class GameManager extends cc.Component
 
     UpdateScoreLabel()
     {
-		
         if (this.score >= 0 && this.score <= 9)
         {
             this.scoreLabel.string = "SCORE: 000" + this.score.toString();
