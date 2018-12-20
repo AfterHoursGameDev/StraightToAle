@@ -152,7 +152,7 @@ export default class GameManager extends cc.Component
 
     update (dt)
     {
-        if (this.numRemainingTanks > 0)
+        if (this.GetRemainingTanks().length > 0)
         {
             if (this.inbetweenWaves == false)
             {
@@ -247,7 +247,7 @@ export default class GameManager extends cc.Component
             this.tanks[i].on('destroyed', function(event)
                 {
                     // for some reason, we're counting one more than we should have
-                    this.numOfRemainingTanks = this.GetRemainingTanks().length - 1;
+                    this.numOfRemainingTanks = this.GetRemainingTanks().length;
 
                     if (this.numOfRemainingTanks == 1)
                     {
@@ -272,7 +272,7 @@ export default class GameManager extends cc.Component
         // add all fermentation tanks to an array to randomly select them later
         var remainingTanks = this.GetRemainingTanks();
 
-        if (remainingTanks.length-1 > 0)
+        if (remainingTanks.length > 0)
         {
             var enemyPos = new cc.Vec2;
             var multiplier = 1;

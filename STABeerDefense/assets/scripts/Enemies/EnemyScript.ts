@@ -7,6 +7,9 @@ const {ccclass, property} = cc._decorator;
 export default class Enemy extends cc.Component 
 {
 
+    @property(cc.Prefab)
+    enemyDeathFX: cc.Prefab = null;
+
     @property(cc.AudioSource)
     satisfiedEnemyAudioSource1: cc.AudioSource = null;
 
@@ -172,6 +175,12 @@ export default class Enemy extends cc.Component
 
     DestroyThisNode()
     {
+        var enemyDeathFXPrefab = cc.instantiate(this.enemyDeathFX);
+
+        enemyDeathFXPrefab.position = this.node.position;
+
+        enemyDeathFXPrefab.setParent(this.node.getParent());
+
         this.node.destroy();
     }
 }

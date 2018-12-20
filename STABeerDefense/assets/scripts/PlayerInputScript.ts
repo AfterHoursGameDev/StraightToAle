@@ -11,6 +11,12 @@ export default class PlayerInput extends cc.Component
 	@property(cc.Node)
     player: cc.Node = null;
 
+    @property(cc.Node)
+    playerWeaponNozzle: cc.Node = null;
+
+    @property(cc.Prefab)
+    weaponFireFX: cc.Prefab = null;
+
     @property(cc.Prefab)
     canPrefab: cc.Prefab = null;
 
@@ -86,20 +92,31 @@ export default class PlayerInput extends cc.Component
                 }
             }   
         })
-	}
+    }
+    
+    WeaponFireFX()
+    {
+        var weaponFireFXPrefab = cc.instantiate(this.weaponFireFX);
+
+        weaponFireFXPrefab.setParent(this.player);
+
+        weaponFireFXPrefab.position = this.playerWeaponNozzle.position;
+    }
 	
 	// Instantiate beer can at player location and throw it toward click location
     // Spawning enemy here too for now
     spawnBeerCan(tgtLocation: cc.Vec2)
     {
+        // activate weapon firing fx
+        this.WeaponFireFX();
+
         // instantiate beer can prefab
         var can = cc.instantiate(this.canPrefab);
 
         // set the prefab's parent to the primary canvas
         can.setParent(this.node);
 
-        // set the position of the prefab to spawn to the upper right of the player
-        // TODO: Update position to reflect throwing direction
+        // set the position of the prefab to spawn at weapon nozzle
         can.setPosition(this.player.position.x, this.player.position.y + 50);
 
         // call script to initialize can movement

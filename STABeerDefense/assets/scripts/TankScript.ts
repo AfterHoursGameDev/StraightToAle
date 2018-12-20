@@ -8,6 +8,9 @@ export default class Tank extends cc.Component
 	@property(cc.Sprite)
 	tankSprite: cc.Sprite = null;
 
+	@property(cc.Prefab)
+	tankDestroyed: cc.Prefab = null;
+
 	@property(cc.AudioSource)
 	tankAudioSource: cc.AudioSource = null;
 
@@ -26,5 +29,13 @@ export default class Tank extends cc.Component
 		{
 			this.node.destroy();
 		}, 0.5)
+
+		var tankDestroyedPrefab = cc.instantiate(this.tankDestroyed);
+
+		tankDestroyedPrefab.setParent(this.node.getParent());
+
+		tankDestroyedPrefab.position = this.node.position;
+
+		tankDestroyedPrefab.rotation = this.node.rotation;
 	}
 }

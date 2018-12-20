@@ -240,7 +240,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "32fd2b95-7337-4f05-99f7-2cb9e9f932a0"
     },
     "fileId": "a9JH5/yR5EQoR42PU5hQDh",
     "sync": false
@@ -262,9 +262,9 @@
     "_spriteFrame": {
       "__uuid__": "0fbc41d7-9770-4025-be57-10fc919a9d4e"
     },
-    "_stopped": false,
+    "_stopped": true,
     "playOnLoad": true,
-    "autoRemoveOnFinish": false,
+    "autoRemoveOnFinish": true,
     "totalParticles": 80,
     "duration": 0.2,
     "emissionRate": 40,
@@ -347,7 +347,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "32fd2b95-7337-4f05-99f7-2cb9e9f932a0"
     },
     "fileId": "d4ACtDYahIs7unH64GqdKv",
     "sync": false

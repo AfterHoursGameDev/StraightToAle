@@ -807,6 +807,9 @@
       "__id__": 1
     },
     "_enabled": true,
+    "enemyDeathFX": {
+      "__uuid__": "32fd2b95-7337-4f05-99f7-2cb9e9f932a0"
+    },
     "satisfiedEnemyAudioSource1": {
       "__id__": 15
     },

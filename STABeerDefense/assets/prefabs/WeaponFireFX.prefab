@@ -90,7 +90,7 @@
     },
     "_stopped": true,
     "playOnLoad": true,
-    "autoRemoveOnFinish": false,
+    "autoRemoveOnFinish": true,
     "totalParticles": 80,
     "duration": 0.1,
     "emissionRate": 30,
@@ -173,7 +173,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "31de1cbc-3d0a-4626-8be9-9b0bb2b87f36"
     },
     "fileId": "8fyLmv2MVPqZ6wrRmMc9WK",
     "sync": false
