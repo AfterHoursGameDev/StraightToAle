@@ -8072,6 +8072,9 @@
     "muteToggle": {
       "__id__": 194
     },
+    "pauseToggle": {
+      "__id__": 172
+    },
     "_id": "3cfv88mJJMWI8rgAkFS4jN"
   },
   {

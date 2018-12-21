@@ -1808,9 +1808,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 245,
-      "g": 46,
-      "b": 46,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_contentSize": {
@@ -1861,8 +1861,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "Brewery Defense\n\nDefend Straight To Ale Brewery decanters from thirsty demons descending from on high by launching beer cans to satisty their thirst before they overrun and drink straight from the source. No decanters means no beeer. No beer means Game Over!\n\nInstructions:\n\n1. Tap the screen to launch a beer can\n\n2. Satisfying a number of demons in a row will improve your production capability",
-    "_N$string": "Brewery Defense\n\nDefend Straight To Ale Brewery decanters from thirsty demons descending from on high by launching beer cans to satisty their thirst before they overrun and drink straight from the source. No decanters means no beeer. No beer means Game Over!\n\nInstructions:\n\n1. Tap the screen to launch a beer can\n\n2. Satisfying a number of demons in a row will improve your production capability",
+    "_string": "Brewery Defense\n\nDefend Straight To Ale Brewery decanters from thirsty demons descending from on high by launching beer cans at them to satisty their thirst before they overrun and drink straight from the source. No decanters means no beer. No beer means Game Over!\n\nInstructions:\n\n1. Tap the screen to launch a beer can\n\n2. Satisfying a number of demons in a row will improve your production capability",
+    "_N$string": "Brewery Defense\n\nDefend Straight To Ale Brewery decanters from thirsty demons descending from on high by launching beer cans at them to satisty their thirst before they overrun and drink straight from the source. No decanters means no beer. No beer means Game Over!\n\nInstructions:\n\n1. Tap the screen to launch a beer can\n\n2. Satisfying a number of demons in a row will improve your production capability",
     "_fontSize": 40,
     "_lineHeight": 50,
     "_enableWrapText": true,

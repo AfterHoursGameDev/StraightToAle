@@ -7,19 +7,31 @@ export default class NewClass extends cc.Component {
 @property(cc.Toggle)
 muteToggle: cc.Toggle = null;
 
+@property(cc.Toggle)
+pauseToggle: cc.Toggle = null;
+
     onLoad ()
     {
+        // touch event to grab location when player touches screen
+        this.node.on(cc.Node.EventType.TOUCH_END, (e: cc.Touch)=>
+        {
+            // Update the toggle state
+            this.pauseToggle.isChecked = true;
+
+            this.PauseGameButton();
+        })
+
+        // Check state of mute toggle
         if (cc.audioEngine.getMusicVolume() == 1)
         {
-            //this.muteToggle.checkMark.enabled = true;
             this.muteToggle.isChecked = true;
         }
         else
         {
             this.muteToggle.isChecked = false;
-            //this.muteToggle.checkMark.enabled = false;
         }
 
+        // Deactivate Pause menu until it is called
         this.node.active = false;
     }
 
