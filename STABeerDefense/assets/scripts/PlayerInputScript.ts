@@ -32,8 +32,12 @@ export default class PlayerInput extends cc.Component
     numMaxPitchers: number = 3;
     activePitcher: boolean = false;
 	@property
-	beerCooldownTime: number = 0.5;
-	@property
+    beerCooldownTime: number = 0.0;
+    @property
+    beerCooldownTimeDefault: number = 0.5;
+    @property
+    beerCooldownTimePowerUp: number = 0.25;
+    @property
     pitcherCooldownTime: number = 3;
     @property (cc.AudioSource)
     launcherAudio: cc.AudioSource = null;
@@ -54,6 +58,9 @@ export default class PlayerInput extends cc.Component
 	 
 	onLoad()
 	{
+        // Initialize beer can cooldown timer to default
+        this.beerCooldownTime = this.beerCooldownTimeDefault;
+
 		// touch event to grab location when player touches screen
         this.node.on(cc.Node.EventType.TOUCH_END, (e: cc.Touch)=>
         {
@@ -207,6 +214,22 @@ export default class PlayerInput extends cc.Component
         {
             // enable pitcher toggle
             this.pitcherToggle.getComponent(cc.Toggle).interactable = true;
+        }
+    }
+
+    public UpdateBeerCooldown(enabled: boolean)
+    {
+        if (enabled)
+        {
+            this.beerCooldownTime = this.beerCooldownTimePowerUp;
+
+            // Add particle effect glow here
+        }
+        else
+        {
+            this.beerCooldownTime = this.beerCooldownTimeDefault;
+
+            // REmove particle effect glow here
         }
     }
 

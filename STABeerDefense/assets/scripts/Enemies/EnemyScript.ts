@@ -38,11 +38,6 @@ export default class Enemy extends cc.Component
 
     onLoad ()
     {
-        // turn on collision
-        cc.director.getCollisionManager().enabled = true;
-        //cc.director.getCollisionManager().enabledDebugDraw = true;
-        //cc.director.getCollisionManager().enabledDrawBoundingBox = true;
-		
 		this.movementComponent = this.node.getComponent("LineMovementScript");
 		if (!this.movementComponent)
 		{
@@ -95,13 +90,11 @@ export default class Enemy extends cc.Component
                 //cc.audioEngine.playEffect(this.audioSource.clip, false);
                 this.PlaySoundEffect(this.satisfiedEnemyAudioSources);
 
+                // Update the score
                 this.node.getParent().getComponent("GameManagerScript").UpdateScore(this.pointValue);
 
-                // delay destroy so audio can play
-                //this.scheduleOnce(function()
-                //{
-                    this.DestroyThisNode();
-                //},0.25);
+                // Destroy the beer can
+                this.DestroyThisNode();
                 
                 break;
             }
@@ -162,6 +155,7 @@ export default class Enemy extends cc.Component
 				// if we want to deny the player points for losing this thing's target by making
                 // it leave, here's that.
                 // TODO: Temporarily removed exitScreen because I'm not sure if they are being destroyed afterward for sake of moving to next wave
+                
                 //this.movementComponent.exitScreen();
                 this.DestroyThisNode();
 			}, this

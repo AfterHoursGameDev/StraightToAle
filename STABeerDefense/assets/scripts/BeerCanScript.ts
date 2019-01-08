@@ -41,6 +41,7 @@ rotSpeed: number = 15;
                 // delay before destroying projectile
                 // may not be needed
                 // this.scheduleOnce(this.DestroyNode, this.explosionDelay);
+                
                 this.DestroyNode();
             }
         }
@@ -49,6 +50,16 @@ rotSpeed: number = 15;
     DestroyNode()
     {
         this.node.destroy();
+    }
+
+    public DestroyBeerCan()
+    {
+        // Disable power up if enabled
+        this.node.getParent().getComponent("GameManagerScript").UpdatePowerUpShooter(false);
+
+        // Deduct multiplier
+
+        this.DestroyNode();
     }
 
     public beerCanMovement(tgtLocation: cc.Vec2, jumpHeight: number)

@@ -44,14 +44,25 @@ export default class GameManager extends cc.Component
 	 */	
 	 
 	// for scoring and pitchers
-	@property(cc.Label)
-    scoreLabel: cc.Label = null;
+	@property(cc.Node)
+    scoreNode: cc.Node = null;
 	
     score: number = 0;
     numSatisfiedEnemiesToPitcher: number = 0;
     numMaxSatisfiedEnemiesToPitcher: number = 5;
-	
-	
+
+    numConsecutiveEnemiesSatisfied: number = 0;
+    numMaxConsecutiveEnemiesSatisfied: number = 5;
+
+    // Power Ups
+    powerUpShooterActive: boolean = false;
+
+    // Points Multiplier
+    pointsMultiplierCurrent: number = 1;
+    pointsMultiplierCurrentProgress: number = 0;
+    pointsMultiplierFactor: number = 1;
+    pointsMultiplierMax: number = 5;
+    
     numEnemiesSpawned: number = 0;
 
     // declare array to track number of current enemies
@@ -118,11 +129,16 @@ export default class GameManager extends cc.Component
             cc.director.resume();
         }
 
+        // turn on collision
+        cc.director.getCollisionManager().enabled = true;
+        //cc.director.getCollisionManager().enabledDebugDraw = true;
+        //cc.director.getCollisionManager().enabledDrawBoundingBox = true;
+
         // start the background music
         this.BackgroundMusic();
 
 		// set score to 0
-        this.scoreLabel.string = "SCORE: 0000";
+        this.scoreNode.getComponent("ScoreUIScript").UpdateScoreLabel(this.score);
 		
         this.InitializeTanks();
 
@@ -246,7 +262,6 @@ export default class GameManager extends cc.Component
         {
             this.tanks[i].on('destroyed', function(event)
                 {
-                    // for some reason, we're counting one more than we should have
                     this.numOfRemainingTanks = this.GetRemainingTanks().length;
 
                     if (this.numOfRemainingTanks == 1)
@@ -434,18 +449,50 @@ export default class GameManager extends cc.Component
 
     public UpdateScore(points: number)
     {
-        // increment total number of satisfied patrons
-        this.score += points;
+        // update player score and use multiplier
+        this.score += points * this.pointsMultiplierCurrent;
 
-        // increment total number of satisfied patrons toward a pitcher
+        // increment total number of satisfied patrons toward power up and multiplier
         this.numSatisfiedEnemiesToPitcher += 1;
+        this.numConsecutiveEnemiesSatisfied += 1;
+        this.pointsMultiplierCurrentProgress += 1;
+
+        // don't increment progress bar if player is already powered up
+        if (this.powerUpShooterActive == false)
+        {
+            // adjust progress bar normalizing to 0-1
+            this.powerUpShooterActive = this.scoreNode.getComponent("ScoreUIScript").UpdatePowerUpProgressBar(this.numConsecutiveEnemiesSatisfied);
+        }
+
+        // don't increment multiplier if at max multiplier
+        if (this.pointsMultiplierCurrent != this.pointsMultiplierMax)
+        {
+            // Update progress bar
+            this.scoreNode.getComponent("ScoreUIScript").UpdateMultiplierProgress(this.pointsMultiplierCurrentProgress);
+
+            // if player meets requirement, increment multiplier
+            if (this.pointsMultiplierCurrentProgress == this.pointsMultiplierMax)
+            {
+                // increment multiplier by factor
+                this.pointsMultiplierCurrent += this.pointsMultiplierFactor;
+
+                // Update multiplier label
+                this.scoreNode.getComponent("ScoreUIScript").UpdateMultiplierLabel(this.pointsMultiplierCurrent);
+
+                // reset current progress
+                this.pointsMultiplierCurrentProgress = 0;
+
+                // Reset the progress bar
+                this.scoreNode.getComponent("ScoreUIScript").UpdateMultiplierProgress(this.pointsMultiplierCurrentProgress);
+            }
+        }
 		
 		// update the UI score label
         this.UpdateScoreLabel();
 
         // display catch phrase
         this.player.getComponent("CatchPhraseScript").DisplaySatisfiedCatchPhrase();
-
+/*
         // check to see if player reached number of satisfied patrons required to gain a pitcher
         if(this.numSatisfiedEnemiesToPitcher == this.numMaxSatisfiedEnemiesToPitcher)
         {
@@ -454,27 +501,51 @@ export default class GameManager extends cc.Component
 
             // reset number of satisfied patrons required to gain a pitcher
             this.numSatisfiedEnemiesToPitcher = 0;
-        }
+        }*/
     }
 
     UpdateScoreLabel()
     {
-        if (this.score >= 0 && this.score <= 9)
+        this.scoreNode.getComponent("ScoreUIScript").UpdateScoreLabel(this.score);
+    }
+
+    // determines if player is in powered up state or not
+    // true if enabling, false if disabling
+    public UpdatePowerUpShooter(enabled: boolean)
+    {
+        this.node.getComponent("PlayerInputScript").UpdateBeerCooldown(enabled);
+
+        if(enabled == false)
         {
-            this.scoreLabel.string = "SCORE: 000" + this.score.toString();
+            this.powerUpShooterActive = false;
+
+            // reset number of satisfied patrons required to gain power up
+            this.numConsecutiveEnemiesSatisfied = 0;
+
+            // reset progress bar
+            this.scoreNode.getComponent("ScoreUIScript").UpdatePowerUpProgressBar((this.numConsecutiveEnemiesSatisfied * 2) / 10);
         }
-        else if (this.score >= 10 && this.score <= 99)
+
+        this.ResetMultiplier();
+    }
+
+    ResetMultiplier()
+    {
+        // Don't deduct if we're already at 1x
+        if (this.pointsMultiplierCurrent > 1)
         {
-            this.scoreLabel.string = "SCORE: 00" + this.score.toString();
+            // deduct multiplier factor
+            this.pointsMultiplierCurrent -= this.pointsMultiplierFactor;
         }
-        else if (this.score >= 100 && this.score <= 999)
-        {
-            this.scoreLabel.string = "SCORE: 0" + this.score.toString();
-        }
-        else if (this.score >= 1000 && this.score <= 9999)
-        {
-            this.scoreLabel.string = "SCORE: " + this.score.toString();
-        }
+
+        // reset current progress counter
+        this.pointsMultiplierCurrentProgress = 0;
+
+        // reset progress bar
+        this.scoreNode.getComponent("ScoreUIScript").UpdateMultiplierProgress(this.pointsMultiplierCurrentProgress);
+
+        // updated multiplier label
+        this.scoreNode.getComponent("ScoreUIScript").UpdateMultiplierLabel(this.pointsMultiplierCurrent);
     }
 
     GameOver()
