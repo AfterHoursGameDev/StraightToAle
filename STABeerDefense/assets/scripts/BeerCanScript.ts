@@ -16,8 +16,10 @@ destination: cc.Vec2;
 direction: cc.Vec2 = new cc.Vec2();
 moveSpeed: number = 1000;
 
-@property
-explosionDelay: number = 0.25;
+powerUpActive: boolean = false;
+
+@property (cc.Prefab)
+canPowerUpPrefab: cc.Prefab = null;
 
 rotSpeed: number = 15;
 
@@ -37,33 +39,16 @@ rotSpeed: number = 15;
             if (Math.round(this.node.position.x) == Math.round(this.destination.x) && Math.round(this.node.position.y) == Math.round(this.destination.y))
             {
                 this.initialized = false;
-
-                // delay before destroying projectile
-                // may not be needed
-                // this.scheduleOnce(this.DestroyNode, this.explosionDelay);
                 
                 this.DestroyNode();
             }
         }
     }
 
-    DestroyNode()
+    public InitializeBeerCan(tgtLocation: cc.Vec2, powerUpState: boolean)
     {
-        this.node.destroy();
-    }
+        this.powerUpActive = powerUpState;
 
-    public DestroyBeerCan()
-    {
-        // Disable power up if enabled
-        this.node.getParent().getComponent("GameManagerScript").UpdatePowerUpShooter(false);
-
-        // Deduct multiplier
-
-        this.DestroyNode();
-    }
-
-    public beerCanMovement(tgtLocation: cc.Vec2, jumpHeight: number)
-    {
         var parentHeight = this.node.getParent().height;
 
         // converting world space of mouse position to node space of beer can position
@@ -97,5 +82,33 @@ rotSpeed: number = 15;
         newTgtLoc.y = this.node.getParent().height;
        // console.log(newTgtLoc.x + "," + newTgtLoc.y);
         return newTgtLoc;
+    }
+
+    CheckPowerUpActive()
+    {
+        if (this.powerUpActive)
+        {
+            var node = cc.instantiate(this.canPowerUpPrefab);
+
+            node.position = this.node.position;
+            node.setParent(this.node.getParent());
+        }
+
+        this.DestroyNode();
+    }
+
+    DestroyNode()
+    {
+        this.node.destroy();
+    }
+
+    public DestroyBeerCan()
+    {
+        // Disable power up if enabled
+        this.node.getParent().getComponent("GameManagerScript").UpdatePowerUpState(false);
+
+        // Deduct multiplier
+
+        this.DestroyNode();
     }
 }

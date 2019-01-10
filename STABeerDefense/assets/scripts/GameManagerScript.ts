@@ -55,13 +55,14 @@ export default class GameManager extends cc.Component
     numMaxConsecutiveEnemiesSatisfied: number = 5;
 
     // Power Ups
-    powerUpShooterActive: boolean = false;
+    poweredUpState: boolean = false;
 
     // Points Multiplier
-    pointsMultiplierCurrent: number = 1;
-    pointsMultiplierCurrentProgress: number = 0;
-    pointsMultiplierFactor: number = 1;
-    pointsMultiplierMax: number = 5;
+    pointsMultiplierCurrent: number = 1; // player's current multiplier value
+    pointsMultiplierCurrentProgress: number = 0; // player's current progress toward multiplier
+    pointsMultiplierFactor: number = 1; // factor to increase multiplier by
+    pointsMultiplierMax: number = 5; // max multiplier value
+    pointsMultiplierProgressMax = 5; // max number required to increment multiplier
     
     numEnemiesSpawned: number = 0;
 
@@ -458,10 +459,16 @@ export default class GameManager extends cc.Component
         this.pointsMultiplierCurrentProgress += 1;
 
         // don't increment progress bar if player is already powered up
-        if (this.powerUpShooterActive == false)
+        if (this.poweredUpState == false)
         {
             // adjust progress bar normalizing to 0-1
-            this.powerUpShooterActive = this.scoreNode.getComponent("ScoreUIScript").UpdatePowerUpProgressBar(this.numConsecutiveEnemiesSatisfied);
+            this.poweredUpState = this.scoreNode.getComponent("ScoreUIScript").UpdatePowerUpProgressBar(this.numConsecutiveEnemiesSatisfied);
+
+            if (this.poweredUpState)
+            {
+                // Update the powered up state
+                this.UpdatePowerUpState(true);
+            }
         }
 
         // don't increment multiplier if at max multiplier
@@ -471,7 +478,7 @@ export default class GameManager extends cc.Component
             this.scoreNode.getComponent("ScoreUIScript").UpdateMultiplierProgress(this.pointsMultiplierCurrentProgress);
 
             // if player meets requirement, increment multiplier
-            if (this.pointsMultiplierCurrentProgress == this.pointsMultiplierMax)
+            if (this.pointsMultiplierCurrentProgress == this.pointsMultiplierProgressMax)
             {
                 // increment multiplier by factor
                 this.pointsMultiplierCurrent += this.pointsMultiplierFactor;
@@ -511,22 +518,22 @@ export default class GameManager extends cc.Component
 
     // determines if player is in powered up state or not
     // true if enabling, false if disabling
-    public UpdatePowerUpShooter(enabled: boolean)
+    public UpdatePowerUpState(enabled: boolean)
     {
-        this.node.getComponent("PlayerInputScript").UpdateBeerCooldown(enabled);
+        this.node.getComponent("PlayerInputScript").UpdatePowerUpState(enabled);
 
         if(enabled == false)
         {
-            this.powerUpShooterActive = false;
+            this.poweredUpState = false;
 
             // reset number of satisfied patrons required to gain power up
             this.numConsecutiveEnemiesSatisfied = 0;
 
             // reset progress bar
-            this.scoreNode.getComponent("ScoreUIScript").UpdatePowerUpProgressBar((this.numConsecutiveEnemiesSatisfied * 2) / 10);
-        }
+            this.scoreNode.getComponent("ScoreUIScript").UpdatePowerUpProgressBar(this.numConsecutiveEnemiesSatisfied);
 
-        this.ResetMultiplier();
+            this.ResetMultiplier();
+        }
     }
 
     ResetMultiplier()

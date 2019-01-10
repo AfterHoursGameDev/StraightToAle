@@ -79,8 +79,8 @@ export default class Enemy extends cc.Component
         {
             case "beerCan":
             {
-                // destroy the beer can
-                other.node.destroy();
+                // Check for can power up
+                other.node.getComponent("BeerCanScript").CheckPowerUpActive();
 
                 // disable collider and have enemy exit screen to right or left
                 this.node.getComponent(cc.Collider).enabled = false;
@@ -120,22 +120,24 @@ export default class Enemy extends cc.Component
                 this.DestroyThisNode();
                 break;
             }
-            case "pitcher":
+            case "beerCanPowerUp":
             {
-                // destroy the pitcher
+                // destroy the beer can
                 other.node.destroy();
 
                 // disable collider and have enemy exit screen to right or left
-				this.node.getComponent(cc.Collider).enabled = false;
+                this.node.getComponent(cc.Collider).enabled = false;
+                
+                // play audio
+                //cc.audioEngine.playEffect(this.node.getComponent(cc.AudioSource).clip, false);
+                //cc.audioEngine.playEffect(this.audioSource.clip, false);
+                this.PlaySoundEffect(this.satisfiedEnemyAudioSources);
 
-                this.node.getParent().getComponent("MouseScript").UpdateScore(this.pointValue);
+                // Update the score
+                this.node.getParent().getComponent("GameManagerScript").UpdateScore(this.pointValue);
 
-                // delay destroy so audio can play
-                this.scheduleOnce(function()
-                {
-                    this.DestroyThisNode();
-                },0.5);
-                break;
+                // Destroy the beer can
+                this.DestroyThisNode();
             }
 			case "KillVolume":
 			{

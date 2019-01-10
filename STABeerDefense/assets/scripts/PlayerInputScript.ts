@@ -41,6 +41,7 @@ export default class PlayerInput extends cc.Component
     pitcherCooldownTime: number = 3;
     @property (cc.AudioSource)
     launcherAudio: cc.AudioSource = null;
+    powerUpStateActive: boolean = false;
 	
 	// PlayerInput
     playerCanThrowBeer: boolean = true;
@@ -127,7 +128,9 @@ export default class PlayerInput extends cc.Component
         can.setPosition(this.player.position.x, this.player.position.y + 50);
 
         // call script to initialize can movement
-        can.getComponent("BeerCanScript").beerCanMovement(tgtLocation, tgtLocation.y);
+        can.getComponent("BeerCanScript").InitializeBeerCan(tgtLocation, this.powerUpStateActive);
+
+        // 
 
         cc.audioEngine.playEffect(this.launcherAudio.clip, false);
     }	
@@ -217,18 +220,18 @@ export default class PlayerInput extends cc.Component
         }
     }
 
-    public UpdateBeerCooldown(enabled: boolean)
+    public UpdatePowerUpState(enabled: boolean)
     {
         if (enabled)
         {
-            this.beerCooldownTime = this.beerCooldownTimePowerUp;
-
+            //this.beerCooldownTime = this.beerCooldownTimePowerUp;
+            this.powerUpStateActive = true;
             // Add particle effect glow here
         }
         else
         {
-            this.beerCooldownTime = this.beerCooldownTimeDefault;
-
+            //this.beerCooldownTime = this.beerCooldownTimeDefault;
+            this.powerUpStateActive = false
             // REmove particle effect glow here
         }
     }
