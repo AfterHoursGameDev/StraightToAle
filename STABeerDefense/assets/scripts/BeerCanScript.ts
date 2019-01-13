@@ -51,11 +51,8 @@ rotSpeed: number = 15;
 
         var parentHeight = this.node.getParent().height;
 
-        // converting world space of mouse position to node space of beer can position
-        var convertedTargetLoc = this.node.getParent().convertToNodeSpaceAR(tgtLocation);
- 
         // calculate full trajectory through click point
-        var calculatedTargetLoc = this.CalculateTrajectory(convertedTargetLoc);
+        var calculatedTargetLoc = this.CalculateTrajectory(tgtLocation);
 
         this.destination = calculatedTargetLoc;
 		this.direction = calculatedTargetLoc.sub(this.node.position);

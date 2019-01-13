@@ -2,21 +2,21 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class CatchPhrase extends cc.Component {
 
-@property(cc.Label)
-catchPhraseBox: cc.Label = null;
+	@property(cc.Label)
+	catchPhraseBox: cc.Label = null;
 
-catchPhraseDisplayDuration: number = 3;
+	catchPhraseDisplayDuration: number = 3;
 
-catchPhraseSatisfied: Array<string>;
-catchPhraseDecanters: Array<string>;
-catchPhraseRandom: Array<string>;
-catchPhraseNewWave: Array<string>;
-catchPhraseFirstWave: Array<string>;
+	catchPhraseSatisfied: Array<string>;
+	catchPhraseDecanters: Array<string>;
+	catchPhraseRandom: Array<string>;
+	catchPhraseNewWave: Array<string>;
+	catchPhraseFirstWave: Array<string>;
 
-preText: string = "<color=#000000>";
-postText: string = "</color>"
+	preText: string = "<color=#000000>";
+	postText: string = "</color>"
 
     // LIFE-CYCLE CALLBACKS:
 

@@ -115,7 +115,6 @@ export default class Enemy extends cc.Component
                 }
 				// spawn particle effect here
 				
-				cc.log("should be destroying");
                 // destroy this enemy
                 this.DestroyThisNode();
                 break;
