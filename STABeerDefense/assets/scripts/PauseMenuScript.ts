@@ -10,6 +10,9 @@ muteToggle: cc.Toggle = null;
 @property(cc.Toggle)
 pauseToggle: cc.Toggle = null;
 
+backgroundMusicVol: number = 0.25;
+effectsVol: number = 1;
+
     onLoad ()
     {
         // touch event to grab location when player touches screen
@@ -22,7 +25,7 @@ pauseToggle: cc.Toggle = null;
         })
 
         // Check state of mute toggle
-        if (cc.audioEngine.getMusicVolume() == 1)
+        if (cc.audioEngine.getMusicVolume() == this.backgroundMusicVol)
         {
             this.muteToggle.isChecked = true;
         }
@@ -62,22 +65,22 @@ pauseToggle: cc.Toggle = null;
     {
 		cc.log('update volume');
         console.log(cc.audioEngine.getMusicVolume());
-        if (cc.audioEngine.getMusicVolume() == 1)
+        if (cc.audioEngine.getMusicVolume() == this.backgroundMusicVol)
         {
             cc.audioEngine.setMusicVolume(0);
         }
         else
         {
-            cc.audioEngine.setMusicVolume(1);
+            cc.audioEngine.setMusicVolume(this.backgroundMusicVol);
         }
 
-        if (cc.audioEngine.getEffectsVolume() == 1)
+        if (cc.audioEngine.getEffectsVolume() == this.effectsVol)
         {
             cc.audioEngine.setEffectsVolume(0);
         }
         else
         {
-            cc.audioEngine.setEffectsVolume(1);
+            cc.audioEngine.setEffectsVolume(this.effectsVol);
         }
 
         this.PlayClickAudio();

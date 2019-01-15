@@ -234,7 +234,7 @@ export default class GameManager extends cc.Component
         cc.audioEngine.playMusic(this.node.getComponent(cc.AudioSource).clip, true);
 
         // adjust background music volume
-        //this.node.getComponent(cc.AudioSource).volume = 1;
+        cc.audioEngine.setMusicVolume(0.25);
     }
 
     GameStartDelay()

@@ -25,11 +25,6 @@ export default class Tank extends cc.Component
 
 		cc.audioEngine.playEffect(this.tankAudioSource.clip, false);
 
-		this.scheduleOnce(function()
-		{
-			this.node.destroy();
-		}, 0.5)
-
 		var tankDestroyedPrefab = cc.instantiate(this.tankDestroyed);
 
 		tankDestroyedPrefab.setParent(this.node.getParent());
@@ -37,5 +32,7 @@ export default class Tank extends cc.Component
 		tankDestroyedPrefab.position = this.node.position;
 
 		tankDestroyedPrefab.rotation = this.node.rotation;
+
+		this.node.destroy();
 	}
 }
