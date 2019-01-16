@@ -5592,7 +5592,7 @@
     "_spriteFrame": {
       "__uuid__": "0fbc41d7-9770-4025-be57-10fc919a9d4e"
     },
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 80,
@@ -9385,7 +9385,7 @@
       "__uuid__": "c4673dac-cd14-4f93-b1b2-236f70e640da"
     },
     "_volume": 1,
-    "_mute": true,
+    "_mute": false,
     "_loop": true,
     "playOnLoad": false,
     "preload": true,

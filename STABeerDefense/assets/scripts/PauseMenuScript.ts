@@ -10,7 +10,7 @@ muteToggle: cc.Toggle = null;
 @property(cc.Toggle)
 pauseToggle: cc.Toggle = null;
 
-backgroundMusicVol: number = 0.25;
+backgroundMusicVol: number = 1;
 effectsVol: number = 1;
 
     onLoad ()
