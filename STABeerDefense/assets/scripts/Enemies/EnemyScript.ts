@@ -65,13 +65,13 @@ export default class Enemy extends cc.Component
     update (dt)
     {
     }
-
+/*
     PlaySoundEffect(soundEffectsArray: Array<cc.AudioSource>)
     {
         var audioSource = soundEffectsArray[Math.floor(Math.random() * soundEffectsArray.length)];
 
         cc.audioEngine.playEffect(audioSource.clip, false);
-    }
+    }*/
 
     onCollisionEnter (other: cc.Collider, self)
     {
@@ -88,13 +88,13 @@ export default class Enemy extends cc.Component
                 // play audio
                 //cc.audioEngine.playEffect(this.node.getComponent(cc.AudioSource).clip, false);
                 //cc.audioEngine.playEffect(this.audioSource.clip, false);
-                this.PlaySoundEffect(this.satisfiedEnemyAudioSources);
+                //this.PlaySoundEffect(this.satisfiedEnemyAudioSources);
 
                 // Update the score
                 this.node.getParent().getComponent("GameManagerScript").UpdateScore(this.pointValue);
 
                 // Destroy the beer can
-                this.DestroyThisNode();
+                this.DestroyThisNode(true);
                 
                 break;
             }
@@ -116,7 +116,8 @@ export default class Enemy extends cc.Component
 				// spawn particle effect here
 				
                 // destroy this enemy
-                this.DestroyThisNode();
+                this.DestroyThisNode(false);
+
                 break;
             }
             case "beerCanPowerUp":
@@ -130,18 +131,18 @@ export default class Enemy extends cc.Component
                 // play audio
                 //cc.audioEngine.playEffect(this.node.getComponent(cc.AudioSource).clip, false);
                 //cc.audioEngine.playEffect(this.audioSource.clip, false);
-                this.PlaySoundEffect(this.satisfiedEnemyAudioSources);
+                //this.PlaySoundEffect(this.satisfiedEnemyAudioSources);
 
                 // Update the score
                 this.node.getParent().getComponent("GameManagerScript").UpdateScore(this.pointValue);
 
                 // Destroy the beer can
-                this.DestroyThisNode();
+                this.DestroyThisNode(true);
             }
 			case "KillVolume":
 			{
 				// destroy this enemy, we've exited the screen.
-                this.DestroyThisNode();
+                this.DestroyThisNode(false);
 				break;
 			}
         }
@@ -168,13 +169,23 @@ export default class Enemy extends cc.Component
 		}
     }
 
-    DestroyThisNode()
+    DestroyThisNode(satisfiedEnemy: boolean)
     {
         var enemyDeathFXPrefab = cc.instantiate(this.enemyDeathFX);
 
         enemyDeathFXPrefab.position = this.node.position;
 
         enemyDeathFXPrefab.setParent(this.node.getParent());
+
+        // Play satisifed enemy clip only if enemy is satisfied
+        if (satisfiedEnemy == true)
+        {
+            // Get random audio clip from array
+            var audioSource = this.satisfiedEnemyAudioSources[Math.floor(Math.random() * this.satisfiedEnemyAudioSources.length)];
+
+            // Play audio clip
+            enemyDeathFXPrefab.getComponent("EnemyDeathAudioScript").PlaySoundEffect(audioSource.clip);
+        }
 
         this.node.destroy();
     }
