@@ -264,7 +264,7 @@ export default class GameManager extends cc.Component
             this.tanks[i].on('destroyed', function(event)
                 {
                     this.numOfRemainingTanks = this.GetRemainingTanks().length;
-
+/*
                     if (this.numOfRemainingTanks == 1)
                     {
                         // display catch phrase
@@ -274,7 +274,7 @@ export default class GameManager extends cc.Component
                     {
                         // display catch phrase
                         this.player.getComponent("CatchPhraseScript").DisplayDecanterCatchPhrase();
-                    }
+                    }*/
                 }, this
             );
         }
@@ -381,6 +381,7 @@ export default class GameManager extends cc.Component
 
     UpdateWaveLabel()
     {
+        /*
         if (this.currentWaveNumber == 1)
         {
             // display catch phrase
@@ -390,7 +391,7 @@ export default class GameManager extends cc.Component
         {
             // display catch phrase
             this.player.getComponent("CatchPhraseScript").DisplayNewWaveCatchPhrase();
-        }
+        }*/
 
         this.waveNumberLabel.getComponent("WaveLabelScript").UpdateWaveLabel(this.currentWaveNumber);
     }
@@ -498,7 +499,7 @@ export default class GameManager extends cc.Component
         this.UpdateScoreLabel();
 
         // display catch phrase
-        this.player.getComponent("CatchPhraseScript").DisplaySatisfiedCatchPhrase();
+        //this.player.getComponent("CatchPhraseScript").DisplaySatisfiedCatchPhrase();
 /*
         // check to see if player reached number of satisfied patrons required to gain a pitcher
         if(this.numSatisfiedEnemiesToPitcher == this.numMaxSatisfiedEnemiesToPitcher)

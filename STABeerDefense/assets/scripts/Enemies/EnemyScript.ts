@@ -120,7 +120,7 @@ export default class Enemy extends cc.Component
 
                 break;
             }
-            case "beerCanPowerUp":
+            case "BeerCanPowerUp":
             {
                 // destroy the beer can
                 other.node.destroy();

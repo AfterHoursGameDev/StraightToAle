@@ -47,8 +47,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 1.394743666350404,
+      "y": 1.394743666350404,
       "z": 1
     },
     "_quat": {
@@ -3337,7 +3337,7 @@
         "__id__": 78
       }
     ],
-    "_active": true,
+    "_active": false,
     "_level": 2,
     "_components": [
       {
@@ -3984,7 +3984,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "ShooterPowerUpParticle",
+    "_name": "PowerUpParticle",
     "_objFlags": 0,
     "_parent": {
       "__id__": 90
@@ -4009,7 +4009,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 250,
-      "height": 20
+      "height": 22
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -4054,7 +4054,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+      "__uuid__": "194fd0f2-a412-4762-9acf-8fc1ea11608b"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -4214,7 +4214,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "67e68bc9-dad5-4ad9-a2d8-7e03d458e32f"
+      "__uuid__": "194fd0f2-a412-4762-9acf-8fc1ea11608b"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -4515,7 +4515,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "88e79fd5-96b4-4a77-a1f4-312467171014"
+      "__uuid__": "194fd0f2-a412-4762-9acf-8fc1ea11608b"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -5592,7 +5592,7 @@
     "_spriteFrame": {
       "__uuid__": "0fbc41d7-9770-4025-be57-10fc919a9d4e"
     },
-    "_stopped": false,
+    "_stopped": true,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 80,
