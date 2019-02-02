@@ -5,7 +5,10 @@ const {ccclass, property} = cc._decorator;
 export default class MainMenuScript extends cc.Component {
 
     @property(cc.Node)
-    instructionNode: cc.Node = null;
+    tutorialNode: cc.Node = null;
+
+    @property(cc.Node)
+    creditsNode: cc.Node = null;
 
     onLoad ()
     {
@@ -33,8 +36,15 @@ export default class MainMenuScript extends cc.Component {
         
     }
 
-    public InstructionsClick()
+    public TutorialClick()
     {
-        this.instructionNode.active = true;
+        this.tutorialNode.active = true;
+
+        this.tutorialNode.getComponent("TutorialScript").ResetPosition();
+    }
+
+    public CreditsClick()
+    {
+        this.creditsNode.active = true;
     }
 }
