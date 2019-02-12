@@ -32,11 +32,6 @@ export default class NewClass extends cc.Component {
         //this.tutPanelsArrayIndex = 0;
     }
 
-    public HomeButtonClick()
-    {
-        this.node.active = false;
-    }
-
     public NextPanelClick()
     {
         if (this.tutPanelsArrayIndex + 1 < 5)

@@ -10,6 +10,9 @@ export default class MainMenuScript extends cc.Component {
     @property(cc.Node)
     creditsNode: cc.Node = null;
 
+    @property(cc.Node)
+    leaderboardNode: cc.Node = null;
+
     onLoad ()
     {
         // resume game if it's paused
@@ -33,7 +36,7 @@ export default class MainMenuScript extends cc.Component {
 
     public LeaderboardClick()
     {
-        
+        //this.leaderboardNode.active = true;
     }
 
     public TutorialClick()
