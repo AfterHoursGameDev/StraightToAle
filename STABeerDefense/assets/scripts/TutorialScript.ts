@@ -74,7 +74,7 @@ export default class NewClass extends cc.Component {
 
             this.updatedPanelLocation = this.tutorialLayout.node.position.x - this.tutPanelWidth - this.tutPanelSpacingOffset;
 
-            var moveAction = cc.moveTo(1, new cc.Vec2 (this.updatedPanelLocation, this.tutorialLayout.node.position.y));
+            var moveAction = cc.moveTo(0.25, new cc.Vec2 (this.updatedPanelLocation, this.tutorialLayout.node.position.y));
 
             this.tutorialLayout.node.runAction(moveAction);
         }
@@ -88,7 +88,7 @@ export default class NewClass extends cc.Component {
 
             this.updatedPanelLocation = this.tutorialLayout.node.position.x + this.tutPanelWidth + this.tutPanelSpacingOffset;
 
-            var moveAction = cc.moveTo(1, new cc.Vec2 (this.updatedPanelLocation, this.tutorialLayout.node.position.y));
+            var moveAction = cc.moveTo(0.25, new cc.Vec2 (this.updatedPanelLocation, this.tutorialLayout.node.position.y));
 
             this.tutorialLayout.node.runAction(moveAction);
         }
