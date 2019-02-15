@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.6022118133043826,
-      "y": 0.6022118133043826,
+      "x": 0.4317723950524738,
+      "y": 0.4317723950524738,
       "z": 1
     },
     "_quat": {
@@ -72,23 +72,23 @@
         "__id__": 5
       },
       {
-        "__id__": 144
+        "__id__": 145
       },
       {
         "__id__": 66
       },
       {
-        "__id__": 103
+        "__id__": 104
       },
       {
-        "__id__": 116
+        "__id__": 117
       }
     ],
     "_active": true,
     "_level": 1,
     "_components": [
       {
-        "__id__": 151
+        "__id__": 153
       }
     ],
     "_prefab": null,
@@ -262,7 +262,7 @@
         "__id__": 57
       }
     ],
-    "_active": true,
+    "_active": false,
     "_level": 2,
     "_components": [
       {
@@ -2390,16 +2390,16 @@
       "__id__": 66
     },
     "creditsNode": {
-      "__id__": 103
+      "__id__": 104
     },
     "leaderboardNode": {
-      "__id__": 116
+      "__id__": 117
     },
     "_id": "e6u0FPmHFDZaZvZUiC4ZgP"
   },
   {
     "__type__": "cc.Node",
-    "_name": "TutorialCanvas",
+    "_name": "TutorialPanel",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -2429,6 +2429,9 @@
       },
       {
         "__id__": 102
+      },
+      {
+        "__id__": 103
       }
     ],
     "_prefab": null,
@@ -2442,8 +2445,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
+      "width": 750,
+      "height": 1334
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2673,7 +2676,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 700,
-      "height": 850
+      "height": 1300
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2718,8 +2721,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "Brewery Defense\n\nDefend Straight To Ale Brewery decanters from thirsty demons descending from on high by launching beer cans at them to satisty their thirst before they overrun and drink straight from the source. No decanters means no beer. No beer means Game Over!\n\nInstructions:\n\n1. Tap the screen to launch a beer can\n\n2. Satisfying a number of demons in a row will improve your production capability",
-    "_N$string": "Brewery Defense\n\nDefend Straight To Ale Brewery decanters from thirsty demons descending from on high by launching beer cans at them to satisty their thirst before they overrun and drink straight from the source. No decanters means no beer. No beer means Game Over!\n\nInstructions:\n\n1. Tap the screen to launch a beer can\n\n2. Satisfying a number of demons in a row will improve your production capability",
+    "_string": "Brewery Defense\n\nDefend Straight To Ale Brewery decanters from thirsty demons descending from on high by launching beer cans to satisty their thirst before they overrun and drink straight from the source. No decanters means no beer. No beer means Game Over!\n\nInstructions:\n\n1. Tap the screen to launch a beer can\n\n2. Satisfying a number of demons in a row will improve your ability to satisfy multiple patrons\n\n3. Prevent demons from landing on decanters\n\n--Swipe Left for Tutorial--\n\n\n\n",
+    "_N$string": "Brewery Defense\n\nDefend Straight To Ale Brewery decanters from thirsty demons descending from on high by launching beer cans to satisty their thirst before they overrun and drink straight from the source. No decanters means no beer. No beer means Game Over!\n\nInstructions:\n\n1. Tap the screen to launch a beer can\n\n2. Satisfying a number of demons in a row will improve your ability to satisfy multiple patrons\n\n3. Prevent demons from landing on decanters\n\n--Swipe Left for Tutorial--\n\n\n\n",
     "_fontSize": 40,
     "_lineHeight": 50,
     "_enableWrapText": true,
@@ -3372,7 +3375,7 @@
       "__id__": 66
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_level": 3,
     "_components": [
       {
@@ -3576,7 +3579,7 @@
       "__id__": 66
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_level": 3,
     "_components": [
       {
@@ -3793,31 +3796,60 @@
       "__id__": 66
     },
     "_enabled": true,
+    "mainMenuCanvas": {
+      "__id__": 5
+    },
     "_id": "91z9j7b5tKAZdIOr/qvV0G"
   },
   {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 66
+    },
+    "_enabled": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": null,
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_state": 0,
+    "_atlas": null,
+    "_id": "35vb6vjOBNBpR70dwitUNN"
+  },
+  {
     "__type__": "cc.Node",
-    "_name": "CreditsCanvas",
+    "_name": "CreditsPanel",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
     },
     "_children": [
       {
-        "__id__": 104
+        "__id__": 105
       },
       {
-        "__id__": 106
+        "__id__": 107
       },
       {
-        "__id__": 108
+        "__id__": 109
       }
     ],
     "_active": false,
     "_level": 2,
     "_components": [
       {
-        "__id__": 115
+        "__id__": 116
       }
     ],
     "_prefab": null,
@@ -3831,8 +3863,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
+      "width": 750,
+      "height": 1334
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -3871,14 +3903,14 @@
     "_name": "Background",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 103
+      "__id__": 104
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 105
+        "__id__": 106
       }
     ],
     "_prefab": null,
@@ -3932,7 +3964,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 104
+      "__id__": 105
     },
     "_enabled": true,
     "_srcBlendFactor": 770,
@@ -3960,14 +3992,14 @@
     "_name": "Credits",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 103
+      "__id__": 104
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 107
+        "__id__": 108
       }
     ],
     "_prefab": null,
@@ -4021,7 +4053,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 106
+      "__id__": 107
     },
     "_enabled": true,
     "_srcBlendFactor": 1,
@@ -4048,23 +4080,23 @@
     "_name": "ReturnButton",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 103
+      "__id__": 104
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 109
-      },
-      {
         "__id__": 110
       },
       {
-        "__id__": 113
+        "__id__": 111
       },
       {
         "__id__": 114
+      },
+      {
+        "__id__": 115
       }
     ],
     "_prefab": null,
@@ -4118,7 +4150,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 108
+      "__id__": 109
     },
     "_enabled": true,
     "_srcBlendFactor": 770,
@@ -4146,7 +4178,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 108
+      "__id__": 109
     },
     "_enabled": true,
     "transition": 3,
@@ -4168,10 +4200,10 @@
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 111
+        "__id__": 112
       },
       {
-        "__id__": 112
+        "__id__": 113
       }
     ],
     "_N$interactable": true,
@@ -4209,14 +4241,14 @@
       "__uuid__": "29158224-f8dd-4661-a796-1ffab537140e"
     },
     "_N$target": {
-      "__id__": 108
+      "__id__": 109
     },
     "_id": "89au8NAXtGT5VxxJDhjqC8"
   },
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 103
+      "__id__": 104
     },
     "component": "MainMenuHomeButtonScript",
     "handler": "HomeButtonClick",
@@ -4225,7 +4257,7 @@
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 108
+      "__id__": 109
     },
     "component": "PlayButtonClickAudio",
     "handler": "PlayButtonClickAudio",
@@ -4236,7 +4268,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 108
+      "__id__": 109
     },
     "_enabled": true,
     "_id": "edOnmveUpA8JVBzGF2/inv"
@@ -4246,7 +4278,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 108
+      "__id__": 109
     },
     "_enabled": true,
     "_clip": {
@@ -4264,34 +4296,37 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 103
+      "__id__": 104
     },
     "_enabled": true,
+    "mainMenuCanvas": {
+      "__id__": 5
+    },
     "_id": "6dqGvctuhIgLnr9DqBXJLp"
   },
   {
     "__type__": "cc.Node",
-    "_name": "LeaderboardCanvas",
+    "_name": "LeaderboardPanel",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
     },
     "_children": [
       {
-        "__id__": 117
+        "__id__": 118
       },
       {
-        "__id__": 119
+        "__id__": 120
       },
       {
-        "__id__": 136
+        "__id__": 137
       }
     ],
     "_active": false,
     "_level": 2,
     "_components": [
       {
-        "__id__": 143
+        "__id__": 144
       }
     ],
     "_prefab": null,
@@ -4305,8 +4340,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
+      "width": 750,
+      "height": 1334
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -4345,14 +4380,14 @@
     "_name": "Background",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 116
+      "__id__": 117
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 118
+        "__id__": 119
       }
     ],
     "_prefab": null,
@@ -4406,7 +4441,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 117
+      "__id__": 118
     },
     "_enabled": true,
     "_srcBlendFactor": 770,
@@ -4434,24 +4469,24 @@
     "_name": "Leaderboard",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 116
+      "__id__": 117
     },
     "_children": [
       {
-        "__id__": 120
+        "__id__": 121
       }
     ],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 133
-      },
-      {
         "__id__": 134
       },
       {
         "__id__": 135
+      },
+      {
+        "__id__": 136
       }
     ],
     "_prefab": null,
@@ -4505,31 +4540,31 @@
     "_name": "PlayerInfoDisplay",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 119
+      "__id__": 120
     },
     "_children": [
       {
-        "__id__": 121
+        "__id__": 122
       },
       {
-        "__id__": 124
+        "__id__": 125
       },
       {
-        "__id__": 127
+        "__id__": 128
       }
     ],
     "_active": false,
     "_level": 4,
     "_components": [
       {
-        "__id__": 130
+        "__id__": 131
       },
       {
-        "__id__": 131
+        "__id__": 132
       }
     ],
     "_prefab": {
-      "__id__": 132
+      "__id__": 133
     },
     "_opacity": 255,
     "_color": {
@@ -4581,18 +4616,18 @@
     "_name": "playerIconSprite",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 120
+      "__id__": 121
     },
     "_children": [],
     "_active": true,
     "_level": 5,
     "_components": [
       {
-        "__id__": 122
+        "__id__": 123
       }
     ],
     "_prefab": {
-      "__id__": 123
+      "__id__": 124
     },
     "_opacity": 255,
     "_color": {
@@ -4644,7 +4679,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 121
+      "__id__": 122
     },
     "_enabled": true,
     "_srcBlendFactor": 770,
@@ -4670,7 +4705,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 120
+      "__id__": 121
     },
     "asset": {
       "__uuid__": "098b1a3f-3dbe-4b54-bef8-23ea93c70a0a"
@@ -4683,18 +4718,18 @@
     "_name": "playerNameLabel",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 120
+      "__id__": 121
     },
     "_children": [],
     "_active": true,
     "_level": 5,
     "_components": [
       {
-        "__id__": 125
+        "__id__": 126
       }
     ],
     "_prefab": {
-      "__id__": 126
+      "__id__": 127
     },
     "_opacity": 255,
     "_color": {
@@ -4746,7 +4781,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 124
+      "__id__": 125
     },
     "_enabled": true,
     "_srcBlendFactor": 1,
@@ -4771,7 +4806,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 120
+      "__id__": 121
     },
     "asset": {
       "__uuid__": "098b1a3f-3dbe-4b54-bef8-23ea93c70a0a"
@@ -4784,18 +4819,18 @@
     "_name": "playerScoreLabel",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 120
+      "__id__": 121
     },
     "_children": [],
     "_active": true,
     "_level": 5,
     "_components": [
       {
-        "__id__": 128
+        "__id__": 129
       }
     ],
     "_prefab": {
-      "__id__": 129
+      "__id__": 130
     },
     "_opacity": 255,
     "_color": {
@@ -4847,7 +4882,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 127
+      "__id__": 128
     },
     "_enabled": true,
     "_srcBlendFactor": 1,
@@ -4872,7 +4907,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 120
+      "__id__": 121
     },
     "asset": {
       "__uuid__": "098b1a3f-3dbe-4b54-bef8-23ea93c70a0a"
@@ -4885,7 +4920,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 120
+      "__id__": 121
     },
     "_enabled": true,
     "_layoutSize": {
@@ -4917,24 +4952,24 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 120
+      "__id__": 121
     },
     "_enabled": true,
     "playerIcon": {
-      "__id__": 122
+      "__id__": 123
     },
     "playerName": {
-      "__id__": 125
+      "__id__": 126
     },
     "playerScore": {
-      "__id__": 128
+      "__id__": 129
     },
     "_id": "baZVHc+slGN6ywKF3YR7yM"
   },
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 120
+      "__id__": 121
     },
     "asset": {
       "__uuid__": "098b1a3f-3dbe-4b54-bef8-23ea93c70a0a"
@@ -4947,7 +4982,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 119
+      "__id__": 120
     },
     "_enabled": true,
     "_layoutSize": {
@@ -4979,7 +5014,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 119
+      "__id__": 120
     },
     "_enabled": true,
     "_id": "58CGHIdhhEv5vTgyNb2gwa"
@@ -4989,7 +5024,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 119
+      "__id__": 120
     },
     "_enabled": true,
     "playerInfoPrefab": {
@@ -5002,23 +5037,23 @@
     "_name": "ReturnButton",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 116
+      "__id__": 117
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 137
-      },
-      {
         "__id__": 138
       },
       {
-        "__id__": 141
+        "__id__": 139
       },
       {
         "__id__": 142
+      },
+      {
+        "__id__": 143
       }
     ],
     "_prefab": null,
@@ -5072,7 +5107,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 136
+      "__id__": 137
     },
     "_enabled": true,
     "_srcBlendFactor": 770,
@@ -5100,7 +5135,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 136
+      "__id__": 137
     },
     "_enabled": true,
     "transition": 3,
@@ -5122,10 +5157,10 @@
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 139
+        "__id__": 140
       },
       {
-        "__id__": 140
+        "__id__": 141
       }
     ],
     "_N$interactable": true,
@@ -5163,14 +5198,14 @@
       "__uuid__": "29158224-f8dd-4661-a796-1ffab537140e"
     },
     "_N$target": {
-      "__id__": 136
+      "__id__": 137
     },
     "_id": "17GsRvAAdI95uAV7AGmOSa"
   },
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 116
+      "__id__": 117
     },
     "component": "MainMenuHomeButtonScript",
     "handler": "HomeButtonClick",
@@ -5179,7 +5214,7 @@
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 136
+      "__id__": 137
     },
     "component": "PlayButtonClickAudio",
     "handler": "PlayButtonClickAudio",
@@ -5190,7 +5225,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 136
+      "__id__": 137
     },
     "_enabled": true,
     "_id": "57476lwItCA7TKxPbsQyW7"
@@ -5200,7 +5235,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 136
+      "__id__": 137
     },
     "_enabled": true,
     "_clip": {
@@ -5218,29 +5253,39 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 116
+      "__id__": 117
     },
     "_enabled": true,
+    "mainMenuCanvas": {
+      "__id__": 5
+    },
     "_id": "66uoW8o29H+p4FyQzdkjfG"
   },
   {
     "__type__": "cc.Node",
-    "_name": "LogoCanvas",
+    "_name": "LogoPanel",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
     },
     "_children": [
       {
-        "__id__": 145
+        "__id__": 146
       },
       {
-        "__id__": 147
+        "__id__": 148
       }
     ],
     "_active": true,
     "_level": 2,
-    "_components": [],
+    "_components": [
+      {
+        "__id__": 151
+      },
+      {
+        "__id__": 152
+      }
+    ],
     "_prefab": null,
     "_opacity": 255,
     "_color": {
@@ -5252,8 +5297,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
+      "width": 750,
+      "height": 1334
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -5292,14 +5337,14 @@
     "_name": "Background",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 144
+      "__id__": 145
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 146
+        "__id__": 147
       }
     ],
     "_prefab": null,
@@ -5353,7 +5398,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 145
+      "__id__": 146
     },
     "_enabled": true,
     "_srcBlendFactor": 770,
@@ -5381,15 +5426,12 @@
     "_name": "Logo",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 144
+      "__id__": 145
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
-      {
-        "__id__": 148
-      },
       {
         "__id__": 149
       },
@@ -5448,7 +5490,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 147
+      "__id__": 148
     },
     "_enabled": true,
     "_srcBlendFactor": 770,
@@ -5476,7 +5518,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 147
+      "__id__": 148
     },
     "_enabled": true,
     "_defaultClip": {
@@ -5495,13 +5537,42 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 147
+      "__id__": 145
     },
     "_enabled": true,
-    "anim": {
-      "__id__": 149
+    "mainMenuCanvas": {
+      "__id__": 5
     },
-    "_id": "4bbEesTYdJjbI2tPDBlzdA"
+    "anim": {
+      "__id__": 150
+    },
+    "_id": "efnCnVQuZPpoh0Gzhn0f0z"
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 145
+    },
+    "_enabled": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": null,
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_state": 0,
+    "_atlas": null,
+    "_id": "e235xUKz9GO4l0so4b65du"
   },
   {
     "__type__": "cc.Canvas",

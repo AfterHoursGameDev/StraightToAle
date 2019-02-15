@@ -37,6 +37,8 @@ export default class MainMenuScript extends cc.Component {
     public LeaderboardClick()
     {
         //this.leaderboardNode.active = true;
+
+        //this.DisableMainMenu();
     }
 
     public TutorialClick()
@@ -44,10 +46,19 @@ export default class MainMenuScript extends cc.Component {
         this.tutorialNode.active = true;
 
         this.tutorialNode.getComponent("TutorialScript").ResetPosition();
+
+        this.DisableMainMenu();
     }
 
     public CreditsClick()
     {
         this.creditsNode.active = true;
+
+        this.DisableMainMenu();
+    }
+
+    DisableMainMenu()
+    {
+        this.node.active = false;
     }
 }

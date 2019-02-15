@@ -4,6 +4,9 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class NewClass extends cc.Component {
 
+    @property(cc.Node)
+    mainMenuCanvas: cc.Node = null;
+
     @property (cc.Animation)
     anim: cc.Animation = null;
 
@@ -15,14 +18,12 @@ export default class NewClass extends cc.Component {
         this.node.on(cc.Node.EventType.TOUCH_END, (e: cc.Touch)=>
         {
             this.SwitchToMainMenu();  
-        })
+        });
     }
 
-    start () {
-
-        //this.GoToMainMenu();
-        this.anim = this.getComponent(cc.Animation);
-        //console.log(this.anim.getAnimationState("AhgdLogo").isPlaying);
+    start ()
+    {
+        this.anim = this.anim.getComponent(cc.Animation);
     }
 
     update (dt)
@@ -35,7 +36,7 @@ export default class NewClass extends cc.Component {
 
                 this.scheduleOnce(function()
                 {
-                    this.node.getParent().active = false;
+                    this.SwitchToMainMenu();
                 }, 2);
                 
             }
@@ -44,6 +45,7 @@ export default class NewClass extends cc.Component {
 
     SwitchToMainMenu()
     {
-        this.node.getParent().active = false;
+        this.mainMenuCanvas.active = true;
+        this.node.active = false;
     }
 }
