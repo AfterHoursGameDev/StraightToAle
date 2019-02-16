@@ -13,6 +13,9 @@ export default class MainMenuScript extends cc.Component {
     @property(cc.Node)
     leaderboardNode: cc.Node = null;
 
+    backgroundMusicVol: number = 1;
+    effectsVol: number = 1;
+
     onLoad ()
     {
         // resume game if it's paused
@@ -55,6 +58,29 @@ export default class MainMenuScript extends cc.Component {
         this.creditsNode.active = true;
 
         this.DisableMainMenu();
+    }
+
+    public UpdateVolume()
+    {
+		cc.log('update volume');
+
+        if (cc.audioEngine.getMusicVolume() == this.backgroundMusicVol)
+        {
+            cc.audioEngine.setMusicVolume(0);
+        }
+        else
+        {
+            cc.audioEngine.setMusicVolume(this.backgroundMusicVol);
+        }
+
+        if (cc.audioEngine.getEffectsVolume() == this.effectsVol)
+        {
+            cc.audioEngine.setEffectsVolume(0);
+        }
+        else
+        {
+            cc.audioEngine.setEffectsVolume(this.effectsVol);
+        }
     }
 
     DisableMainMenu()

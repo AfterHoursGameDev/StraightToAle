@@ -10,17 +10,6 @@ export default class Enemy extends cc.Component
     @property(cc.Prefab)
     enemyDeathFX: cc.Prefab = null;
 
-    @property(cc.AudioSource)
-    satisfiedEnemyAudioSource1: cc.AudioSource = null;
-
-    @property(cc.AudioSource)
-    satisfiedEnemyAudioSource2: cc.AudioSource = null;
-
-    @property(cc.AudioSource)
-    satisfiedEnemyAudioSource3: cc.AudioSource = null;
-
-    satisfiedEnemyAudioSources: Array<cc.AudioSource>;
-
     horOffset: number = 0;// 375;
     tankHealthModifier: number = 1;
     tankSelected: cc.Node = null;
@@ -52,9 +41,6 @@ export default class Enemy extends cc.Component
 		{
 			cc.log('Error! No movement component was found!');
         }
-
-        // array for satisfied enemy sound effects
-        this.satisfiedEnemyAudioSources = new Array(this.satisfiedEnemyAudioSource1, this.satisfiedEnemyAudioSource2, this.satisfiedEnemyAudioSource3);
     }
 
     start ()
@@ -180,11 +166,8 @@ export default class Enemy extends cc.Component
         // Play satisifed enemy clip only if enemy is satisfied
         if (satisfiedEnemy == true)
         {
-            // Get random audio clip from array
-            var audioSource = this.satisfiedEnemyAudioSources[Math.floor(Math.random() * this.satisfiedEnemyAudioSources.length)];
-
             // Play audio clip
-            enemyDeathFXPrefab.getComponent("EnemyDeathAudioScript").PlaySoundEffect(audioSource.clip);
+            enemyDeathFXPrefab.getComponent("EnemyDeathAudioScript").PlaySoundEffect(this.node.name);
         }
 
         this.node.destroy();
