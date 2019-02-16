@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "8bc2c1f7-d27a-4fe4-9c01-7bc1d4cdbec3",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "sta_tutorial_panel_2": {
+      "ver": "1.0.3",
+      "uuid": "f61b1c2f-c16d-46c4-9a79-4552784a8004",
+      "rawTextureUuid": "8bc2c1f7-d27a-4fe4-9c01-7bc1d4cdbec3",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 497,
+      "height": 895,
+      "rawWidth": 497,
+      "rawHeight": 895,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
