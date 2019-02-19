@@ -8,11 +8,12 @@
       "__id__": 1
     },
     "optimizationPolicy": 0,
-    "asyncLoadAssets": false
+    "asyncLoadAssets": false,
+    "readonly": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "BeerCanPowerUp",
+    "_name": "beerCanPowerUp",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -53,8 +54,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
+      "x": -794,
+      "y": 507,
       "z": 0
     },
     "_scale": {
@@ -63,8 +64,6 @@
       "y": 1,
       "z": 1
     },
-    "_rotationX": 0,
-    "_rotationY": 0,
     "_quat": {
       "__type__": "cc.Quat",
       "x": 0,
@@ -75,12 +74,15 @@
     "_skewX": 0,
     "_skewY": 0,
     "_zIndex": 0,
+    "_is3DNode": false,
     "groupIndex": 0,
+    "_rotationX": 0,
+    "_rotationY": 0,
     "_id": ""
   },
   {
     "__type__": "cc.Node",
-    "_name": "BeerCanPowerUpParticle",
+    "_name": "beer_ring",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -126,8 +128,6 @@
       "y": 1,
       "z": 1
     },
-    "_rotationX": 0,
-    "_rotationY": 0,
     "_quat": {
       "__type__": "cc.Quat",
       "x": 0,
@@ -138,7 +138,10 @@
     "_skewX": 0,
     "_skewY": 0,
     "_zIndex": 0,
+    "_is3DNode": false,
     "groupIndex": 0,
+    "_rotationX": 0,
+    "_rotationY": 0,
     "_id": ""
   },
   {
@@ -152,53 +155,51 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 1,
     "_custom": true,
-    "_file": {
-      "__uuid__": "c323eadb-b2b0-4d35-a7e2-e678ccbd7b74"
-    },
+    "_file": null,
     "_spriteFrame": {
       "__uuid__": "9358b8a5-3c0a-454a-9581-f926948e57c1"
     },
     "_stopped": true,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
-    "totalParticles": 1,
+    "totalParticles": 2,
     "duration": 0.25,
-    "emissionRate": 200,
-    "life": 0.25,
-    "lifeVar": 0,
+    "emissionRate": 100,
+    "life": 0.5,
+    "lifeVar": 1,
     "_startColor": {
       "__type__": "cc.Color",
-      "r": 253,
-      "g": 253,
-      "b": 252,
+      "r": 255,
+      "g": 4,
+      "b": 4,
       "a": 255
     },
     "_startColorVar": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 51,
-      "a": 0
+      "r": 255,
+      "g": 4,
+      "b": 4,
+      "a": 255
     },
     "_endColor": {
       "__type__": "cc.Color",
-      "r": 252,
-      "g": 250,
-      "b": 250,
+      "r": 255,
+      "g": 4,
+      "b": 4,
       "a": 255
     },
     "_endColorVar": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
-      "a": 0
+      "r": 255,
+      "g": 4,
+      "b": 4,
+      "a": 255
     },
-    "angle": 90,
+    "angle": 0,
     "angleVar": 0,
-    "startSize": 10,
-    "startSizeVar": 350,
-    "endSize": 350,
+    "startSize": 50,
+    "startSizeVar": 0,
+    "endSize": 400,
     "endSizeVar": 0,
     "startSpin": 0,
     "startSpinVar": 0,
@@ -218,15 +219,15 @@
     "emitterMode": 1,
     "gravity": {
       "__type__": "cc.Vec2",
-      "x": 10,
-      "y": -1114
+      "x": 0.25,
+      "y": 0.8600000143051147
     },
     "speed": 0,
-    "speedVar": 5,
-    "tangentialAccel": 0,
-    "tangentialAccelVar": 0,
-    "radialAccel": 0,
-    "radialAccelVar": 0,
+    "speedVar": 190.7899932861328,
+    "tangentialAccel": -92.11000061035156,
+    "tangentialAccelVar": 65.79000091552734,
+    "radialAccel": -671.0499877929688,
+    "radialAccelVar": 65.79000091552734,
     "rotationIsDir": false,
     "startRadius": 0,
     "startRadiusVar": 0,
@@ -245,7 +246,7 @@
     "asset": {
       "__uuid__": "c0ca7d20-71a0-415e-af9d-c4c5051ef959"
     },
-    "fileId": "78Thwzk6tB45zWoqud36Zo",
+    "fileId": "1aYy4WTuJF4LnuFfREOnAV",
     "sync": false
   },
   {
