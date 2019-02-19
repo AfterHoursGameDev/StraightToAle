@@ -106,10 +106,10 @@ export default class Enemy extends cc.Component
 
                 break;
             }
-            case "BeerCanPowerUp":
+            case "beerCanPowerUp":
             {
                 // destroy the beer can
-                other.node.destroy();
+                //other.node.destroy();
 
                 // disable collider and have enemy exit screen to right or left
                 this.node.getComponent(cc.Collider).enabled = false;

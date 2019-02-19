@@ -1,11 +1,10 @@
 {
-  "ver": "2.3.0",
+  "ver": "2.2.0",
   "uuid": "52d4ba68-b8ec-434e-aaee-2ba8c23f9ebf",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
-  "platformSettings": {},
   "subMetas": {
     "AHGD_SpriteSheet_512Cells": {
       "ver": "1.0.3",

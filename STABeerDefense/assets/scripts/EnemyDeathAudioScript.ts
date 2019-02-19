@@ -17,10 +17,11 @@ export default class NewClass extends cc.Component {
 
     onLoad()
     {
+        // Destroy death prefab after a few seconds
         this.scheduleOnce(function()
         {
             this.node.destroy();
-        }, 2);
+        }, 3);
 
         // array for satisfied enemy sound effects
         this.satisfiedEnemyAudioSources = new Array(this.satisfiedEnemyAudioSource1, this.satisfiedEnemyAudioSource2, this.satisfiedEnemyAudioSource3);

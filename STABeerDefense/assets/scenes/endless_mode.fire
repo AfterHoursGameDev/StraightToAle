@@ -5583,7 +5583,7 @@
     "_spriteFrame": {
       "__uuid__": "0fbc41d7-9770-4025-be57-10fc919a9d4e"
     },
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 80,

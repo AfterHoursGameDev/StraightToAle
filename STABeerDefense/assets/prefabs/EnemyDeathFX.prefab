@@ -640,9 +640,6 @@
       "__id__": 1
     },
     "_enabled": true,
-    "mainAudioSource1": {
-      "__id__": 16
-    },
     "satisfiedEnemyAudioSource1": {
       "__id__": 6
     },

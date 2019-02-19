@@ -7,7 +7,7 @@ export default class NewClass extends cc.Component {
     @property (cc.CircleCollider)
     cirCollider: cc.CircleCollider = null;
 
-    explosionDelay: number = 0.25;
+    explosionDelay: number = 0.5;
 
     explosionRadius: number = 150;
 
