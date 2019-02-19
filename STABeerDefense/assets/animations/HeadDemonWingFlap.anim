@@ -41,14 +41,14 @@
     "paths": {
       "WingRight": {
         "props": {
-          "rotation": [
+          "angle": [
             {
               "frame": 0,
               "value": 0
             },
             {
               "frame": 0.25,
-              "value": -45
+              "value": 45
             },
             {
               "frame": 0.5,
@@ -59,14 +59,14 @@
       },
       "WingLeft": {
         "props": {
-          "rotation": [
+          "angle": [
             {
               "frame": 0,
               "value": 0
             },
             {
               "frame": 0.25,
-              "value": 45
+              "value": -45
             },
             {
               "frame": 0.5,
