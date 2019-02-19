@@ -30,7 +30,7 @@ export default class NewClass extends cc.Component {
     {
         if (this.animIsPlaying)
         {
-            if (this.anim.getAnimationState("AhgdLogo").isPlaying == false)
+            if (this.anim.getAnimationState("AhgdLogoBlack").isPlaying == false)
             {
                 this.animIsPlaying = false;
 

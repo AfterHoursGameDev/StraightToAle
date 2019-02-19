@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.4317723950524737,
-      "y": 0.4317723950524737,
+      "x": 0.4317723950524738,
+      "y": 0.4317723950524738,
       "z": 1
     },
     "_quat": {
@@ -88,7 +88,7 @@
     "_level": 1,
     "_components": [
       {
-        "__id__": 171
+        "__id__": 170
       }
     ],
     "_prefab": null,
@@ -6017,9 +6017,6 @@
     "_components": [
       {
         "__id__": 169
-      },
-      {
-        "__id__": 170
       }
     ],
     "_prefab": null,
@@ -6033,8 +6030,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 750,
-      "height": 1334
+      "width": 512,
+      "height": 512
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -6232,7 +6229,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "429a9c72-1ce1-4fbe-864f-65a3ec9b09d1"
+      "__uuid__": "06368d49-6399-4f53-97d2-962d8ebadebb"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -6258,15 +6255,15 @@
     },
     "_enabled": true,
     "_defaultClip": {
-      "__uuid__": "7c6d4981-eb38-442c-a56e-04d9ba1b98a4"
+      "__uuid__": "435c1a70-4130-43eb-a31c-3005e4258510"
     },
     "_clips": [
       {
-        "__uuid__": "7c6d4981-eb38-442c-a56e-04d9ba1b98a4"
+        "__uuid__": "435c1a70-4130-43eb-a31c-3005e4258510"
       }
     ],
     "playOnLoad": true,
-    "_id": "9aXtKv+69NCL+x+pgKZU38"
+    "_id": "51lXIRtjVHIJ9PMvhFIzGf"
   },
   {
     "__type__": "19dc1U4QgxOOL6JHqwBxLuD",
@@ -6283,32 +6280,6 @@
       "__id__": 168
     },
     "_id": "efnCnVQuZPpoh0Gzhn0f0z"
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 163
-    },
-    "_enabled": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": null,
-    "_type": 0,
-    "_sizeMode": 1,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_state": 0,
-    "_atlas": null,
-    "_id": "e235xUKz9GO4l0so4b65du"
   },
   {
     "__type__": "cc.Canvas",
