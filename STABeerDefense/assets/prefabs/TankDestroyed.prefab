@@ -8,8 +8,7 @@
       "__id__": 1
     },
     "optimizationPolicy": 0,
-    "asyncLoadAssets": false,
-    "readonly": false
+    "asyncLoadAssets": false
   },
   {
     "__type__": "cc.Node",
@@ -22,7 +21,7 @@
       }
     ],
     "_active": true,
-    "_level": 1,
+    "_level": 2,
     "_components": [
       {
         "__id__": 5
@@ -61,6 +60,8 @@
       "y": 1,
       "z": 1
     },
+    "_rotationX": 13,
+    "_rotationY": 13,
     "_quat": {
       "__type__": "cc.Quat",
       "x": 0,
@@ -71,10 +72,7 @@
     "_skewX": 0,
     "_skewY": 0,
     "_zIndex": 0,
-    "_is3DNode": false,
     "groupIndex": 0,
-    "_rotationX": 13,
-    "_rotationY": 13,
     "_id": ""
   },
   {
@@ -85,7 +83,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_level": 2,
     "_components": [
       {
@@ -125,17 +123,18 @@
       "y": 0.3,
       "z": 0.25
     },
+    "_rotationX": 13.000000000000002,
+    "_rotationY": 13.000000000000002,
     "_quat": {
       "__type__": "cc.Quat",
       "x": 0,
       "y": 0,
-      "z": -0.11320321376790672,
+      "z": -0.11320321376790674,
       "w": 0.9935718556765875
     },
     "_skewX": 0,
     "_skewY": 0,
     "_zIndex": 0,
-    "_is3DNode": false,
     "groupIndex": 0,
     "_id": ""
   },
@@ -156,7 +155,7 @@
     "_spriteFrame": {
       "__uuid__": "1074f7a5-6cc9-4997-98da-55965ce54407"
     },
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 181,
