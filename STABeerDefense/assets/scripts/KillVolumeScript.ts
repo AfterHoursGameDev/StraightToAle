@@ -14,6 +14,7 @@ export default class NewClass extends cc.Component {
 
     onCollisionEnter (other: cc.Collider, self)
     {
+        console.log(other.node.name);
         switch (other.node.name)
         {
             case "beerCan":
@@ -21,6 +22,13 @@ export default class NewClass extends cc.Component {
                 // destroy the beer can
                 other.node.getComponent("BeerCanScript").DestroyBeerCan();
                
+                break;
+            }
+            case "beerCanPowered":
+            {
+                // destroy the beer can
+                other.node.getComponent("BeerCanPoweredScript").DestroyBeerCan();
+
                 break;
             }
         }

@@ -8,12 +8,11 @@
       "__id__": 1
     },
     "optimizationPolicy": 0,
-    "asyncLoadAssets": false,
-    "readonly": false
+    "asyncLoadAssets": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "beerCanPowerUp",
+    "_name": "beerCanExplosion",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -22,7 +21,7 @@
       }
     ],
     "_active": true,
-    "_level": 1,
+    "_level": 2,
     "_components": [
       {
         "__id__": 5
@@ -54,8 +53,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -800,
-      "y": 500,
+      "x": 0,
+      "y": 0,
       "z": 0
     },
     "_scale": {
@@ -64,6 +63,8 @@
       "y": 1,
       "z": 1
     },
+    "_rotationX": 0,
+    "_rotationY": 0,
     "_quat": {
       "__type__": "cc.Quat",
       "x": 0,
@@ -74,10 +75,7 @@
     "_skewX": 0,
     "_skewY": 0,
     "_zIndex": 0,
-    "_is3DNode": false,
     "groupIndex": 0,
-    "_rotationX": 0,
-    "_rotationY": 0,
     "_id": ""
   },
   {
@@ -128,6 +126,8 @@
       "y": 1,
       "z": 1
     },
+    "_rotationX": 0,
+    "_rotationY": 0,
     "_quat": {
       "__type__": "cc.Quat",
       "x": 0,
@@ -138,10 +138,7 @@
     "_skewX": 0,
     "_skewY": 0,
     "_zIndex": 0,
-    "_is3DNode": false,
     "groupIndex": 0,
-    "_rotationX": 0,
-    "_rotationY": 0,
     "_id": ""
   },
   {
@@ -162,7 +159,7 @@
     "_stopped": true,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
-    "totalParticles": 2,
+    "totalParticles": 1,
     "duration": 0.25,
     "emissionRate": 100,
     "life": 0.5,

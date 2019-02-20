@@ -65,23 +65,33 @@ export default class Enemy extends cc.Component
         {
             case "beerCan":
             {
-                // Check for can power up
-                other.node.getComponent("BeerCanScript").CheckPowerUpActive();
-
+                other.node.destroy();
+                
                 // disable collider and have enemy exit screen to right or left
                 this.node.getComponent(cc.Collider).enabled = false;
                 
-                // play audio
-                //cc.audioEngine.playEffect(this.node.getComponent(cc.AudioSource).clip, false);
-                //cc.audioEngine.playEffect(this.audioSource.clip, false);
-                //this.PlaySoundEffect(this.satisfiedEnemyAudioSources);
-
                 // Update the score
                 this.node.getParent().getComponent("GameManagerScript").UpdateScore(this.pointValue);
 
                 // Destroy the beer can
                 this.DestroyThisNode(true);
                 
+                break;
+            }
+            case "beerCanPowered":
+            {
+                // Check for can power up
+                other.node.getComponent("BeerCanPoweredScript").ActivatePowerUp();
+
+                // disable collider and have enemy exit screen to right or left
+                this.node.getComponent(cc.Collider).enabled = false;
+
+                // Update the score
+                this.node.getParent().getComponent("GameManagerScript").UpdateScore(this.pointValue);
+
+                // Destroy the beer can
+                this.DestroyThisNode(true);
+
                 break;
             }
             case "fermentation_tank":
@@ -106,18 +116,13 @@ export default class Enemy extends cc.Component
 
                 break;
             }
-            case "beerCanPowerUp":
+            case "beerCanExplosion":
             {
                 // destroy the beer can
                 //other.node.destroy();
 
                 // disable collider and have enemy exit screen to right or left
                 this.node.getComponent(cc.Collider).enabled = false;
-                
-                // play audio
-                //cc.audioEngine.playEffect(this.node.getComponent(cc.AudioSource).clip, false);
-                //cc.audioEngine.playEffect(this.audioSource.clip, false);
-                //this.PlaySoundEffect(this.satisfiedEnemyAudioSources);
 
                 // Update the score
                 this.node.getParent().getComponent("GameManagerScript").UpdateScore(this.pointValue);

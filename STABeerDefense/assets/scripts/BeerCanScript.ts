@@ -16,12 +16,10 @@ destination: cc.Vec2;
 direction: cc.Vec2 = new cc.Vec2();
 moveSpeed: number = 1000;
 
-powerUpActive: boolean = false;
-
-@property (cc.Prefab)
-canPowerUpPrefab: cc.Prefab = null;
-
 rotSpeed: number = 15;
+
+@property (cc.Node)
+canSprite: cc.Node = null;
 
     //onLoad () {}
 
@@ -32,7 +30,7 @@ rotSpeed: number = 15;
         if (this.initialized)
         {
             // rotate the can
-            this.node.children[0].rotation = (this.node.children[0].rotation += this.rotSpeed);
+            this.canSprite.rotation = (this.canSprite.rotation += this.rotSpeed);
 
             this.node.position = this.node.position.add(this.direction.mul(this.moveSpeed * dt));
 
@@ -40,15 +38,13 @@ rotSpeed: number = 15;
             {
                 this.initialized = false;
                 
-                this.DestroyNode();
+                this.DestroyBeerCan();
             }
         }
     }
 
-    public InitializeBeerCan(tgtLocation: cc.Vec2, powerUpState: boolean)
+    public InitializeBeerCan(tgtLocation: cc.Vec2)
     {
-        this.powerUpActive = powerUpState;
-
         var parentHeight = this.node.getParent().height;
 
         // calculate full trajectory through click point
@@ -81,31 +77,8 @@ rotSpeed: number = 15;
         return newTgtLoc;
     }
 
-    CheckPowerUpActive()
-    {
-        if (this.powerUpActive)
-        {
-            var node = cc.instantiate(this.canPowerUpPrefab);
-
-            node.position = this.node.position;
-            node.setParent(this.node.getParent());
-        }
-
-        this.DestroyNode();
-    }
-
-    DestroyNode()
-    {
-        this.node.destroy();
-    }
-
     public DestroyBeerCan()
     {
-        // Disable power up if enabled
-        this.node.getParent().getComponent("GameManagerScript").UpdatePowerUpState(false);
-
-        // Deduct multiplier
-
-        this.DestroyNode();
+        this.node.destroy();
     }
 }

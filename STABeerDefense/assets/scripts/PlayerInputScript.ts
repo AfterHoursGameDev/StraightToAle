@@ -27,10 +27,12 @@ export default class PlayerInput extends cc.Component
     canPrefab: cc.Prefab = null;
 
     @property(cc.Prefab)
-    pitcherPrefab: cc.Prefab = null;
+    canPoweredPrefab: cc.Prefab = null;
 	
-	@property(cc.Toggle)
-    pitcherToggle: cc.Toggle = null;
+	//@property(cc.Toggle)
+	//pitcherToggle: cc.Toggle = null;
+	
+	pitcherPrefab: cc.Prefab = null;
 
 	// Pitchers
     numCurrentPitchers: number = 0;
@@ -223,18 +225,34 @@ export default class PlayerInput extends cc.Component
         this.WeaponFireFX();
 
         // instantiate beer can prefab
-        var can = cc.instantiate(this.canPrefab);
+		var can = new cc.Node;
+		
+		if (this.powerUpStateActive)
+		{
+			can = cc.instantiate(this.canPoweredPrefab);
 
-        // set the prefab's parent to the primary canvas
-        can.setParent(this.node);
+			// set the prefab's parent to the primary canvas
+			can.setParent(this.node);
 
-        // set the position of the prefab to spawn at weapon nozzle
-        can.setPosition(this.player.position.x, this.player.position.y + 50);
+			// set the position of the prefab to spawn at weapon nozzle
+			can.setPosition(this.player.position.x, this.player.position.y + 50);
 
-        // call script to initialize can movement
-        can.getComponent("BeerCanScript").InitializeBeerCan(tgtLocation, this.powerUpStateActive);
+			// call script to initialize can movement
+			can.getComponent("BeerCanPoweredScript").InitializeBeerCan(tgtLocation);
+		}
+		else
+		{
+			can = cc.instantiate(this.canPrefab);
 
-        // 
+			// set the prefab's parent to the primary canvas
+			can.setParent(this.node);
+
+			// set the position of the prefab to spawn at weapon nozzle
+			can.setPosition(this.player.position.x, this.player.position.y + 50);
+
+			// call script to initialize can movement
+			can.getComponent("BeerCanScript").InitializeBeerCan(tgtLocation);
+		}
 
         cc.audioEngine.playEffect(this.launcherAudio.clip, false);
     }	
