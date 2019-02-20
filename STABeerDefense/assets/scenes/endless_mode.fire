@@ -47,8 +47,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.4317723950524738,
-      "y": 0.4317723950524738,
+      "x": 0.431772395052473,
+      "y": 0.431772395052473,
       "z": 1
     },
     "_quat": {
@@ -3920,7 +3920,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 251.64,
+      "width": 307.64,
       "height": 40
     },
     "_anchorPoint": {
@@ -3930,7 +3930,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 0,
+      "x": 28,
       "y": 0,
       "z": 0
     },
@@ -3966,8 +3966,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "SCORE: 0000",
-    "_N$string": "SCORE: 0000",
+    "_string": "SCORE: 000000",
+    "_N$string": "SCORE: 000000",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -4008,7 +4008,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 250,
+      "width": 310,
       "height": 22
     },
     "_anchorPoint": {
@@ -4018,7 +4018,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -2,
+      "x": 24.5,
       "y": -36.6,
       "z": 0
     },
@@ -4107,7 +4107,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 250,
+      "width": 300,
       "height": 15
     },
     "_anchorPoint": {
@@ -4117,7 +4117,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 0.7,
+      "x": 22.9,
       "y": -36.6,
       "z": 0
     },
@@ -4168,7 +4168,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 250,
+      "width": 300,
       "height": 15
     },
     "_anchorPoint": {
@@ -4178,7 +4178,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -125,
+      "x": -148.4,
       "y": 0,
       "z": 0
     },
@@ -4274,7 +4274,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 136.8,
+      "x": 167.5,
       "y": 0,
       "z": 0
     },
@@ -4540,7 +4540,7 @@
       "__id__": 95
     },
     "_enabled": true,
-    "_N$totalLength": 250,
+    "_N$totalLength": 300,
     "_N$barSprite": {
       "__id__": 97
     },

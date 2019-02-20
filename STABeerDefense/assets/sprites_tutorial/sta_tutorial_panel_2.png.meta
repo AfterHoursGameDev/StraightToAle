@@ -1,11 +1,10 @@
 {
-  "ver": "2.3.0",
+  "ver": "2.2.0",
   "uuid": "8bc2c1f7-d27a-4fe4-9c01-7bc1d4cdbec3",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
-  "platformSettings": {},
   "subMetas": {
     "sta_tutorial_panel_2": {
       "ver": "1.0.3",
