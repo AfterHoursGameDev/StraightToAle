@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.5855433893538103,
-      "y": 0.5855433893538103,
+      "x": 0.25487256371814093,
+      "y": 0.25487256371814093,
       "z": 1
     },
     "_quat": {
@@ -4795,8 +4795,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "Credits\n\nLead Designer/Programmer: Kenny Emmanuel\nArtist/Design: Jonathan Bisher",
-    "_N$string": "Credits\n\nLead Designer/Programmer: Kenny Emmanuel\nArtist/Design: Jonathan Bisher",
+    "_string": "Credits\n\nLead Designer/Programmer: Kenny Emmanuel\nArtist/Designer: Jonathan Bisher",
+    "_N$string": "Credits\n\nLead Designer/Programmer: Kenny Emmanuel\nArtist/Designer: Jonathan Bisher",
     "_fontSize": 35,
     "_lineHeight": 50,
     "_enableWrapText": true,
