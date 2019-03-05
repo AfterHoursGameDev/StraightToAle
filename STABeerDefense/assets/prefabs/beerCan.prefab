@@ -186,7 +186,7 @@
     "asset": {
       "__uuid__": "49efaef0-dbd5-4a45-8bac-ff699906b447"
     },
-    "fileId": "e1vPRraP1Dlaa7jcpYIXxx",
+    "fileId": "c8XWEnli5E06YZrtQ/68lF",
     "sync": false
   },
   {
@@ -197,7 +197,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_level": 2,
     "_components": [
       {
@@ -264,7 +264,7 @@
     "_dstBlendFactor": 771,
     "_custom": true,
     "_file": {
-      "__uuid__": "e1221ae6-1227-43db-94d1-438fe42b5e40"
+      "__uuid__": "6d1b9c27-7f8f-459a-ace1-679320e00a23"
     },
     "_spriteFrame": {
       "__uuid__": "1bdfb488-d584-4db9-aac1-00153e0d379a"
@@ -272,16 +272,16 @@
     "_stopped": true,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
-    "totalParticles": 1320,
+    "totalParticles": 1000,
     "duration": -1,
-    "emissionRate": 600,
-    "life": 1.5,
+    "emissionRate": 20,
+    "life": 2.5,
     "lifeVar": 0.7,
     "_startColor": {
       "__type__": "cc.Color",
-      "r": 153,
-      "g": 51,
-      "b": 51,
+      "r": 189,
+      "g": 0,
+      "b": 0,
       "a": 255
     },
     "_startColorVar": {
@@ -356,7 +356,7 @@
     "asset": {
       "__uuid__": "49efaef0-dbd5-4a45-8bac-ff699906b447"
     },
-    "fileId": "b0m9H0O5xLh7QKxC9v0TSk",
+    "fileId": "27mdx/BOJAEp2AAdvzUg50",
     "sync": false
   },
   {
@@ -526,7 +526,7 @@
     "asset": {
       "__uuid__": "49efaef0-dbd5-4a45-8bac-ff699906b447"
     },
-    "fileId": "4ejAvmQXBEcbs2uwl4f/zB",
+    "fileId": "ef2RwqNPRIEJpGCQUzMdN0",
     "sync": false
   },
   {
@@ -600,6 +600,6 @@
     "_enabled": true,
     "_audioSource": null,
     "canSprite": null,
-    "_id": "96C6k90G1GhLwBm5u6NkUN"
+    "_id": "3bP92BQI5HX5uSp4kv2SIk"
   }
 ]

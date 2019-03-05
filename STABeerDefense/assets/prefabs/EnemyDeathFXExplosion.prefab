@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "EnemyDeathFX",
+    "_name": "EnemyDeathFXExplosion",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -27,23 +27,26 @@
       },
       {
         "__id__": 11
+      },
+      {
+        "__id__": 14
       }
     ],
     "_active": true,
     "_level": 2,
     "_components": [
       {
-        "__id__": 14
+        "__id__": 17
       },
       {
-        "__id__": 15
+        "__id__": 18
       },
       {
-        "__id__": 16
+        "__id__": 19
       }
     ],
     "_prefab": {
-      "__id__": 17
+      "__id__": 20
     },
     "_opacity": 255,
     "_color": {
@@ -65,8 +68,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 42,
-      "y": -285,
+      "x": 192,
+      "y": -1,
       "z": 0
     },
     "_scale": {
@@ -98,7 +101,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_level": 3,
     "_components": [
       {
@@ -168,9 +171,9 @@
       "__uuid__": "c323eadb-b2b0-4d35-a7e2-e678ccbd7b74"
     },
     "_spriteFrame": {
-      "__uuid__": "9358b8a5-3c0a-454a-9581-f926948e57c1"
+      "__uuid__": "ca865648-f099-4c12-8e14-45788c840f23"
     },
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 80,
@@ -257,19 +260,19 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "a9JH5/yR5EQoR42PU5hQDh",
+    "fileId": "efgMveAqZA1pJyqmAPiaK9",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "Audio1",
+    "_name": "enemyExplosion",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
     },
     "_children": [],
     "_active": true,
-    "_level": 3,
+    "_level": 2,
     "_components": [
       {
         "__id__": 6
@@ -324,21 +327,99 @@
     "_id": ""
   },
   {
-    "__type__": "cc.AudioSource",
+    "__type__": "cc.ParticleSystem",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 5
     },
     "_enabled": true,
-    "_clip": {
-      "__uuid__": "1ca1ee5f-6bb8-4d34-bebf-59a80a4c7bd2"
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 1,
+    "_custom": true,
+    "_file": {
+      "__uuid__": "745d1f0f-82fd-4c65-b68a-7d8988a4d500"
     },
-    "_volume": 1,
-    "_mute": false,
-    "_loop": false,
-    "playOnLoad": false,
-    "preload": false,
+    "_spriteFrame": {
+      "__uuid__": "1bdfb488-d584-4db9-aac1-00153e0d379a"
+    },
+    "_stopped": true,
+    "playOnLoad": true,
+    "autoRemoveOnFinish": false,
+    "totalParticles": 400,
+    "duration": 0.05,
+    "emissionRate": 2000,
+    "life": 0.2,
+    "lifeVar": 0.1,
+    "_startColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 102,
+      "b": 51,
+      "a": 226
+    },
+    "_startColorVar": {
+      "__type__": "cc.Color",
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 0
+    },
+    "_endColor": {
+      "__type__": "cc.Color",
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 255
+    },
+    "_endColorVar": {
+      "__type__": "cc.Color",
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 0
+    },
+    "angle": 76,
+    "angleVar": 180,
+    "startSize": 80,
+    "startSizeVar": 10,
+    "endSize": 5,
+    "endSizeVar": 0,
+    "startSpin": 0,
+    "startSpinVar": 0,
+    "endSpin": 0,
+    "endSpinVar": 0,
+    "sourcePos": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "posVar": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "positionType": 0,
+    "emitterMode": 0,
+    "gravity": {
+      "__type__": "cc.Vec2",
+      "x": -20,
+      "y": 420
+    },
+    "speed": 500,
+    "speedVar": 20,
+    "tangentialAccel": -700,
+    "tangentialAccelVar": 0,
+    "radialAccel": 0,
+    "radialAccelVar": 0,
+    "rotationIsDir": false,
+    "startRadius": 0,
+    "startRadiusVar": 0,
+    "endRadius": 0,
+    "endRadiusVar": 0,
+    "rotatePerS": 0,
+    "rotatePerSVar": 0,
+    "_N$preview": true,
     "_id": ""
   },
   {
@@ -349,12 +430,12 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "d3Du4VO7lEzqLwvggi2P6G",
+    "fileId": "1d0MuMU+dJxqcDx+5+rxDQ",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "Audio2",
+    "_name": "Audio1",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -424,7 +505,7 @@
     },
     "_enabled": true,
     "_clip": {
-      "__uuid__": "162f07c1-6014-49c9-8a38-07fa1bde1378"
+      "__uuid__": "1ca1ee5f-6bb8-4d34-bebf-59a80a4c7bd2"
     },
     "_volume": 1,
     "_mute": false,
@@ -441,12 +522,12 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "dfV4xa4ERE4ZBECC/NweKU",
+    "fileId": "famYF84GZMgpBGXfv7jOca",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "Audio3",
+    "_name": "Audio2",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -516,6 +597,98 @@
     },
     "_enabled": true,
     "_clip": {
+      "__uuid__": "162f07c1-6014-49c9-8a38-07fa1bde1378"
+    },
+    "_volume": 1,
+    "_mute": false,
+    "_loop": false,
+    "playOnLoad": false,
+    "preload": false,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "a3A4ehrLNI8pO8fh4IKwJU",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Audio3",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_active": true,
+    "_level": 3,
+    "_components": [
+      {
+        "__id__": 15
+      }
+    ],
+    "_prefab": {
+      "__id__": 16
+    },
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_scale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_quat": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_zIndex": 0,
+    "groupIndex": 0,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.AudioSource",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 14
+    },
+    "_enabled": true,
+    "_clip": {
       "__uuid__": "9e47f0aa-326c-4892-93bc-dd596865a05d"
     },
     "_volume": 1,
@@ -533,8 +706,27 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "2bk9qPNHJAmZSQGQEwt10g",
+    "fileId": "286dH1oHpGsqDqEyivMZTK",
     "sync": false
+  },
+  {
+    "__type__": "8cfa4sj9wlL9IcH5mPkJin1",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "satisfiedEnemyAudioSource1": {
+      "__id__": 9
+    },
+    "satisfiedEnemyAudioSource2": {
+      "__id__": 12
+    },
+    "satisfiedEnemyAudioSource3": {
+      "__id__": 15
+    },
+    "_id": ""
   },
   {
     "__type__": "cc.ParticleSystem",
@@ -633,25 +825,6 @@
     "_id": ""
   },
   {
-    "__type__": "8cfa4sj9wlL9IcH5mPkJin1",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "satisfiedEnemyAudioSource1": {
-      "__id__": 6
-    },
-    "satisfiedEnemyAudioSource2": {
-      "__id__": 9
-    },
-    "satisfiedEnemyAudioSource3": {
-      "__id__": 12
-    },
-    "_id": ""
-  },
-  {
     "__type__": "cc.AudioSource",
     "_name": "",
     "_objFlags": 0,
@@ -675,7 +848,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "d4ACtDYahIs7unH64GqdKv",
+    "fileId": "c8329+EehMEoQiCwwniC+W",
     "sync": false
   }
 ]

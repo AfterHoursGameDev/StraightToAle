@@ -249,7 +249,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "9a5508b1-ee16-4d74-8211-aaf18aa78606"
+      "__id__": 0
     },
     "fileId": "79iscpAylEw7ihkPVtBPXr",
     "sync": false
@@ -351,7 +351,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "9a5508b1-ee16-4d74-8211-aaf18aa78606"
+      "__id__": 0
     },
     "fileId": "81G+/VIZJEnp0lCV3LtWqy",
     "sync": false
@@ -386,7 +386,7 @@
     },
     "_enabled": true,
     "enemyDeathFX": {
-      "__uuid__": "32fd2b95-7337-4f05-99f7-2cb9e9f932a0"
+      "__uuid__": "f9506a1c-25e0-4a22-9730-c35f85c026de"
     },
     "pointValue": 12,
     "_id": ""
@@ -409,9 +409,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "9a5508b1-ee16-4d74-8211-aaf18aa78606"
+      "__id__": 0
     },
-    "fileId": "19GnscM3ROJrwnv1BOlyj3",
+    "fileId": "c1rN6A5NFM3qH+jtFdH45p",
     "sync": false
   }
 ]

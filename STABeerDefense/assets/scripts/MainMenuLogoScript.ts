@@ -14,6 +14,12 @@ export default class NewClass extends cc.Component {
 
     onLoad()
 	{
+        // resume game if it's paused
+        if (cc.director.isPaused())
+        {
+            cc.director.resume();
+        }
+
 		// touch event to grab location when player touches screen
         this.node.on(cc.Node.EventType.TOUCH_END, (e: cc.Touch)=>
         {

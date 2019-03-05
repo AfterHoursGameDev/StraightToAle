@@ -14,15 +14,15 @@ backgroundMusicVol: number = 1;
 effectsVol: number = 1;
 
     onLoad ()
-    {
+    {/*
         // touch event to grab location when player touches screen
-        this.node.on(cc.Node.EventType.TOUCH_END, (e: cc.Touch)=>
+        this.node.on(cc.Node.EventType.TOUCH_START, (e: cc.Touch)=>
         {
             // Update the toggle state
-            this.pauseToggle.isChecked = true;
+            //this.pauseToggle.isChecked = true;
 
-            this.PauseGameButton();
-        })
+            //this.PauseGameButton();
+        })*/
 
         // Check state of mute toggle
         if (cc.audioEngine.getMusicVolume() == this.backgroundMusicVol)
@@ -100,6 +100,8 @@ effectsVol: number = 1;
 
     public RestartLevelButton()
     {
+        cc.director.resume();
+
         this.PlayClickAudio();
 
         cc.director.loadScene("endless_mode");
@@ -107,6 +109,8 @@ effectsVol: number = 1;
 
     public HomeButton()
     {
+        cc.director.resume();
+
         this.PlayClickAudio();
 
         cc.director.loadScene("main_menu");

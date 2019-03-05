@@ -47,8 +47,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.5099200299648217,
-      "y": 0.5099200299648217,
+      "x": 0.5099200299648223,
+      "y": 0.5099200299648223,
       "z": 1
     },
     "_quat": {
@@ -4603,7 +4603,7 @@
     },
     "_enabled": true,
     "enemyDeathFX": {
-      "__uuid__": "32fd2b95-7337-4f05-99f7-2cb9e9f932a0"
+      "__uuid__": "f9506a1c-25e0-4a22-9730-c35f85c026de"
     },
     "pointValue": 5,
     "_id": "ebu3iEVuNEfbnpQt+t9wG4"
@@ -4877,7 +4877,7 @@
       "__id__": 113
     },
     "asset": {
-      "__uuid__": "32fd2b95-7337-4f05-99f7-2cb9e9f932a0"
+      "__uuid__": "f9506a1c-25e0-4a22-9730-c35f85c026de"
     },
     "fileId": "a9JH5/yR5EQoR42PU5hQDh",
     "sync": false
@@ -4969,7 +4969,7 @@
       "__id__": 113
     },
     "asset": {
-      "__uuid__": "32fd2b95-7337-4f05-99f7-2cb9e9f932a0"
+      "__uuid__": "f9506a1c-25e0-4a22-9730-c35f85c026de"
     },
     "fileId": "d3Du4VO7lEzqLwvggi2P6G",
     "sync": false
@@ -5061,7 +5061,7 @@
       "__id__": 113
     },
     "asset": {
-      "__uuid__": "32fd2b95-7337-4f05-99f7-2cb9e9f932a0"
+      "__uuid__": "f9506a1c-25e0-4a22-9730-c35f85c026de"
     },
     "fileId": "dfV4xa4ERE4ZBECC/NweKU",
     "sync": false
@@ -5153,7 +5153,7 @@
       "__id__": 113
     },
     "asset": {
-      "__uuid__": "32fd2b95-7337-4f05-99f7-2cb9e9f932a0"
+      "__uuid__": "f9506a1c-25e0-4a22-9730-c35f85c026de"
     },
     "fileId": "2bk9qPNHJAmZSQGQEwt10g",
     "sync": false
@@ -5175,7 +5175,7 @@
     "_spriteFrame": {
       "__uuid__": "0fbc41d7-9770-4025-be57-10fc919a9d4e"
     },
-    "_stopped": false,
+    "_stopped": true,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 80,
@@ -5295,7 +5295,7 @@
       "__id__": 113
     },
     "asset": {
-      "__uuid__": "32fd2b95-7337-4f05-99f7-2cb9e9f932a0"
+      "__uuid__": "f9506a1c-25e0-4a22-9730-c35f85c026de"
     },
     "fileId": "d4ACtDYahIs7unH64GqdKv",
     "sync": false
@@ -5541,7 +5541,7 @@
       "__id__": 130
     },
     "asset": {
-      "__uuid__": "9a5508b1-ee16-4d74-8211-aaf18aa78606"
+      "__uuid__": "7c20c3fe-c3bd-4cf7-89a3-ef9b37f8ba91"
     },
     "fileId": "79iscpAylEw7ihkPVtBPXr",
     "sync": false
@@ -5643,7 +5643,7 @@
       "__id__": 130
     },
     "asset": {
-      "__uuid__": "9a5508b1-ee16-4d74-8211-aaf18aa78606"
+      "__uuid__": "7c20c3fe-c3bd-4cf7-89a3-ef9b37f8ba91"
     },
     "fileId": "81G+/VIZJEnp0lCV3LtWqy",
     "sync": false
@@ -5678,7 +5678,7 @@
     },
     "_enabled": true,
     "enemyDeathFX": {
-      "__uuid__": "32fd2b95-7337-4f05-99f7-2cb9e9f932a0"
+      "__uuid__": "f9506a1c-25e0-4a22-9730-c35f85c026de"
     },
     "pointValue": 12,
     "_id": "9cNvMvlKFOJqKmwc4NxID1"
@@ -5701,9 +5701,9 @@
       "__id__": 130
     },
     "asset": {
-      "__uuid__": "9a5508b1-ee16-4d74-8211-aaf18aa78606"
+      "__uuid__": "7c20c3fe-c3bd-4cf7-89a3-ef9b37f8ba91"
     },
-    "fileId": "19GnscM3ROJrwnv1BOlyj3",
+    "fileId": "c1rN6A5NFM3qH+jtFdH45p",
     "sync": false
   },
   {
@@ -6218,7 +6218,7 @@
     },
     "_enabled": true,
     "enemyDeathFX": {
-      "__uuid__": "32fd2b95-7337-4f05-99f7-2cb9e9f932a0"
+      "__uuid__": "f9506a1c-25e0-4a22-9730-c35f85c026de"
     },
     "pointValue": 8,
     "_id": "a50J3KgiZMGqxpt7kQboY9"
@@ -8012,7 +8012,7 @@
       "__uuid__": "7d14f51b-846b-48a8-8f94-57f249f2282b"
     },
     "spiralEnemyPrefab": {
-      "__uuid__": "9a5508b1-ee16-4d74-8211-aaf18aa78606"
+      "__uuid__": "7c20c3fe-c3bd-4cf7-89a3-ef9b37f8ba91"
     },
     "tank_1": {
       "__id__": 29
