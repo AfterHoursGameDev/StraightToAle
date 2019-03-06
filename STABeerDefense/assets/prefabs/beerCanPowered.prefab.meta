@@ -3,5 +3,6 @@
   "uuid": "6943cd4a-1ac1-4e8c-95b5-34981107e7ca",
   "optimizationPolicy": "AUTO",
   "asyncLoadAssets": false,
+  "readonly": false,
   "subMetas": {}
 }
