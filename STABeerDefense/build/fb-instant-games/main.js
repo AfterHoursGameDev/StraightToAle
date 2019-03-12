@@ -132,9 +132,9 @@
             jsList = [bundledScript];
         }
 
-        // anysdk scripts
+        // ANYS scripts
         if (cc.sys.isNative && cc.sys.isMobile) {
-            jsList = jsList.concat(['src/anysdk/jsb_anysdk.js', 'src/anysdk/jsb_anysdk_constants.js']);
+            jsList = jsList.concat(['src/ANYS/jsb_ANYS.js', 'src/ANYS/jsb_ANYS_constants.js']);
         }
 
         var option = {

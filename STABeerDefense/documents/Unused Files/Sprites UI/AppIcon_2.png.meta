@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "c95be36c-cdfa-47d2-af84-2afea177891d",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "AppIcon_2": {
+      "ver": "1.0.3",
+      "uuid": "c14ab3a3-5176-423f-9541-146bed69fd64",
+      "rawTextureUuid": "c95be36c-cdfa-47d2-af84-2afea177891d",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": 17.5,
+      "trimX": 54,
+      "trimY": 40,
+      "width": 405,
+      "height": 397,
+      "rawWidth": 512,
+      "rawHeight": 512,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

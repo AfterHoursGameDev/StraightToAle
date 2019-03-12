@@ -10,9 +10,6 @@ export default class MainMenuScript extends cc.Component {
     @property(cc.Node)
     creditsNode: cc.Node = null;
 
-    @property(cc.Node)
-    leaderboardNode: cc.Node = null;
-
     backgroundMusicVol: number = 1;
     effectsVol: number = 1;
 
@@ -35,13 +32,6 @@ export default class MainMenuScript extends cc.Component {
     {
         // load the Endless Mode Scene
         cc.director.loadScene("endless_mode");
-    }
-
-    public LeaderboardClick()
-    {
-        //this.leaderboardNode.active = true;
-
-        //this.DisableMainMenu();
     }
 
     public TutorialClick()

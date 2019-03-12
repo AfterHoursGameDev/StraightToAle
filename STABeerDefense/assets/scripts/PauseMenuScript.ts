@@ -51,12 +51,12 @@ effectsVol: number = 1;
 
         if (cc.director.isPaused() == false)
         {
-            this.node.active = true;
+            //this.node.active = true;
             cc.director.pause();
         }
         else
         {
-            this.node.active = false;
+            //this.node.active = false;
             cc.director.resume();
         }
     }
