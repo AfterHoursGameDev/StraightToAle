@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "33bb066b-f3ae-4ee4-b01f-04dd5b96073a",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "BreweryDefenseLogo-Alt": {
+      "ver": "1.0.3",
+      "uuid": "1db5d478-4b71-4f89-a03e-eeeee50ac1a6",
+      "rawTextureUuid": "33bb066b-f3ae-4ee4-b01f-04dd5b96073a",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 9,
+      "offsetY": 41,
+      "trimX": 171,
+      "trimY": 134,
+      "width": 700,
+      "height": 162,
+      "rawWidth": 1024,
+      "rawHeight": 512,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
