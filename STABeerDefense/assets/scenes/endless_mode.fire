@@ -3178,7 +3178,7 @@
     "node": {
       "__id__": 73
     },
-    "_enabled": true,
+    "_enabled": false,
     "_clip": {
       "__uuid__": "04031328-e33e-4232-9270-bc1898a0fef1"
     },
@@ -7992,6 +7992,9 @@
     },
     "canPoweredPrefab": {
       "__uuid__": "6943cd4a-1ac1-4e8c-95b5-34981107e7ca"
+    },
+    "beerCanLaunch": {
+      "__uuid__": "04031328-e33e-4232-9270-bc1898a0fef1"
     },
     "numMaxPitchers": 3,
     "beerCooldownTime": 0.5,

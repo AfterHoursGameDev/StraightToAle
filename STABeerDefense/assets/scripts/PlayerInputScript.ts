@@ -34,6 +34,9 @@ export default class PlayerInput extends cc.Component
 	
 	pitcherPrefab: cc.Prefab = null;
 
+	@property(cc.AudioClip)
+	beerCanLaunch: cc.AudioClip = null;
+
 	// Pitchers
     numCurrentPitchers: number = 0;
 	@property
@@ -254,7 +257,9 @@ export default class PlayerInput extends cc.Component
 			can.getComponent("BeerCanScript").InitializeBeerCan(tgtLocation);
 		}
 
-        cc.audioEngine.playEffect(this.launcherAudio.clip, false);
+		//cc.audioEngine.playEffect(this.launcherAudio.clip, false);
+		cc.audioEngine.playEffect(this.beerCanLaunch, false);
+		
     }	
 	
 	// Instantiate beer can at player location and throw it toward click location
