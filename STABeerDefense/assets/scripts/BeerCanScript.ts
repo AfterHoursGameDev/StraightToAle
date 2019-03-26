@@ -79,6 +79,9 @@ canSprite: cc.Node = null;
 
     public DestroyBeerCan()
     {
+        // Disable power up if enabled
+        this.node.getParent().getComponent("GameManagerScript").UpdatePowerUpState(false);
+
         this.node.destroy();
     }
 }
