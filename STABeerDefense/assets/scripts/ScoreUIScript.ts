@@ -31,25 +31,29 @@ export default class NewClass extends cc.Component {
     {
         if (value >= 0 && value <= 9)
         {
-            this.scoreLabel.string = "SCORE: 00000" + value.toString();
+            this.scoreLabel.string = "SCORE: 000000" + value.toString();
         }
         else if (value >= 10 && value <= 99)
         {
-            this.scoreLabel.string = "SCORE: 0000" + value.toString();
+            this.scoreLabel.string = "SCORE: 00000" + value.toString();
         }
         else if (value >= 100 && value <= 999)
         {
-            this.scoreLabel.string = "SCORE: 000" + value.toString();
+            this.scoreLabel.string = "SCORE: 0000" + value.toString();
         }
         else if (value >= 1000 && value <= 9999)
         {
-            this.scoreLabel.string = "SCORE: 00" + value.toString();
+            this.scoreLabel.string = "SCORE: 000" + value.toString();
         }
         else if (value >= 10000 && value <= 99999)
         {
-            this.scoreLabel.string = "SCORE: 0" + value.toString();
+            this.scoreLabel.string = "SCORE: 00" + value.toString();
         }
         else if (value >= 100000 && value <= 999999)
+        {
+            this.scoreLabel.string = "SCORE: 0" + value.toString();
+        }
+        else if (value >= 1000000 && value <= 9999999)
         {
             this.scoreLabel.string = "SCORE: " + value.toString();
         }

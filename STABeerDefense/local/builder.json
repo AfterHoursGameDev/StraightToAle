@@ -1,5 +1,5 @@
 {
-  "actualPlatform": "fb-instant-games",
+  "actualPlatform": "web-mobile",
   "apiLevel": "",
   "appABIs": [],
   "buildPath": "./build",
@@ -9,7 +9,7 @@
   "keystoreAliasPassword": "",
   "keystorePassword": "",
   "keystorePath": "",
-  "platform": "fb-instant-games",
+  "platform": "web-mobile",
   "previewHeight": "720",
   "previewWidth": "1280",
   "sourceMaps": false,

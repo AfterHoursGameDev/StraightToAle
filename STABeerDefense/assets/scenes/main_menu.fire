@@ -4207,7 +4207,9 @@
     "_enabled": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "d5d6be7c-01db-4ff4-9450-90a92d9e07ce"
+    },
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -4250,7 +4252,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 700,
-      "height": 200
+      "height": 350
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -4295,8 +4297,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "Credits\n\nLead Designer/Programmer: Kenny Emmanuel\nArtist/Designer: Jonathan Bisher",
-    "_N$string": "Credits\n\nLead Designer/Programmer: Kenny Emmanuel\nArtist/Designer: Jonathan Bisher",
+    "_string": "Credits\n\nLead Designer/Programmer: Kenny Emmanuel\n\nArtist/Designer: Jonathan Bisher\n\nUI and Audio: Chadwick Burton",
+    "_N$string": "Credits\n\nLead Designer/Programmer: Kenny Emmanuel\n\nArtist/Designer: Jonathan Bisher\n\nUI and Audio: Chadwick Burton",
     "_fontSize": 35,
     "_lineHeight": 50,
     "_enableWrapText": true,
